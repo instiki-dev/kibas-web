@@ -1,0 +1,40 @@
+.parent {
+    position: relative;
+    overflow-y: scroll;
+    h2 {
+        color: #11009E;
+        font-weight: bold;
+    }
+
+    .container {
+
+        .top-profile {
+            h3, h4 {
+                font-weight: bold;
+                color: #4942E4;
+            }
+        }
+
+        .bottom-profile {
+            background-color: #9f80ff;
+            color: #ffffff;
+            border-radius: 3vmin;
+        }
+    }
+
+    .btn-nav {
+        // position: absolute;
+        // bottom: 5vmin;
+        // left: 5vmin;
+        background-color: rgba($color: #ffffff, $alpha: 0.0);
+        font-size: 2.4em;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+    }
+}

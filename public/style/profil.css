@@ -1,0 +1,54 @@
+.parent {
+  overflow-y: scroll;
+}
+.parent h2 {
+  color: #4942E4;
+  font-weight: bold;
+}
+.parent .top-profil h3 {
+  color: #11009E;
+}
+.parent .top-profil .logout {
+  background-color: #4942E4;
+  border-top-left-radius: 8vmin;
+  border-bottom-left-radius: 8vmin;
+}
+.parent .top-profil .logout a {
+  font-size: 5vmin;
+  color: #ffffff;
+  text-decoration: none;
+}
+.parent .top-profil .logout a:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  color: #ffffff;
+}
+.parent #tambah {
+  color: #ffffff;
+  background-color: #9f80ff;
+  border: none;
+  outline: none !important;
+}
+.parent #tambah:hover {
+  cursor: pointer;
+  background-color: #8c66ff;
+}
+.parent #tambah:visited {
+  outline: none !important;
+}
+.parent .circle-btn {
+  font-size: 2em;
+}
+.parent .circle-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.parent .all-pengumuman,
+.parent .all-survey {
+  border: 1px solid #9f80ff;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  overflow-y: scroll;
+}
+
+/*# sourceMappingURL=profil.css.map */

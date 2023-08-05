@@ -1,0 +1,41 @@
+.parent {
+  position: relative;
+  overflow-y: scroll;
+}
+.parent img {
+  width: 30vw;
+  height: 50vh;
+}
+.parent h2 {
+  color: #11009E;
+  font-weight: bold;
+}
+.parent .container .top-profile h3, .parent .container .top-profile h4 {
+  font-weight: bold;
+  color: #4942E4;
+}
+.parent .container .top-profile .description {
+  color: rgba(73, 66, 228, 0.8);
+  font-weight: bold;
+}
+.parent .container .bottom-profile {
+  background-color: #9f80ff;
+  color: #ffffff;
+  border-radius: 3vmin;
+}
+.parent label {
+  font-weight: bold;
+}
+.parent .btn-nav {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 2.4em;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+.parent .btn-nav:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/*# sourceMappingURL=detailpengaduan.css.map */

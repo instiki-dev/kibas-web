@@ -1,0 +1,37 @@
+$primaryColor : #4942E4;
+$secondaryColor : #9f80ff;
+
+.parent {
+    h2 {
+        color: $primaryColor;
+        font-weight: bold;
+    }
+
+    .add {
+        color: #ffffff;
+        background-color: $primaryColor;
+    }
+
+    #inputSearch {
+        border-radius: 8vmin;
+        border: 0.2vmin solid $primaryColor;
+
+        &:focus {
+            outline: none !important;
+        }
+    }
+
+    .child {
+        table {
+            thead {
+                tr {
+                    background-color: $secondaryColor;
+                    color: #ffffff;
+                    th {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

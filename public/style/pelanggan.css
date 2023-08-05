@@ -1,0 +1,24 @@
+.parent h2 {
+  color: #4942E4;
+  font-weight: bold;
+}
+.parent .add {
+  color: #ffffff;
+  background-color: #4942E4;
+}
+.parent #inputSearch {
+  border-radius: 8vmin;
+  border: 0.2vmin solid #4942E4;
+}
+.parent #inputSearch:focus {
+  outline: none !important;
+}
+.parent .child table thead tr {
+  background-color: #9f80ff;
+  color: #ffffff;
+}
+.parent .child table thead tr th {
+  text-align: center;
+}
+
+/*# sourceMappingURL=pelanggan.css.map */

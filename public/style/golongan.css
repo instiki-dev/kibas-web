@@ -1,0 +1,61 @@
+@media only screen and (max-width: 600px) {
+  .parent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.parent h2 {
+  color: #4942E4;
+  font-weight: bold;
+}
+.parent .add {
+  color: #ffffff;
+  background-color: #4942E4;
+}
+@media only screen and (max-width: 600px) {
+  .parent .widget {
+    margin-top: 3vh;
+    justify-content: center;
+  }
+  .parent .widget #inputSearch {
+    width: 55%;
+  }
+  .parent .widget a {
+    font-size: 0.7em;
+  }
+}
+.parent #inputSearch {
+  border-radius: 8vmin;
+  border: 0.2vmin solid #4942E4;
+}
+.parent #inputSearch:focus {
+  outline: none !important;
+}
+.parent .child {
+  overflow-y: scroll;
+}
+.parent .child table thead tr {
+  background-color: #9f80ff;
+  color: #ffffff;
+}
+.parent .child table thead tr th {
+  text-align: center;
+}
+.parent .child table tbody tr {
+  background-color: #ece6ff;
+}
+.parent .child table tbody tr th {
+  text-align: center;
+}
+.parent .child table tbody tr th .wrapper {
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .parent .child table tbody tr th .wrapper {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/*# sourceMappingURL=golongan.css.map */

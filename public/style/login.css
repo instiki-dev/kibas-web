@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+* body img {
+  width: 53%;
+  height: 50%;
+}
+@media only screen and (max-width: 600px) {
+  * body img {
+    margin-top: 2vmin;
+    width: 80%;
+    height: 60%;
+  }
+}
+* body .login-card {
+  background-color: #eae9fc;
+  border-radius: 3vmin;
+}
+
+/*# sourceMappingURL=login.css.map */

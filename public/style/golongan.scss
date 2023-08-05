@@ -1,0 +1,79 @@
+$primaryColor : #4942E4;
+$secondaryColor : #9f80ff;
+$tableColor : #ece6ff;
+
+.parent {
+    // overflow-y: scroll;
+
+    @media only screen and (max-width : 600px) {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    h2 {
+        color: $primaryColor;
+        font-weight: bold;
+    }
+
+    .add {
+        color: #ffffff;
+        background-color: $primaryColor;
+    }
+
+    .widget {
+        @media only screen and (max-width : 600px) {
+            margin-top: 3vh;
+            justify-content: center;
+            #inputSearch {
+                width: 55%;
+            }
+
+            a {
+                font-size: 0.7em;
+            }
+        }
+    }
+
+
+    #inputSearch {
+        border-radius: 8vmin;
+        border: 0.2vmin solid $primaryColor;
+
+        &:focus {
+            outline: none !important;
+        }
+    }
+
+    .child {
+        overflow-y: scroll;
+        table {
+            thead {
+                tr {
+                    background-color: $secondaryColor;
+                    color: #ffffff;
+                    th {
+                        text-align: center;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    background-color: $tableColor;
+                    th {
+                        text-align: center;
+
+                        .wrapper {
+                            text-align: center;
+
+                            @media only screen and (max-width : 600px) {
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

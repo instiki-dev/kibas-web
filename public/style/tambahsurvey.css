@@ -1,0 +1,38 @@
+.parent {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.parent .form-wrapper {
+  overflow-y: scroll;
+}
+.parent .tambah-pertanyaan a#btnTambah {
+  border: none;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 4vmin;
+  font-weight: bold;
+  background-color: #a64dff;
+  color: #fff;
+}
+.parent .tambah-pertanyaan a#btnTambah:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.parent .tambah-pertanyaan label {
+  font-size: 2vmin;
+  color: #1400cc;
+}
+.parent .delField {
+  background-color: #fff;
+  color: #a64dff;
+  font-size: 1.5em;
+}
+.parent .delField:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=tambahsurvey.css.map */
