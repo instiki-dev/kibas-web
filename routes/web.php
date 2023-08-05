@@ -103,7 +103,7 @@ Route::group(["prefix" => "admin"], function() {
     Route::post("/", LoginController::class) -> name('login');
     Route::get("/logout", LogoutController::class) -> name('logout');
 
-    Route::group(["prefix" => "dashboard"], function() {
+    Route::group(["prefix" => "dashboard", "middleware" => ["isadmin"]], function() {
         Route::get("/", MainDashboardController::class) -> name('dashboard');
         Route::group(["prefix" => "survey"], function() {
             Route::get("/", TambahSurveyController::class) ->name('show-tambah-survey');
@@ -113,7 +113,7 @@ Route::group(["prefix" => "admin"], function() {
         });
     });
 
-    Route::group(["prefix" => "profil"], function() {
+    Route::group(["prefix" => "profil", "middleware" => ["isadmin"]], function() {
         Route::get("/", DashboardController::class) -> name('profil');
         Route::get("/tambah-berita", TambahPengumumanController::class) -> name('tambah-berita');
         Route::post("/tambah-berita", TambahPengumumanDBController::class) ->name('post-tambah-berita');
@@ -124,7 +124,7 @@ Route::group(["prefix" => "admin"], function() {
 
     });
 
-    Route::group(["prefix" => "pelanggan"], function() {
+    Route::group(["prefix" => "pelanggan", "middleware" => ["isadmin"]], function() {
         Route::get("/", PelangganController::class) -> name('pelanggan');
         Route::get("/tambah-pelanggan", TampilanController::class) -> name('show-tambah-pelanggan');
         Route::get("/edit-pelanggan/{pelanggan:id}", ShowUpdatePelangganController::class)-> name('show-edit-pelanggan');
@@ -135,7 +135,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::post("/tambah-pelanggan", TambahPelangganController::class)-> name('tambah-pelanggan');
     });
 
-    Route::group(["prefix" => "golongan"], function() {
+    Route::group(["prefix" => "golongan", "middleware" => ["isadmin"]], function() {
         Route::get("/", GolonganController::class)-> name('golongan');
         Route::get("/hapus-golongan/{golongan:id}", HapusGolonganController::class)-> name('hapus-golongan');
         Route::get("/edit-golongan/{golongan:id}", ShowUpdateGolonganController::class)-> name('show-update-golongan');
@@ -145,7 +145,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::post("/tambah-golongan", TambahGolonganController::class)-> name('tambah-golongan');
     });
 
-    Route::group(["prefix" => "kecamatan"], function() {
+    Route::group(["prefix" => "kecamatan", "middleware" => ["isadmin"]], function() {
         Route::get("/", KecamatanController::class)-> name('kecamatan');
         Route::get("/tambah-kecamatan", ShowTambahKecamatanController::class)-> name('show-tambah-kecamatan');
         Route::get("/hapus-kecamatan/{kecamatan:id}", HapusKecamatanController::class)-> name('hapus-kecamatan');
@@ -155,7 +155,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::post("/tambah-kecamatan", TambahKecamatanController::class)-> name('tambah-kecamatan');
     });
 
-    Route::group(["prefix" => "kelurahan"], function() {
+    Route::group(["prefix" => "kelurahan", "middleware" => ["isadmin"]], function() {
         Route::get("/", KelurahanController::class)-> name('kelurahan');
         Route::get("/tambah-kelurahan", ShowTambahKelurahanController::class)-> name('show-tambah-kelurahan');
         Route::get("/edit-kelurahan/{kelurahan:id}", ShowUpdateKelurahanController::class)-> name('show-update-kelurahan');
@@ -165,7 +165,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::get("/hapus-kelurahan/{kelurahan:id}", HapusKelurahanController::class)-> name('hapus-kelurahan');
     });
 
-    Route::group(["prefix" => "area"], function() {
+    Route::group(["prefix" => "area", "middleware" => ["isadmin"]], function() {
         Route::get("/", AreaController::class)-> name('area');
         Route::post("/tambah-area", TambahAreaController::class)-> name('tambah-area');
         Route::get("/tambah-area", ShowTambahAreaController::class)-> name('show-tambah-area');
@@ -175,7 +175,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::put("/edit-area/{area:id}", UpdateAreaController::class)-> name('edit-area');
     });
 
-    Route::group(["prefix" => "pegawai"], function() {
+    Route::group(["prefix" => "pegawai", "middleware" => ["isadmin"]], function() {
         Route::get("/", PegawaiController::class)-> name('pegawai');
         Route::get("/tambah-pegawai", ShowTambahPegawaiController::class)-> name('show-tambah-pegawai');
         Route::get("/edit-pegawai/{pegawai:id}", ShowUpdatePegawaiController::class)-> name('show-update-pegawai');
@@ -185,14 +185,14 @@ Route::group(["prefix" => "admin"], function() {
         Route::get("/cari-pegawai", SearchPegawaiController::class)-> name('search-pegawai');
     });
 
-    Route::group(["prefix" => "user"], function() {
+    Route::group(["prefix" => "user", "middleware" => ["isadmin"]], function() {
         Route::get("/", UserController::class)-> name('user');
         Route::get("/ubah-password/{user:id}", ShowUpdateUserController::class)-> name('show-ubah-password');
         Route::put("/ubah-password/{user:id}", UpdateUserController::class)-> name('ubah-password');
         Route::get("/cari-user", SearchUserController::class)-> name('search-user');
     });
 
-    Route::group(["prefix" => "rekening"], function() {
+    Route::group(["prefix" => "rekening", "middleware" => ["isadmin"]], function() {
         Route::get("/", RekeningController::class)-> name('rekening');
         Route::get("/tambah-rekening", ShowTambahRekeningController::class)-> name('show-tambah-rekening');
         Route::get("/edit-rekening/{rekening:id}", ShowUpdateRekeningController::class)-> name('show-update-rekening');
@@ -212,16 +212,11 @@ Route::group(["prefix" => "admin"], function() {
         Route::post("/tagihan/import", ImportTagihanController::class)-> name('import-tagihan');
     });
 
-    Route::group(["prefix" => "pengaduan"], function() {
+    Route::group(["prefix" => "pengaduan", "middleware" => ["isadmin"]], function() {
         Route::get("/", PengaduanController::class)-> name('pengaduan');
         Route::get("/detail-pengaduan/{pengaduan:id}", DetailPengaduanController::class)-> name('show-detail-pengaduan');
         Route::get("/cari-pengaduan", SearchPengaduanController::class)-> name('search-pengaduan');
         Route::put("/konfirmasi/{pengaduan:id}", KonfirmasiPengaduanController::class)-> name('konfirmasi-pengaduan');
     });
-
-
-    Route::get("/tagihan", TagihanController::class)-> name('tagihan');
-
-    Route::get('/new', ShowDashboardController::class);
 });
 

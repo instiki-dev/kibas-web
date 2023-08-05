@@ -33,7 +33,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($validated)) {
             $request -> session() -> regenerate();
-            return redirect() -> route('profil');
+            return redirect() -> route('dashboard');
         }
 
         return back() -> withErrors("Gagal melakukan login");
