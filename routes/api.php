@@ -14,7 +14,9 @@ use App\Http\Controllers\API\Pelanggan\GetSurveyByIdController;
 use App\Http\Controllers\API\Pelanggan\GetTagihanController;
 use App\Http\Controllers\API\Pelanggan\GiveRateController;
 use App\Http\Controllers\API\Pelanggan\JawabSurveyController;
+use App\Http\Controllers\API\Pelanggan\PostMeterController;
 use App\Http\Controllers\API\Pelanggan\PostPengaduanController;
+use App\Http\Controllers\API\Pelanggan\RegisterPelangganController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post("/pelanggan/login", PelangganLogin::class);
+Route::post("/pelanggan/register", RegisterPelangganController::class);
 Route::post("/pegawai/login", PegawaiLogin::class);
 Route::get("/logout", LogoutController::class) -> middleware('auth:sanctum');
 
@@ -42,6 +45,7 @@ Route::group(["prefix" => "rekening", "middleware" => ["auth:sanctum", "same", "
     Route::get("/pengaduan/{rekening:no_rekening}", GetPengaduanController::class);
     Route::get("/tagihan/{rekening:no_rekening}", GetTagihanController::class);
     Route::put("/pengaduan/rate/{rekening:no_rekening}/{pengaduan:id}", GiveRateController::class);
+    Route::post("/baca-meter/{rekening:no_rekening}", PostMeterController::class);
 });
 
 Route::group(["prefix" => "pengumuman-survey", "middleware" => ["auth:sanctum", "can:customer-access"]], function() {

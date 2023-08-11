@@ -19,11 +19,19 @@ class Pegawai extends Model
         return $this -> hasMany(Pengaduan::class, "petugas_id");
     }
 
+    public function penugasan() {
+        return $this -> hasOne(Penugasan::class, "petugas_id", "id");
+    }
+
     public function tagihan() {
         return $this -> hasMany(Tagihan::class, "pembaca_id");
     }
 
     public function user() {
         return $this -> belongsTo(User::class, "user_id");
+    }
+
+    public function area() {
+        return $this -> belongsTo(Area::class, "area_id");
     }
 }

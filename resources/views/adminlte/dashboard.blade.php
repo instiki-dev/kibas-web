@@ -11,6 +11,15 @@
           </button>
         </div>
     </div>
+    @elseif(session() -> has('errorMessage'))
+    <div class="px-2 pt-2">
+        <div class="alert alert-danger" role="alert">
+            {{ session('errorMessage') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    </div>
     @endif
     <div class="container-fluid">
         <div class="row mb-2">
@@ -34,19 +43,15 @@
                     <h4 class="col-6">Pengumuman</h4>
                     <ul class="nav nav-pills card-header-pills col-6 d-flex justify-content-end">
                       <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('tambah-berita') }}">Buat Pengumuman</a>
+                        <a class="nav-link active" href="{{ route('pengumuman') }}">Buat Pengumuman</a>
                       </li>
                     </ul>
                   </div>
                   <div class="card-body" style="max-height: 55vh; overflow-y: scroll;">
-                    @foreach($berita as $item)
-                    <div class="card mt-2 bg-info">
-                        <div class="card-header">
-                            {{ $item -> created_at }}
-                      </div>
+                    @foreach($pengumuman as $item)
+                    <div class="card mt-2 bg-gray">
                       <div class="card-body">
-                        <p class="card-text">{!! $item -> berita !!}</p>
-                        <a onclick="return confirm('Yakin ingin menghapus pengumuman?')" href="{{ route('hapus-berita', ["pengumuman" => $item -> id]) }}" class="btn bg-navy">Hapus</a>
+                        <p class="card-text">{!! $item -> pengumuman !!}</p>
                       </div>
                     </div>
                     @endforeach

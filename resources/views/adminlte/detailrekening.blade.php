@@ -26,6 +26,7 @@
                 <p class="card-text mb-0">Kelurahan : {{ $rekening -> kelurahan ? $rekening -> kelurahan -> kelurahan : "-" }}</p>
                 <p class="card-text mb-0">Latitude : {{ $rekening -> latitude ? $rekening -> latitude : "-" }}</p>
                 <p class="card-text mb-0">Longtitude : {{ $rekening -> longtitude ? $rekening -> longtitude : "-" }}</p>
+                <p class="card-text mb-0">Area : {{ $rekening -> area ? $rekening -> area -> area : "-" }}</p>
                     <div class="d-flex justify-content-center mt-4">
                         <a href="{{ route('show-tagihan', ['rekening' => $rekening-> no_rekening]) }}" type="button" class="btn btn-success mr-2">Tagihan</a>
                         <a type="button" href="{{ route('show-riwayat', ['rekening' => $rekening-> id]) }}" class="btn btn-light">Riwayat Pengaduan</a>

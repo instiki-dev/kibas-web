@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Pegawai;
+use App\Models\Penugasan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,13 +20,14 @@ class PegawaiSeeder extends Seeder
         $emailList = ["madelelut@gmail.com", "pandeucok@gmail.com"];
         $listPassword = ["madelelut", "nyomanpandeucok"];
         $listNama = ["Made Lelut", "Nyoman Pande Sukma Pradnyana"];
+        $area = [2, 6];
 
         for ($i = 0; $i < count($emailList); $i++) {
             $password = bcrypt($listPassword[$i]);
             $user = [
                 "name" => $usernameList[$i],
                 "email" => $emailList[$i],
-                "password" => $password
+                "password" => $password,
             ];
 
             $userData = User::create($user);
@@ -35,9 +37,16 @@ class PegawaiSeeder extends Seeder
             $pegawaiData = [
                 "user_id" => $userData -> id,
                 "nama" => $listNama[$i],
-                "jabatan" => 'Pembaca Meter'
+                "jabatan" => 'Pembaca Meter',
+                "area_id" => $area[$i]
             ];
-            Pegawai::create($pegawaiData);
+
+            $p = Pegawai::create($pegawaiData);
+            $penugasan = [
+                "petugas_id" => $p -> id,
+                "jumlah" => 0
+            ];
+            Penugasan::create($penugasan);
         }
 
     }

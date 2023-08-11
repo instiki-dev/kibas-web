@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Pelanggan\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rekening;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,7 @@ class LoginController extends Controller
                 [
                     "no_rekening" => "required",
                     "password" => "required",
+                    "device_token" => "required"
                 ]
             );
 
@@ -45,7 +47,7 @@ class LoginController extends Controller
             $user = $rekening -> pelanggan -> user;
             $credential = [
                 "name" => $user -> name,
-                "password" => $request -> password
+                "password" => $request -> password,
             ];
 
             if (!Auth::attempt($credential)) {
@@ -54,6 +56,10 @@ class LoginController extends Controller
                     'message' => 'Rekening & Password tidak cocok',
                 ], 401);
             }
+            $deviceToken = ["device_token" => $request -> device_token];
+
+            User::where('id', $user -> id) -> update($deviceToken);
+            Rekening::where('id', $rekening -> id) -> update($deviceToken);
 
             return response()->json([
                 'status' => true,

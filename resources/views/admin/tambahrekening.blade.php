@@ -40,7 +40,6 @@
                         @foreach ($kelurahan as $item)
                         <option data-tokens="data" value={{ $item -> id }}>{{ $item -> kelurahan }}</option>
                         @endforeach
-                        <!-- <option data-tokens="data" value="0">Lainnya</option> -->
                     </select>
                 </div>
           </div>

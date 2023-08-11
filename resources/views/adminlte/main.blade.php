@@ -128,6 +128,22 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('pengumuman') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pengumuman') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-newspaper"></i>
+                                    <p>
+                                       Pengumuman
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('baca-meter-mandiri') }}" class="nav-link {{ str_contains(Request::path(), 'admin/baca-meter-mandiri') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-tint"></i>
+                                    <p>
+                                        Baca Meter Mandiri
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

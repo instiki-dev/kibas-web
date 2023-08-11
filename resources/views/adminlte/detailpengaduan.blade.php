@@ -16,6 +16,56 @@
     </div>
 </div>
 <div class="content">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pilih Petugas</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+                <div class="card-body table-responsive p-0" style="height: 70%;">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Area</th>
+                            <th class="text-center">Jumlah Penugasan</th>
+                            <th class="text-center">Aksi</th>
+                        </thead>
+                        <tbody class="text-center" id="tableContent">
+                            @foreach($pegawai as $item)
+                            <tr>
+                              <td scope="col">{{ $loop -> index + 1}}</td>
+                              <td scope="col">{{ $item -> nama }}</td>
+                              <td scope="col">{{ $item -> area ? $item -> area -> area : "-" }}</td>
+                              <td scope="col">{{ $item -> penugasan -> jumlah }}</td>
+                                <td scope="col">
+                                    <div class="wrapper d-inline">
+                                        @if (!$item -> user -> can('admin-page-access'))
+                                            <form action="{{ route('admin-konfirmasi', ['pengaduan' => $pengaduan-> id]) }}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input name="petugas_id" value="{{ $item -> id }}" type="hidden">
+                                                <button onclick="return confirm('Yakin ingin memilih petugas ini?')" type="submit" class="btn btn-outline-success mr-3">Pilih</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container-fluid">
         <div class="col-12">
            <div class="card mb-2">
@@ -29,31 +79,13 @@
                         <h6>Nomor Telepon : {{ $pengaduan -> pelanggan ? $pengaduan -> pelanggan -> no_pelanggan : '-' }}</h6>
                         <h6>Kecamatan : {{ $pengaduan -> rekening -> kecamatan ? $pengaduan -> rekening -> kecamatan -> kecamatan : '-' }}</h6>
                         <h6>Kelurahan : {{ $pengaduan -> rekening -> kelurahan ? $pengaduan -> rekening -> kelurahan -> kelurahan : '-' }}</h6>
-                    </div>
-                    <div class="action">
-                        <form class="mt-5 pt-2 ml-4 mr-3" action="{{ route('konfirmasi-pengaduan', ['pengaduan' => $pengaduan -> id]) }}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <div class="form-group col-md-12">
-                              <label for="inputPetugas">Pilih Pegawai</label>
-                                <select id="inputPetugas" name="petugas_id" class="form-control selectpicker" data-live-search="true">
-                                    <option value="0">Pilih Pegawai</option>
-                                    @foreach ($pegawai as $item)
-                                    <option data-tokens="data" value={{ $item -> id }}>{{ $item -> nama }}</option>
-                                    @endforeach
-                                    <!-- <option data-tokens="data" value="0">Lainnya</option> -->
-                                </select>
-                            </div>
-                            @if($errors -> first())
-                            <div class="alert alert-danger px-3" role="alert">
-                                Pilih pegawai terlebih dahulu
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            @endif
-                          <button type="submit" class="btn btn-primary ml-4 mt-2 mb-3" style="border: none;">Konfirmasi Pengaduan</button>
-                        </form>
+                        @if(!$pengaduan -> petugas)
+                        <div class="action">
+                            <button type="button" class="btn btn-primary ml-3 mt-3" data-toggle="modal" data-target="#exampleModal">
+                                Pilih Petugas
+                            </button>
+                        </div>
+                        @endif
                     </div>
               </div>
             </div>

@@ -21,10 +21,11 @@ class TambahRekeningController extends Controller
             "pelanggan_id" => "required",
             "kelurahan_id" => "required",
             "kecamatan_id" => "required",
+            "area_id" => "required",
             "lat" => "required",
             "lng" => "required",
         ]);
-
+        $validate["area_id"] = $validate["area_id"] != 0 ? $validate["area_id"] : null;
         $validate["pelanggan_id"] = (int)$validate["pelanggan_id"];
         $validate["kelurahan_id"] = (int)$validate["kelurahan_id"];
         $validate["kecamatan_id"] = (int)$validate["kecamatan_id"];
