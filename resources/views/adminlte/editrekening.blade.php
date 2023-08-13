@@ -76,7 +76,7 @@
                               </button>
                             </div>
                             @endif
-                          <button type="submit" class="btn btn-primary ml-4 mt-2" style="border: none;">Edit</button>
+                          <button type="submit" class="btn btn-danger ml-4 mt-2" style="border: none;">Edit</button>
                         </form>
 
                 </div>

@@ -63,7 +63,7 @@
                           <div id="summernote"></div>
                         </div>
 
-                        <button onclick="return confirm('Yakin ingin membuat pengumuman?')" type="submit" class="btn btn-primary mt-3 ml-3">Buat Pengumuman</button>
+                        <button onclick="return confirm('Yakin ingin membuat pengumuman?')" type="submit" class="btn btn-danger mt-3 ml-3">Buat Pengumuman</button>
                     </form>
                 </div>
             </div>

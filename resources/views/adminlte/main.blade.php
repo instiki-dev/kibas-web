@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="/plugins/adminlte/plugins/summernote/summernote-bs4.min.css">
 
         <script nonce="e5f5615e-7b13-48f6-8c06-6f44ce727af4">(function(w,d){!function(bt,bu,bv,bw){bt[bv]=bt[bv]||{};bt[bv].executed=[];bt.zaraz={deferred:[],listeners:[]};bt.zaraz.q=[];bt.zaraz._f=function(bx){return function(){var by=Array.prototype.slice.call(arguments);bt.zaraz.q.push({m:bx,a:by})}};for(const bz of["track","set","debug"])bt.zaraz[bz]=bt.zaraz._f(bz);bt.zaraz.init=()=>{var bA=bu.getElementsByTagName(bw)[0],bB=bu.createElement(bw),bC=bu.getElementsByTagName("title")[0];bC&&(bt[bv].t=bu.getElementsByTagName("title")[0].text);bt[bv].x=Math.random();bt[bv].w=bt.screen.width;bt[bv].h=bt.screen.height;bt[bv].j=bt.innerHeight;bt[bv].e=bt.innerWidth;bt[bv].l=bt.location.href;bt[bv].r=bu.referrer;bt[bv].k=bt.screen.colorDepth;bt[bv].n=bu.characterSet;bt[bv].o=(new Date).getTimezoneOffset();if(bt.dataLayer)for(const bG of Object.entries(Object.entries(dataLayer).reduce(((bH,bI)=>({...bH[1],...bI[1]})),{})))zaraz.set(bG[0],bG[1],{scope:"page"});bt[bv].q=[];for(;bt.zaraz.q.length;){const bJ=bt.zaraz.q.shift();bt[bv].q.push(bJ)}bB.defer=!0;for(const bK of[localStorage,sessionStorage])Object.keys(bK||{}).filter((bM=>bM.startsWith("_zaraz_"))).forEach((bL=>{try{bt[bv]["z_"+bL.slice(7)]=JSON.parse(bK.getItem(bL))}catch{bt[bv]["z_"+bL.slice(7)]=bK.getItem(bL)}}));bB.referrerPolicy="origin";bB.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(bt[bv])));bA.parentNode.insertBefore(bB,bA)};["complete","interactive"].includes(bu.readyState)?zaraz.init():bt.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script>
+        <style>
+            .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+                background-color: #990000;
+            }
+        </style>
         @section('style')
     </head>
     <body class="hold-transition sidebar-mini">
@@ -35,7 +40,7 @@
                 </ul>
             </nav>
 
-            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <aside class="main-sidebar sidebar-light-primary elevation-4 bg-red">
                 <a href="index3.html" class="brand-link">
                     <img src="/img/danuarta.jpg" alt="Tirta Danu Arta Logo" class="brand-image elevation-3" style="opacity: .8; border-radius: 1vmin;">
                     <span class="brand-text font-weight-light">Tirta Danu Arta</span>
@@ -47,7 +52,7 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                             <li class="nav-item">
-                                <a href="{{ route('dashboard') }}" class="nav-link {{ str_contains(Request::path(), 'admin/dashboard') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('dashboard') }}" class="nav-link {{ str_contains(Request::path(), 'admin/dashboard') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
@@ -55,7 +60,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('profil') }}" class="nav-link {{ str_contains(Request::path(), 'admin/profil') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('profil') }}" class="nav-link {{ str_contains(Request::path(), 'admin/profil') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
                                         Profil
@@ -63,7 +68,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('kecamatan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/kecamatan') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('kecamatan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/kecamatan') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-map-marker-alt"></i>
                                     <p>
                                        Kecamatan
@@ -71,7 +76,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('kelurahan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/kelurahan') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('kelurahan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/kelurahan') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-thumbtack"></i>
                                     <p>
                                       Kelurahan
@@ -80,7 +85,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('area') }}" class="nav-link {{ str_contains(Request::path(), 'admin/area') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('area') }}" class="nav-link {{ str_contains(Request::path(), 'admin/area') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-map-pin"></i>
                                     <p>
                                         Area
@@ -89,7 +94,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('pelanggan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pelanggan') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('pelanggan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pelanggan') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-user-friends"></i>
                                     <p>
                                         Pelanggan
@@ -97,7 +102,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('pegawai') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pegawai') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('pegawai') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pegawai') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-user-tie"></i>
                                     <p>
                                         Pegawai
@@ -105,7 +110,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('user') }}" class="nav-link {{ str_contains(Request::path(), 'admin/user') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('user') }}" class="nav-link {{ str_contains(Request::path(), 'admin/user') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-user-lock"></i>
                                     <p>
                                         User
@@ -113,7 +118,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('rekening') }}" class="nav-link {{ str_contains(Request::path(), 'admin/rekening') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('rekening') }}" class="nav-link {{ str_contains(Request::path(), 'admin/rekening') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-id-card"></i>
                                     <p>
                                         Rekening
@@ -121,7 +126,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('pengaduan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pengaduan') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('pengaduan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pengaduan') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-comment-alt"></i>
                                     <p>
                                         Pengaduan
@@ -129,7 +134,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('pengumuman') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pengumuman') ? 'active' : '' }}">
+                                <a style="color: #fff;" href="{{ route('pengumuman') }}" class="nav-link {{ str_contains(Request::path(), 'admin/pengumuman') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-newspaper"></i>
                                     <p>
                                        Pengumuman
@@ -137,7 +142,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('baca-meter-mandiri') }}" class="nav-link {{ str_contains(Request::path(), 'admin/baca-meter-mandiri') ? 'active' : '' }}">
+                                <a style="color: #fff;"href="{{ route('baca-meter-mandiri') }}" class="nav-link {{ str_contains(Request::path(), 'admin/baca-meter-mandiri') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-tint"></i>
                                     <p>
                                         Baca Meter Mandiri

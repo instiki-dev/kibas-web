@@ -36,7 +36,7 @@
                       </button>
                     </div>
                     @endif
-                  <button onclick="return confirm('Yakin ingin mengkonfirmasi angka meter?')" type="submit" class="btn btn-primary ml-4 mt-2" style="border: none;">Konfirmasi</button>
+                  <button onclick="return confirm('Yakin ingin mengkonfirmasi angka meter?')" type="submit" class="btn btn-danger ml-4 mt-2" style="border: none;">Konfirmasi</button>
                 </form>
               </div>
             </div>

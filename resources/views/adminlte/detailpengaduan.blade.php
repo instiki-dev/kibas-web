@@ -81,7 +81,7 @@
                         <h6>Kelurahan : {{ $pengaduan -> rekening -> kelurahan ? $pengaduan -> rekening -> kelurahan -> kelurahan : '-' }}</h6>
                         @if(!$pengaduan -> petugas)
                         <div class="action">
-                            <button type="button" class="btn btn-primary ml-3 mt-3" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-danger ml-3 mt-3" data-toggle="modal" data-target="#exampleModal">
                                 Pilih Petugas
                             </button>
                         </div>

@@ -34,7 +34,7 @@
                     <form id="tagihanForm" action="{{ route('import-tagihan') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input id="inputFile" name="file" type="file" hidden>
-                        <button id="btnFile" type="button" class="btn btn-primary" style="color: #fff;">Import Tagihan</button>
+                        <button id="btnFile" type="button" class="btn btn-danger" style="color: #fff;">Import Tagihan</button>
                     </form>
                     <div class="card-tools">
                         <div class="input-group input-group-sm"  style="width: 400px;">

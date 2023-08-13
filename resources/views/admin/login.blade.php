@@ -41,7 +41,7 @@
                     </div>
                     @endif
                     <div class="w-100 d-flex justify-content-center">
-                      <button type="submit" class="btn btn-primary w-75">Login</button>
+                      <button type="submit" class="btn btn-danger w-75">Login</button>
                     </div>
                 </form>
             </div>

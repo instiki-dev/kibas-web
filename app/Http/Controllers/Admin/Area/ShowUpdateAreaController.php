@@ -18,7 +18,9 @@ class ShowUpdateAreaController extends Controller
     public function __invoke(Request $request, Area $area)
     {
         $kecamatan = Kecamatan::all();
-        return view('admin.editarea',
+        // return view('admin.editarea',
+        //     ["area" => $area, "kecamatan" => $kecamatan]);
+        return view('adminlte.editarea',
             ["area" => $area, "kecamatan" => $kecamatan]);
     }
 }

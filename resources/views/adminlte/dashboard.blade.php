@@ -43,7 +43,7 @@
                     <h4 class="col-6">Pengumuman</h4>
                     <ul class="nav nav-pills card-header-pills col-6 d-flex justify-content-end">
                       <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('pengumuman') }}">Buat Pengumuman</a>
+                        <a style="background-color: #ff0000;" class="nav-link active" href="{{ route('pengumuman') }}">Buat Pengumuman</a>
                       </li>
                     </ul>
                   </div>
@@ -65,7 +65,7 @@
                     <h4 class="col-6">Survey</h4>
                     <ul class="nav nav-pills card-header-pills col-6 d-flex justify-content-end">
                       <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('show-tambah-survey') }}">Buat Survey</a>
+                        <a style="background-color: #ff0000;" class="nav-link active" href="{{ route('show-tambah-survey') }}">Buat Survey</a>
                       </li>
                     </ul>
                   </div>
