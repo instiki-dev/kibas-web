@@ -37,7 +37,6 @@ class PostPengaduanController extends Controller
                 return response()->json([
                     'status' => false,
                     'message' => 'bukti tidak tersedia',
-                    'errors' => $validation->errors()
                 ], 400);
             }
 

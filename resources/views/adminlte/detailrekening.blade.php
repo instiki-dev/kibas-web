@@ -18,16 +18,17 @@
 <div class="content">
     <div class="container-fluid">
         <div class="col-12">
-             <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+             <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
               <div class="card-body">
                 <h3>{{ $rekening -> pelanggan -> nama_pelanggan }}</h3>
                 <h4>{{ $rekening -> no_rekening }}</h4>
                 <p class="card-text mb-0">Kecamatan : {{ $rekening -> kecamatan ? $rekening -> kecamatan -> kecamatan : "-" }}</p>
                 <p class="card-text mb-0">Kelurahan : {{ $rekening -> kelurahan ? $rekening -> kelurahan -> kelurahan : "-" }}</p>
-                <p class="card-text mb-0">Latitude : {{ $rekening -> latitude ? $rekening -> latitude : "-" }}</p>
-                <p class="card-text mb-0">Longtitude : {{ $rekening -> longtitude ? $rekening -> longtitude : "-" }}</p>
+                <p class="card-text mb-0">Latitude : {{ $rekening -> lat ? $rekening -> lat : "-" }}</p>
+                <p class="card-text mb-0">Longtitude : {{ $rekening -> lng ? $rekening -> lng : "-" }}</p>
+                <p class="card-text mb-0">Area : {{ $rekening -> area ? $rekening -> area -> area : "-" }}</p>
                     <div class="d-flex justify-content-center mt-4">
-                        <a href="{{ route('show-tagihan', ['rekening' => $rekening-> no_rekening]) }}" type="button" class="btn btn-success mr-2">Tagihan</a>
+                        <a style="color: #333;" href="{{ route('show-tagihan', ['rekening' => $rekening-> no_rekening]) }}" type="button" class="btn btn-warning mr-2">Tagihan</a>
                         <a type="button" href="{{ route('show-riwayat', ['rekening' => $rekening-> id]) }}" class="btn btn-light">Riwayat Pengaduan</a>
                     </div>
               </div>

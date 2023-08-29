@@ -18,11 +18,15 @@ class CreatePegawaisTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nama', 200);
             $table->enum('jabatan', ['Admin', 'Pembaca Meter']);
+            $table->unsignedBigInteger('area_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
+            $table->foreign('area_id')
+                ->references('id')
+                ->on('areas');
         });
     }
 

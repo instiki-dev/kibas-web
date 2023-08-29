@@ -49,14 +49,14 @@
                             <tbody class="text-center" id="tableContent">
                                 @foreach($data as $item)
                                     <tr>
-                                      <th scope="col" class="text-center">{{ $loop -> index + 1}}</th>
-                                      <th scope="col" class="text-center">{{ $item -> kelurahan }}</th>
-                                    <th scope="col" class="text-center">
+                                      <td scope="col" class="text-center">{{ $loop -> index + 1}}</td>
+                                      <td scope="col" class="text-center">{{ $item -> kelurahan }}</td>
+                                    <td scope="col" class="text-center">
                                         <div class="wrapper d-inline">
                                             <a href="{{ route('show-update-kelurahan', ['kelurahan' => $item -> id]) }}" type="button" class="btn btn-outline-success mr-3">Edit</a>
                                             <a onclick="return confirm('Yakin ingin menghapus data')" href="{{ route('hapus-kelurahan', ['kelurahan' => $item -> id]) }}" type="button" class="btn btn-outline-danger">Hapus</a>
                                         </div>
-                                    </th>
+                                    </td>
                                     </tr>
                                 @endforeach
                             </tbody>

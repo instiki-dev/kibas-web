@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\ShowLoginController;
+use App\Http\Controllers\Admin\BacaMeterMandiriController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Golongan\HapusGolonganController;
 use App\Http\Controllers\Admin\Golongan\SearchGolonganController;
@@ -50,11 +51,13 @@ use App\Http\Controllers\Admin\Pelanggan\UpdatePelangganController;
 use App\Http\Controllers\Admin\PelangganController;
 use App\Http\Controllers\Admin\Pengaduan\DetailPengaduanController;
 use App\Http\Controllers\Admin\Pengaduan\KonfirmasiPengaduanController;
+use App\Http\Controllers\Admin\Pengaduan\PilihPetugasController;
 use App\Http\Controllers\Admin\Pengaduan\SearchPengaduanController;
 use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\Pengumuman\HapusPengumumanController;
 use App\Http\Controllers\Admin\Pengumuman\TambahPengumumanController;
 use App\Http\Controllers\Admin\Pengumuman\TambahPengumumanDBController;
+use App\Http\Controllers\Admin\PengumumanController;
 use App\Http\Controllers\Admin\Profil\EditAdminController;
 use App\Http\Controllers\Admin\Profil\TambahAdminController;
 use App\Http\Controllers\Admin\Profil\TambahEntitasAdminController;
@@ -75,11 +78,13 @@ use App\Http\Controllers\Admin\RekeningController;
 use App\Http\Controllers\Admin\RiwayatPengaduan\DetailRiwayatController;
 use App\Http\Controllers\Admin\RiwayatPengaduan\FilterRiwayatControlller;
 use App\Http\Controllers\Admin\RiwayatPengaduanController;
+use App\Http\Controllers\Admin\ShowTambahAngkaMeterController;
 use App\Http\Controllers\Admin\Survey\DetailSurveyController;
 use App\Http\Controllers\Admin\Survey\HapusSurveyDBController;
 use App\Http\Controllers\Admin\Survey\TambahSurveyController;
 use App\Http\Controllers\Admin\Survey\TambahSurveyDBController;
 use App\Http\Controllers\Admin\TagihanController;
+use App\Http\Controllers\Admin\TambahAngkaMeterController;
 use App\Http\Controllers\Admin\User\SearchUserController;
 use App\Http\Controllers\Admin\User\ShowUpdateUserController;
 use App\Http\Controllers\Admin\User\UpdateUserController;
@@ -213,10 +218,21 @@ Route::group(["prefix" => "admin"], function() {
     });
 
     Route::group(["prefix" => "pengaduan", "middleware" => ["isadmin"]], function() {
+        // Route::get("/konfirmasi-pengaduan/{pengaduan:id}/{petugas:id}", PilihPetugasController::class)-> name('konfirmasi-pengaduan');
         Route::get("/", PengaduanController::class)-> name('pengaduan');
+        Route::put("/admin-konfirmasi/{pengaduan:id}", PilihPetugasController::class)-> name('admin-konfirmasi');
         Route::get("/detail-pengaduan/{pengaduan:id}", DetailPengaduanController::class)-> name('show-detail-pengaduan');
         Route::get("/cari-pengaduan", SearchPengaduanController::class)-> name('search-pengaduan');
-        Route::put("/konfirmasi/{pengaduan:id}", KonfirmasiPengaduanController::class)-> name('konfirmasi-pengaduan');
+    });
+
+    Route::group(["prefix" => "pengumuman", "middleware" => ["isadmin"]], function() {
+        Route::get("/", PengumumanController::class)-> name('pengumuman');
+    });
+
+    Route::group(["prefix" => "baca-meter-mandiri", "middleware" => ["isadmin"]], function() {
+        Route::get("/", BacaMeterMandiriController::class)-> name('baca-meter-mandiri');
+        Route::get("/detail/{meter:id}", ShowTambahAngkaMeterController::class)-> name('show-tambah-angka');
+        Route::put("/tambah-angka/{meter:id}", TambahAngkaMeterController::class)-> name('tambah-angka-meter');
     });
 });
 

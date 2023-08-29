@@ -19,6 +19,10 @@ class Rekening extends Model
         return $this -> belongsTo(Kecamatan::class, "kecamatan_id");
     }
 
+    public function area() {
+        return $this -> belongsTo(Area::class, "area_id");
+    }
+
     public function kelurahan() {
         return $this -> belongsTo(Kelurahan::class, "kelurahan_id");
     }

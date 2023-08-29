@@ -44,22 +44,24 @@
                             <th class="text-center">No</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Jabatan</th>
+                            <th class="text-center">Area</th>
                             <th class="text-center">Aksi</th>
                         </thead>
                         <tbody class="text-center" id="tableContent">
                             @foreach($data as $item)
                             <tr>
-                              <th scope="col">{{ $loop -> index + 1}}</th>
-                              <th scope="col">{{ $item -> nama }}</th>
-                              <th scope="col">{{ $item -> jabatan }}</th>
-                                <th scope="col">
+                              <td scope="col">{{ $loop -> index + 1}}</td>
+                              <td scope="col">{{ $item -> nama }}</td>
+                              <td scope="col">{{ $item -> jabatan }}</td>
+                              <td scope="col">{{ $item -> area ? $item -> area -> area : "-" }}</td>
+                                <td scope="col">
                                     <div class="wrapper d-inline">
                                         @if (!$item -> user -> can('admin-page-access'))
                                             <a href="{{ route('show-update-pegawai', ['pegawai' => $item -> id]) }}" type="button" class="btn btn-outline-success mr-3">Edit</a>
                                             <a onclick="return confirm('Yakin ingin menghapus data')" href="{{ route('hapus-pegawai', ['pegawai' => $item -> id]) }}" type="button" class="btn btn-outline-danger">Hapus</a>
                                         @endif
                                     </div>
-                                </th>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

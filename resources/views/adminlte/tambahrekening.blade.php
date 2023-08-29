@@ -48,21 +48,30 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                              <label for="inputKelurahan">Kelurahan</label>
-                                <select id="inputKelurahan" name="kelurahan_id" class="form-control selectpicker" data-live-search="true">
-                                    @foreach ($kelurahan as $item)
-                                    <option data-tokens="data" value={{ $item -> id }}>{{ $item -> kelurahan }}</option>
+                              <label for="inputArea">Area</label>
+                                <select id="inputArea" name="area_id" class="form-control selectpicker" data-live-search="true">
+                                    <option data-tokens="data" value="0">Pilih Area</option>
+                                    @foreach ($area as $item)
+                                    <option data-tokens="data" value={{ $item -> id }}>{{ $item -> area}}</option>
                                     @endforeach
-                                    <!-- <option data-tokens="data" value="0">Lainnya</option> -->
                                 </select>
                             </div>
                       </div>
                       <div class="form-row px-3">
                         <div class="form-group col-md-6">
+                          <label for="inputKelurahan">Kelurahan</label>
+                            <select id="inputKelurahan" name="kelurahan_id" class="form-control selectpicker" data-live-search="true">
+                                @foreach ($kelurahan as $item)
+                                <option data-tokens="data" value={{ $item -> id }}>{{ $item -> kelurahan }}</option>
+                                @endforeach
+                                <!-- <option data-tokens="data" value="0">Lainnya</option> -->
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
                           <label for="inputLatitude">Latitude</label>
                           <input name="lat" type="text" class="form-control" id="inputLatitude" placeholder="Latitude">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
                           <label for="inputLongtitude">Longtitude</label>
                           <input name="lng" type="text" class="form-control" id="inputLongtitude" placeholder="Longtitude">
                         </div>
@@ -75,7 +84,7 @@
                           </button>
                         </div>
                         @endif
-                      <button type="submit" class="btn btn-primary ml-4 mt-2" style="border: none;">Tambah</button>
+                      <button type="submit" class="btn btn-danger ml-4 mt-2" style="border: none;">Tambah</button>
                 </form>
 
                 </div>
@@ -83,4 +92,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $('#inputArea').selectpicker('val', "0");
+    </script>
 @endsection

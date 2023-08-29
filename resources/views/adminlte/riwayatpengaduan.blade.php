@@ -56,11 +56,11 @@
                         <tbody class="text-center" id="tableContent">
                             @foreach($data as $item)
                             <tr>
-                              <th scope="col">{{ $loop -> index + 1}}</th>
-                              <th scope="col">{{ $item -> pengaduan -> rekening -> no_rekening }}</th>
-                              <th scope="col">{{ $item -> created_at }}</th>
-                              <th scope="col">{{ $item -> pengaduan_id }}</th>
-                                <th scope="col">
+                              <td scope="col">{{ $loop -> index + 1}}</td>
+                              <td scope="col">{{ $item -> pengaduan -> rekening -> no_rekening }}</td>
+                              <td scope="col">{{ $item -> created_at }}</td>
+                              <td scope="col">{{ $item -> pengaduan_id }}</td>
+                                <td scope="col">
                                     @if($item -> status == 1)
                                         <div class="alert a-1" role="alert">
                                             Belum Dikonfirmasi
@@ -78,12 +78,12 @@
                                            Selesai
                                         </div>
                                     @endif
-                                </th>
-                            <th scope="col">
+                                </td>
+                            <td scope="col">
                                 <div class="wrapper d-inline">
                                     <a href="{{ route('show-detail-riwayat', ['riwayat' => $item -> id]) }}" type="button" class="btn btn-outline-info mr-3">Detail Pengaduan</a>
                                 </div>
-                            </th>
+                            </td>
                             </tr>
                             @endforeach
                         </tbody>

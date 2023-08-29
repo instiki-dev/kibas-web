@@ -48,16 +48,16 @@
                         <tbody class="text-center" id="tableContent">
                             @foreach($data as $item)
                             <tr>
-                              <th scope="col">{{ $loop -> index + 1}}</th>
-                              <th scope="col">{{ $item -> name }}</th>
-                              <th scope="col">{{ $item -> email }}</th>
-                                <th scope="col">
+                              <td scope="col">{{ $loop -> index + 1}}</td>
+                              <td scope="col">{{ $item -> name }}</td>
+                              <td scope="col">{{ $item -> email }}</td>
+                                <td scope="col">
                                     <div class="wrapper d-inline">
                                         @if (!$item -> can('admin-page-access'))
                                             <a href="{{ route('show-ubah-password', ['user' => $item -> id]) }}" type="button" class="btn btn-outline-success mr-3">Ubah Password</a>
                                         @endif
                                     </div>
-                                </th>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Rekening;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pelanggan;
@@ -22,6 +23,7 @@ class ShowTambahRekeningController extends Controller
         $pelanggan = Pelanggan::all();
         $kecamatan = Kecamatan::all();
         $kelurahan = Kelurahan::all();
+        $area = Area::all();
         // return view('admin.tambahrekening', [
         //     "pelanggan" => $pelanggan,
         //     "kecamatan" => $kecamatan,
@@ -30,7 +32,8 @@ class ShowTambahRekeningController extends Controller
         return view('adminlte.tambahrekening', [
             "pelanggan" => $pelanggan,
             "kecamatan" => $kecamatan,
-            "kelurahan" => $kelurahan
+            "kelurahan" => $kelurahan,
+            "area" => $area
         ]);
     }
 }

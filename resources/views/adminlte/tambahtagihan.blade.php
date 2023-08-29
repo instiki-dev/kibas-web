@@ -72,7 +72,7 @@
                           </button>
                         </div>
                         @endif
-                      <button onclick="return confirm('Yakin ingin membuat tagihan?')" type="submit" class="btn btn-primary ml-4 mt-2 mb-3" style="border: none;">Tambah</button>
+                      <button onclick="return confirm('Yakin ingin membuat tagihan?')" type="submit" class="btn btn-danger ml-4 mt-2 mb-3" style="border: none;">Tambah</button>
                     </form>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Pegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
+use App\Models\Penugasan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,7 @@ class TambahPegawaiController extends Controller
             "name" => "required|unique:users",
             "email" => "required|email",
             "password" => "required|min:10",
+            "area_id" => "required",
             "password2" => "required|same:password"
         ]);
 
@@ -41,9 +43,15 @@ class TambahPegawaiController extends Controller
         $readerData = [
             "user_id" => $userData -> id,
             "nama" => $validate["fullname"],
+            "area_id" => (int)$validate["area_id"],
             "jabatan" => 'Pembaca Meter'
         ];
-        Pegawai::create($readerData);
+        $p = Pegawai::create($readerData);
+        $penugasan = [
+            "petugas_id" => $p -> id,
+            "jumlah" => 0
+        ];
+        Penugasan::create($penugasan);
         return redirect() -> route('pegawai') -> with('successMessage', 'Pegawai berhasil ditambah');
     }
 }

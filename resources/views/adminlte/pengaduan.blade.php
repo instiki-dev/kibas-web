@@ -43,19 +43,31 @@
                             <th class="text-center">No</th>
                             <th class="text-center">Rekening</th>
                             <th class="text-center">Waktu Lapor</th>
+                            <th class="text-center">Petugas</th>
+                            <th class="text-center">Status</th>
                             <th class="text-center">Aksi</th>
                         </thead>
                         <tbody class="text-center" id="tableContent">
                             @foreach($data as $item)
                             <tr>
-                                  <th scope="col">{{ $loop -> index + 1}}</th>
-                                  <th scope="col">{{ $item -> rekening -> no_rekening }}</th>
-                                  <th scope="col">{{ $item -> created_at }}</th>
-                                    <th scope="col">
+                                  <td scope="col">{{ $loop -> index + 1}}</td>
+                                  <td scope="col">{{ $item -> rekening -> no_rekening }}</td>
+                                  <td scope="col">{{ $item -> created_at }}</td>
+                                  <td scope="col">{{ $item -> petugas ? $item -> petugas -> nama : "-"}}</td>
+                                    @if($item -> status == 1)
+                                      <td scope="col"><span class="badge badge-secondary">Belum Dikonfirmasi Admin</span></td>
+                                    @elseif($item -> status == 2)
+                                      <td scope="col"><span class="badge badge-warning">Menunggu</span></td>
+                                    @elseif($item -> status == 3)
+                                      <td scope="col"><span class="badge badge-primary">Proses</span></td>
+                                    @elseif($item -> status == 4)
+                                      <td scope="col"><span class="badge badge-success">Selesai</span></td>
+                                    @endif
+                                    <td scope="col">
                                         <div class="wrapper d-inline">
                                             <a href="{{ route('show-detail-pengaduan', ['pengaduan' => $item -> id]) }}" type="button" class="btn btn-outline-info mr-3">Detail</a>
                                         </div>
-                                    </th>
+                                    </td>
                             </tr>
                             @endforeach
                         </tbody>

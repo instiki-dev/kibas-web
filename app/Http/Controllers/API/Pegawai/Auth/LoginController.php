@@ -25,6 +25,7 @@ class LoginController extends Controller
                 [
                     "username" => "required",
                     "password" => "required",
+                    "device_token" => "required"
                 ]
             );
 
@@ -57,6 +58,10 @@ class LoginController extends Controller
                     'message' => 'Username & password tidak cocok',
                 ], 401);
             }
+
+            $deviceToken = ["device_token" => $request -> device_token];
+
+            User::where('id', $user -> id) -> update($deviceToken);
 
             return response()->json([
                 'status' => true,

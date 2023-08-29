@@ -18,4 +18,12 @@ class Area extends Model
     public function kecamatan() {
         return $this -> belongsTo(Kecamatan::class, "kecamatan_id");
     }
+
+    public function rekening() {
+        return $this -> hasMany(Rekening::class, "area_id");
+    }
+
+    public function master() {
+        return $this -> hasMany(PengumumanMaster::class, "area_id");
+    }
 }

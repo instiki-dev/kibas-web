@@ -39,7 +39,7 @@
                           </button>
                         </div>
                         @endif
-                      <button onclick="return confirm('Yakin ingin merubah password')" type="submit" class="btn btn-primary ml-4 mt-2" style="border: none;">Ubah</button>
+                      <button onclick="return confirm('Yakin ingin merubah password')" type="submit" class="btn btn-danger ml-4 mt-2" style="border: none;">Ubah</button>
                     </form>
                 </div>
             </div>

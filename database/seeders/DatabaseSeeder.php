@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         $this -> call([
             RolesandPermissionsSeeder::class,
+            AreaSeeder::class,
             AdminSeeder::class,
             KecamatanSeeder::class,
             KelurahanSeeder::class,
             GolonganSeeder::class,
             PegawaiSeeder::class,
             PelangganSeeder::class,
-            AreaSeeder::class
         ]);
     }
 }

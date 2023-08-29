@@ -55,10 +55,10 @@
                         <tbody class="text-center" id="tableContent">
                             @foreach($data as $item)
                             <tr>
-                              <th scope="col">{{ $loop -> index + 1}}</th>
-                              <th scope="col">{{ $item -> no_tagihan }}</th>
-                              <th scope="col">{{ $item -> nominal }}</th>
-                                <th scope="col">
+                              <td scope="col">{{ $loop -> index + 1}}</td>
+                              <td scope="col">{{ $item -> no_tagihan }}</td>
+                              <td scope="col">{{ $item -> nominal }}</td>
+                                <td scope="col">
                                     @if($item -> status == 1)
                                         <div class="alert a-3" role="alert">
                                             Belum Lunas
@@ -68,12 +68,12 @@
                                           Lunas
                                         </div>
                                     @endif
-                                </th>
-                                <th scope="col">
+                                </td>
+                                <td scope="col">
                                     <div class="wrapper d-inline">
                                         <a href="{{ route('show-detail-tagihan', ['tagihan' => $item -> no_tagihan]) }}" type="button" class="btn btn-outline-info mr-3">Detail Tagihan</a>
                                     </div>
-                                </th>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -89,7 +89,7 @@
         <script>
             const filter = document.querySelector("select");
             const table = document.querySelector("#tableContent");
-            const noRek = {{ $item -> rekening -> no_rekening }}
+            const noRek = {{ $rekening -> no_rekening }}
 
             filter.addEventListener("change", function() {
                 const xhr = new XMLHttpRequest()

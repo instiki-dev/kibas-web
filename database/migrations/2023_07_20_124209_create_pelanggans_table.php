@@ -20,17 +20,19 @@ class CreatePelanggansTable extends Migration
             $table->string('nama_pelanggan', 200);
             $table->string('nik_pelanggan', 50);
             $table->text('alamat_pelanggan');
-            $table->unsignedBigInteger('kecamatan_id');
-            $table->unsignedBigInteger('kelurahan_id');
+            $table->unsignedBigInteger('kecamatan_id') -> nullable();
+            $table->unsignedBigInteger('kelurahan_id') -> nullable();
             $table->unsignedBigInteger('golongan_id');
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('kecamatan_id')
                 ->references('id')
-                ->on('kecamatans');
+                ->on('kecamatans')
+                ->onDelete('set null');
             $table->foreign('kelurahan_id')
                 ->references('id')
-                ->on('kelurahans');
+                ->on('kelurahans')
+                ->onDelete('set null');
             $table->foreign('golongan_id')
                 ->references('id')
                 ->on('golongans');

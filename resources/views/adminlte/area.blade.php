@@ -50,15 +50,15 @@
                             <tbody class="text-center" id="tableContent">
                                 @foreach($data as $item)
                                 <tr>
-                                      <th class="text-center" scope="col">{{ $loop -> index + 1}}</th>
-                                      <th class="text-center" scope="col">{{ $item -> area }}</th>
-                                      <th class="text-center" scope="col">{{ $item -> kecamatan ? $item -> kecamatan -> kecamatan : "-" }}</th>
-                                    <th class="text-center" scope="col">
+                                      <td class="text-center" scope="col">{{ $loop -> index + 1}}</td>
+                                      <td class="text-center" scope="col">{{ $item -> area }}</td>
+                                      <td class="text-center" scope="col">{{ $item -> kecamatan ? $item -> kecamatan -> kecamatan : "-" }}</td>
+                                    <td class="text-center" scope="col">
                                         <div class="wrapper d-inline">
                                             <a href="{{ route('show-edit-area', ['area' => $item -> id]) }}" type="button" class="btn btn-outline-success mr-3">Edit</a>
                                             <a onclick="return confirm('Yakin ingin menghapus data')" href="{{ route('hapus-area', ['area' => $item -> id]) }}" type="button" class="btn btn-outline-danger">Hapus</a>
                                         </div>
-                                    </th>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

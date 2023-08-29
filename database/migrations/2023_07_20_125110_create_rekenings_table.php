@@ -15,10 +15,11 @@ class CreateRekeningsTable extends Migration
     {
         Schema::create('rekenings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pelanggan_id');
+            $table->unsignedBigInteger('pelanggan_id') -> nullable();
             $table->string('no_rekening', 100);
-            $table->unsignedBigInteger('kecamatan_id');
-            $table->unsignedBigInteger('kelurahan_id');
+            $table->unsignedBigInteger('kecamatan_id') -> nullable();
+            $table->unsignedBigInteger('kelurahan_id') -> nullable();
+            $table->unsignedBigInteger('area_id') -> nullable();
             $table->string('lat', 100);
             $table->string('lng', 100);
             $table->softDeletes();
@@ -26,13 +27,19 @@ class CreateRekeningsTable extends Migration
             $table->foreign('pelanggan_id')
                 ->references('id')
                 ->on('pelanggans')
-                ->onDelete('cascade');
+                ->onDelete('set null');
             $table->foreign('kecamatan_id')
                 ->references('id')
-                ->on('kecamatans');
+                ->on('kecamatans')
+                ->onDelete('set null');
             $table->foreign('kelurahan_id')
                 ->references('id')
-                ->on('kelurahans');
+                ->on('kelurahans')
+                ->onDelete('set null');
+            $table->foreign('area_id')
+                ->references('id')
+                ->on('areas')
+                ->onDelete('set null');
         });
     }
 

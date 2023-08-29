@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Pegawai;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
 class ShowTambahPegawaiController extends Controller
@@ -16,6 +17,7 @@ class ShowTambahPegawaiController extends Controller
     public function __invoke(Request $request)
     {
         // return view('admin.tambahpegawai');
-        return view('adminlte.tambahpegawai');
+        $area = Area::all();
+        return view('adminlte.tambahpegawai', ["area" => $area]);
     }
 }
