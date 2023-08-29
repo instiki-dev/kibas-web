@@ -26,10 +26,12 @@ class PilihPetugasController extends Controller
 
         Pengaduan::where('id', $pengaduan -> id) -> update($data);
 
-        if($petugas -> user -> device_token) {
+        $emp = Pegawai::where('id', $data["petugas_id"]) -> first();
+
+        if($emp -> user -> device_token) {
             $url = 'https://fcm.googleapis.com/fcm/send';
             $serverKey = env('SERVER_KEY');
-            $token = [$petugas -> user -> device_token];
+            $token = [$emp -> user -> device_token];
 
             $message = ["registration_ids" => $token];
             $message["notification"] = [

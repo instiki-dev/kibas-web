@@ -24,8 +24,8 @@
                 <h4>{{ $rekening -> no_rekening }}</h4>
                 <p class="card-text mb-0">Kecamatan : {{ $rekening -> kecamatan ? $rekening -> kecamatan -> kecamatan : "-" }}</p>
                 <p class="card-text mb-0">Kelurahan : {{ $rekening -> kelurahan ? $rekening -> kelurahan -> kelurahan : "-" }}</p>
-                <p class="card-text mb-0">Latitude : {{ $rekening -> latitude ? $rekening -> latitude : "-" }}</p>
-                <p class="card-text mb-0">Longtitude : {{ $rekening -> longtitude ? $rekening -> longtitude : "-" }}</p>
+                <p class="card-text mb-0">Latitude : {{ $rekening -> lat ? $rekening -> lat : "-" }}</p>
+                <p class="card-text mb-0">Longtitude : {{ $rekening -> lng ? $rekening -> lng : "-" }}</p>
                 <p class="card-text mb-0">Area : {{ $rekening -> area ? $rekening -> area -> area : "-" }}</p>
                     <div class="d-flex justify-content-center mt-4">
                         <a style="color: #333;" href="{{ route('show-tagihan', ['rekening' => $rekening-> no_rekening]) }}" type="button" class="btn btn-warning mr-2">Tagihan</a>

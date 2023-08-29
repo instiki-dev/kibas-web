@@ -49,7 +49,7 @@ Route::group(["prefix" => "rekening", "middleware" => ["auth:sanctum", "same", "
 });
 
 Route::group(["prefix" => "pengumuman-survey", "middleware" => ["auth:sanctum", "can:customer-access"]], function() {
-    Route::get("/pengumuman", GetPengumumanController::class);
+    Route::get("/pengumuman/{rekening:no_rekening}", GetPengumumanController::class);
     Route::get("/survey", GetAllSurveyController::class);
     Route::get("/survey/{survey:id}", GetSurveyByIdController::class);
 });

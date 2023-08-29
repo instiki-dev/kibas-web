@@ -14,7 +14,19 @@ class GolonganSeeder extends Seeder
      */
     public function run()
     {
-        $data = ["golongan" => "AAA"];
-        Golongan::create($data);
+        $kode = [
+            "IA",
+            "IVA2",
+            "IVB1",
+            "III",
+            "II",
+            "IB",
+            "III A",
+            "IVA3"
+        ];
+        foreach ($kode as $item) {
+            $data = ["golongan" => $item];
+            Golongan::create($data);
+        }
     }
 }

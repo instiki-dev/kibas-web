@@ -22,4 +22,8 @@ class Area extends Model
     public function rekening() {
         return $this -> hasMany(Rekening::class, "area_id");
     }
+
+    public function master() {
+        return $this -> hasMany(PengumumanMaster::class, "area_id");
+    }
 }
