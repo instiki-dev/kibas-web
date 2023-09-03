@@ -25,12 +25,13 @@ class PelangganSeeder extends Seeder
             // Create instance in table user
             $username = $item['username'];
             $password = $item['password'];
-            $password = bcrypt($password);
             $id = (string)$index;
+            $password .= $id;
+            $password = bcrypt($password);
             $user = [
                 "name" => $username.$id,
                 "email" => $username.$id."@gmail.com",
-                "password" => $password.$id
+                "password" => $password
             ];
             $userData = User::create($user);
             $userData -> assignRole('Pelanggan');
