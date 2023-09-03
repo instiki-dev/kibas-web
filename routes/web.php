@@ -58,6 +58,7 @@ use App\Http\Controllers\Admin\Pengumuman\HapusPengumumanController;
 use App\Http\Controllers\Admin\Pengumuman\TambahPengumumanController;
 use App\Http\Controllers\Admin\Pengumuman\TambahPengumumanDBController;
 use App\Http\Controllers\Admin\PengumumanController;
+use App\Http\Controllers\Admin\PengumumanPageController;
 use App\Http\Controllers\Admin\Profil\EditAdminController;
 use App\Http\Controllers\Admin\Profil\TambahAdminController;
 use App\Http\Controllers\Admin\Profil\TambahEntitasAdminController;
@@ -66,13 +67,16 @@ use App\Http\Controllers\Admin\Rekening\DetailTagihanController;
 use App\Http\Controllers\Admin\Rekening\FilterTagihanController;
 use App\Http\Controllers\Admin\Rekening\HapusRekeningController;
 use App\Http\Controllers\Admin\Rekening\ImportTagihanController;
+use App\Http\Controllers\Admin\Rekening\KonfirmasiTagihanController;
 use App\Http\Controllers\Admin\Rekening\RekeningTagihanController;
 use App\Http\Controllers\Admin\Rekening\SearchRekeningController;
 use App\Http\Controllers\Admin\Rekening\ShowTambahRekeningController;
 use App\Http\Controllers\Admin\Rekening\ShowUpdateRekeningController;
 use App\Http\Controllers\Admin\Rekening\TambahRecordTagihanController;
 use App\Http\Controllers\Admin\Rekening\TambahRekeningController;
+use App\Http\Controllers\Admin\Rekening\TambahTagihanBaruController;
 use App\Http\Controllers\Admin\Rekening\TambahTagihanController;
+use App\Http\Controllers\Admin\Rekening\TambahTagihanPageController;
 use App\Http\Controllers\Admin\Rekening\UpdateRekeningController;
 use App\Http\Controllers\Admin\RekeningController;
 use App\Http\Controllers\Admin\RiwayatPengaduan\DetailRiwayatController;
@@ -84,6 +88,7 @@ use App\Http\Controllers\Admin\Survey\HapusSurveyDBController;
 use App\Http\Controllers\Admin\Survey\TambahSurveyController;
 use App\Http\Controllers\Admin\Survey\TambahSurveyDBController;
 use App\Http\Controllers\Admin\TagihanController;
+use App\Http\Controllers\Admin\TagihanPageController;
 use App\Http\Controllers\Admin\TambahAngkaMeterController;
 use App\Http\Controllers\Admin\User\SearchUserController;
 use App\Http\Controllers\Admin\User\ShowUpdateUserController;
@@ -217,6 +222,13 @@ Route::group(["prefix" => "admin"], function() {
         Route::post("/tagihan/import", ImportTagihanController::class)-> name('import-tagihan');
     });
 
+    Route::group(["prefix" => "tagihan", "middleware" => ["isadmin"]], function() {
+        Route::get("/", TagihanPageController::class) -> name('tagihan');
+        Route::get("/konfirmasi/{tagihan:id}", KonfirmasiTagihanController::class) -> name('konfirmasi-tagihan');
+        Route::get("/tambah-tagihan", TambahTagihanPageController::class) -> name('tambah-tagihan-page');
+        Route::post("/tambah-tagihan", TambahTagihanBaruController::class) -> name('tambah-tagihan-baru');
+    });
+
     Route::group(["prefix" => "pengaduan", "middleware" => ["isadmin"]], function() {
         // Route::get("/konfirmasi-pengaduan/{pengaduan:id}/{petugas:id}", PilihPetugasController::class)-> name('konfirmasi-pengaduan');
         Route::get("/", PengaduanController::class)-> name('pengaduan');
@@ -226,7 +238,8 @@ Route::group(["prefix" => "admin"], function() {
     });
 
     Route::group(["prefix" => "pengumuman", "middleware" => ["isadmin"]], function() {
-        Route::get("/", PengumumanController::class)-> name('pengumuman');
+        Route::get("/", PengumumanPageController::class)-> name('pengumuman');
+        Route::get("/tambah-pengumuman", PengumumanController::class)-> name('show-tambah-pengumuman');
     });
 
     Route::group(["prefix" => "baca-meter-mandiri", "middleware" => ["isadmin"]], function() {

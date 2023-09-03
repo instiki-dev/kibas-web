@@ -109,6 +109,6 @@ class TambahPengumumanDBController extends Controller
 
         // dd($result);
 
-        return redirect() -> route('dashboard') -> with('successMessage', "Berita telah ditambahkan");
+        return redirect() -> route('pengumuman') -> with('successMessage', "Berita telah ditambahkan");
     }
 }

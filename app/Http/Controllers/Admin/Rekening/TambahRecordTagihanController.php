@@ -37,7 +37,7 @@ class TambahRecordTagihanController extends Controller
             "nominal" => (int)$validate["nominal"],
             "pelanggan_id" => $rekening -> pelanggan -> id,
             "rekening_id" => $rekening -> id,
-            "status" => 1
+            "status" => 0
         ];
 
         Tagihan::create($data);

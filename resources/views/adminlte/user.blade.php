@@ -1,5 +1,16 @@
 @extends('adminlte.main')
 
+@section('style')
+    <style>
+        #myTable_processing {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            background-color: #DDDDDD;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="content-header">
     @if(session() -> has('successMessage'))
@@ -29,38 +40,14 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm"  style="width: 250px;">
-                            <input id="inputSearch" class="form-control float-right" type="text" placeholder="Search">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body table-responsive p-0" style="height: 60vh;">
-                    <table class="table table-head-fixed text-nowrap">
+                <div class="card-body table-responsive py-0 px-3" style="height: 90vh;">
+                    <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
                         <thead>
                             <th class="text-center">No</th>
                             <th class="text-center">Username</th>
                             <th class="text-center">Email</th>
                             <th class="text-center">Aksi</th>
                         </thead>
-                        <tbody class="text-center" id="tableContent">
-                            @foreach($data as $item)
-                            <tr>
-                              <td scope="col">{{ $loop -> index + 1}}</td>
-                              <td scope="col">{{ $item -> name }}</td>
-                              <td scope="col">{{ $item -> email }}</td>
-                                <td scope="col">
-                                    <div class="wrapper d-inline">
-                                        @if (!$item -> can('admin-page-access'))
-                                            <a href="{{ route('show-ubah-password', ['user' => $item -> id]) }}" type="button" class="btn btn-outline-success mr-3">Ubah Password</a>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -70,5 +57,23 @@
 @endsection
 
 @section('script')
-    <script src="/js/SearchUser.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+              var table = $('#myTable').DataTable({
+                  processing: true,
+                  serverSide: true,
+                  ajax: "{{ route('user') }}",
+                  columns: [
+                      {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                      {data: 'name', name: 'name'},
+                      {data: 'email', name: 'email'},
+                      {data: 'aksi', name: 'aksi'},
+                  ]
+              });        });
+    </script>
 @endsection

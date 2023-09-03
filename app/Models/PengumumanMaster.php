@@ -15,4 +15,8 @@ class PengumumanMaster extends Model
     public function detail() {
         return $this -> hasMany(PengumumanDetail::class, "master_id");
     }
+
+    public function jenis() {
+        return $this -> belongsTo(JenisPengumuman::class, 'jenis_id');
+    }
 }

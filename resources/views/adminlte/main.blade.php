@@ -20,7 +20,7 @@
                 background-color: #990000;
             }
         </style>
-        @section('style')
+        @yield('style')
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -114,6 +114,15 @@
                                     <i class="nav-icon fas fa-user-lock"></i>
                                     <p>
                                         User
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a style="color: #fff;" href="{{ route('tagihan') }}" class="nav-link {{ str_contains(Request::path(), 'admin/tagihan') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-money-bill-wave-alt"></i>
+                                    <p>
+                                       Tagihan
                                     </p>
                                 </a>
                             </li>

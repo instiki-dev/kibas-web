@@ -27,9 +27,9 @@ class ImportTagihanController extends Controller
         $allData = [];
 
         foreach($xls as $item) {
-            $pelanggan = Pelanggan::where('nik_pelanggan', $item["Pelanggan"]) -> orWhere('nama_pelanggan', $item['Pelanggan']) -> first();
             $noRekening = (string)$item["No Rekening"];
             $rekening = Rekening::where('no_rekening', $noRekening) -> first();
+            $pelanggan = $rekening -> pelanggan;
             $pembaca = Pegawai::where('nama', $item["Pembaca"]) -> first();
 
 
@@ -41,7 +41,7 @@ class ImportTagihanController extends Controller
                 "tahun" => (int)$item["Tahun"],
                 "pembaca_id" => $pembaca ? $pembaca -> id : null,
                 "tgl_jatuh_tempo" => $item['Jatuh Tempo'],
-                "status" => 1,
+                "status" => 0,
                 "nominal" => $item["Nominal"],
                 "kilometer" => $item["Kilometer"],
             ];
@@ -50,6 +50,6 @@ class ImportTagihanController extends Controller
 
         }
 
-        return redirect() -> route('rekening') -> with('successMessage', 'Berhasil menambah tagihan');
+        return redirect() -> route('tagihan') -> with('successMessage', 'Berhasil menambah tagihan');
     }
 }

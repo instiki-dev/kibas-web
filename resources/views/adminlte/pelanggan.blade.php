@@ -1,5 +1,16 @@
 @extends('adminlte.main')
 
+@section('style')
+    <style>
+        #myTable_processing {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            background-color: #DDDDDD;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="content-header">
     @if(session() -> has('successMessage'))
@@ -30,40 +41,18 @@
     <div class="container-fluid">
         <div class="col-12">
         <div class="card">
-                <div class="card-header">
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm"  style="width: 250px;">
-                            <input id="inputSearch" class="form-control float-right" type="text" placeholder="Search">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body table-responsive p-0" style="height: 60vh;">
-                    <table class="table table-head-fixed text-nowrap">
-                        <thead>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">NIK</th>
-                            <th class="text-center">Aksi</th>
-                        </thead>
-                        <tbody class="text-center" id="tableContent">
-                            @foreach($data as $item)
-                            <tr>
-                                  <td scope="col">{{ $loop -> index + 1}}</td>
-                                  <td scope="col">{{ $item -> nama_pelanggan }}</td>
-                                  <td scope="col">{{ $item -> nik_pelanggan }}</td>
-                                <td scope="col">
-                                    <div class="wrapper d-inline">
-                                        <a href="{{ route('show-edit-pelanggan', ['pelanggan' => $item -> id]) }}" type="button" class="btn btn-outline-success mr-3">Edit</a>
-                                        <a href="{{ route('show-detail-pelanggan', ['pelanggan' => $item -> id]) }}" type="button" class="btn btn-outline-info mr-3">Detail</a>
-                                        <a onclick="return confirm('Yakin ingin menghapus data')" href="{{ route('hapus-pelanggan', ['pelanggan' => $item -> id]) }}" type="button" class="btn btn-outline-danger">Hapus</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div class="card-body table-responsive px-3 py-0" style="height: 90vh;">
+                <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
+                    <thead>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">NIK</th>
+                        <th class="text-center">Aksi</th>
+                    </thead>
+                    <tbody class="text-center">
+                    </tbody>
+                </table>
+            </div>
             </div>
         </div>
     </div>
@@ -71,5 +60,23 @@
 @endsection
 
 @section('script')
-    <script src="/js/SearchPelanggan.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+              var table = $('#myTable').DataTable({
+                  processing: true,
+                  serverSide: true,
+                  ajax: "{{ route('pelanggan') }}",
+                  columns: [
+                      {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                      {data: 'nama_pelanggan', name: 'nama_pelanggan'},
+                      {data: 'nik_pelanggan', name: 'nik_pelanggan'},
+                      {data: 'aksi', name: 'aksi'},
+                  ]
+              });        });
+    </script>
 @endsection

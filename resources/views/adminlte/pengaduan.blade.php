@@ -29,16 +29,9 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm"  style="width: 250px;">
-                            <input id="inputSearch" class="form-control float-right" type="text" placeholder="Search">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card-body table-responsive p-0" style="height: 60vh;">
-                    <table class="table table-head-fixed text-nowrap">
+                <div class="card-body table-responsive py-0 px-3" style="height: 60vh;">
+                    <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
                         <thead>
                             <th class="text-center">No</th>
                             <th class="text-center">Rekening</th>
@@ -48,28 +41,6 @@
                             <th class="text-center">Aksi</th>
                         </thead>
                         <tbody class="text-center" id="tableContent">
-                            @foreach($data as $item)
-                            <tr>
-                                  <td scope="col">{{ $loop -> index + 1}}</td>
-                                  <td scope="col">{{ $item -> rekening -> no_rekening }}</td>
-                                  <td scope="col">{{ $item -> created_at }}</td>
-                                  <td scope="col">{{ $item -> petugas ? $item -> petugas -> nama : "-"}}</td>
-                                    @if($item -> status == 1)
-                                      <td scope="col"><span class="badge badge-secondary">Belum Dikonfirmasi Admin</span></td>
-                                    @elseif($item -> status == 2)
-                                      <td scope="col"><span class="badge badge-warning">Menunggu</span></td>
-                                    @elseif($item -> status == 3)
-                                      <td scope="col"><span class="badge badge-primary">Proses</span></td>
-                                    @elseif($item -> status == 4)
-                                      <td scope="col"><span class="badge badge-success">Selesai</span></td>
-                                    @endif
-                                    <td scope="col">
-                                        <div class="wrapper d-inline">
-                                            <a href="{{ route('show-detail-pengaduan', ['pengaduan' => $item -> id]) }}" type="button" class="btn btn-outline-info mr-3">Detail</a>
-                                        </div>
-                                    </td>
-                            </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -80,5 +51,25 @@
 @endsection
 
 @section('script')
-    <script src="/js/SearchPengaduan.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+              var table = $('#myTable').DataTable({
+                  processing: true,
+                  serverSide: true,
+                  ajax: "{{ route('pengaduan') }}",
+                  columns: [
+                      {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                      {data: 'rekening_id', name: 'rekening_id'},
+                      {data: 'created_at', name: 'created_at'},
+                      {data: 'petugas_id', name: 'petugas_id'},
+                      {data: 'status', name: 'status'},
+                      {data: 'aksi', name: 'aksi'},
+                  ]
+              });        });
+    </script>
 @endsection

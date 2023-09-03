@@ -1,5 +1,16 @@
 @extends('adminlte.main')
 
+@section('style')
+    <style>
+        #myTable_processing {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            background-color: #DDDDDD;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="content-header">
     @if(session() -> has('successMessage'))
@@ -38,8 +49,8 @@
                     </div>
                 </div>
 
-                <div class="card-body table-responsive p-0" style="height: 60vh;">
-                    <table class="table table-head-fixed text-nowrap">
+                <div class="card-body table-responsive px-3 py-0" style="height: 60vh;">
+                    <table id="myTable" class="table w-100 table-head-fixed text-nowrap">
                         <thead>
                             <th class="text-center">No</th>
                             <th class="text-center">Nama</th>
@@ -48,22 +59,6 @@
                             <th class="text-center">Aksi</th>
                         </thead>
                         <tbody class="text-center" id="tableContent">
-                            @foreach($data as $item)
-                            <tr>
-                              <td scope="col">{{ $loop -> index + 1}}</td>
-                              <td scope="col">{{ $item -> nama }}</td>
-                              <td scope="col">{{ $item -> jabatan }}</td>
-                              <td scope="col">{{ $item -> area ? $item -> area -> area : "-" }}</td>
-                                <td scope="col">
-                                    <div class="wrapper d-inline">
-                                        @if (!$item -> user -> can('admin-page-access'))
-                                            <a href="{{ route('show-update-pegawai', ['pegawai' => $item -> id]) }}" type="button" class="btn btn-outline-success mr-3">Edit</a>
-                                            <a onclick="return confirm('Yakin ingin menghapus data')" href="{{ route('hapus-pegawai', ['pegawai' => $item -> id]) }}" type="button" class="btn btn-outline-danger">Hapus</a>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -74,5 +69,25 @@
 @endsection
 
 @section('script')
-    <script src="/js/SearchPegawai.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+              var table = $('#myTable').DataTable({
+                  processing: true,
+                  serverSide: true,
+                  ajax: "{{ route('pegawai') }}",
+                  columns: [
+                      {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                      {data: 'nama', name: 'nama'},
+                      {data: 'jabatan', name: 'jabatan'},
+                      {data: 'area_id', name: 'area_id'},
+                      {data: 'aksi', name: 'aksi'},
+                  ]
+            });
+        });
+    </script>
 @endsection
