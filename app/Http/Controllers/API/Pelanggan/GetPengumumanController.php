@@ -20,8 +20,10 @@ class GetPengumumanController extends Controller
     public function __invoke(Request $request, Rekening $rekening)
     {
         try {
-            $pengumumanMaster = PengumumanMaster::orderBy('created_at', 'DESC') -> where('area_id', $rekening -> area_id) -> paginate();
-            return response($pengumumanMaster, 200);
+
+            // $pengumumanMaster = PengumumanMaster::orderBy('created_at', 'DESC') -> where('area_id', $rekening -> area_id) -> paginate();
+            // $pengumumanMaster - PengumumanMaster::where()
+            return response($rekening -> pengumuman(), 200);
         } catch(Exception $e) {
             return response([
                 "status" => false,

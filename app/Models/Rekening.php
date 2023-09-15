@@ -38,4 +38,23 @@ class Rekening extends Model
     public function tagihan() {
         return $this -> hasMany(Tagihan::class, "rekening_id");
     }
+
+    public function pengumuman() {
+        $master = PengumumanMaster::where('area_id', $this -> area_id) -> select('pengumuman', 'created_at') -> get() ;
+        $detail = PengumumanDetail::where('rekening_id', $this -> id) -> select('id', 'master_id') -> with('master:id,pengumuman,created_at') -> get();
+        $data = [];
+        foreach($master as $item) {
+            $dt["pengumuman"] = $item -> pengumuman;
+            $dt["created_at"] = $item -> created_at;
+            array_push($data, $dt);
+        }
+
+        foreach($detail as $item) {
+            $dt["pengumuman"] = $item -> master -> pengumuman;
+            $dt["created_at"] = $item -> master -> created_at;
+            array_push($data, $dt);
+        }
+
+        return $data;
+    }
 }

@@ -45,7 +45,7 @@ class GetPengaduanController extends Controller
                     "tgl_selesai" => $pengaduan -> tgl_selesai,
                     "nilai" => $pengaduan -> nilai,
                     "tgl_lapor" => $pengaduan -> created_at,
-                    "tgl_konfirmasi_pdam" => $riwayat -> created_at,
+                    "tgl_konfirmasi_pdam" => $riwayat ? $riwayat -> created_at : "-",
                 ];
 
                 array_push($payload, $item);

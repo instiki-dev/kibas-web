@@ -41,10 +41,10 @@
                             </select>
                         </div>
                         <div class="form-group col-md-8 d-none" id="pelanggan">
-                          <label for="inputPelanggan">Pilih Pelanggan</label>
+                          <label for="inputPelanggan">Pilih Rekening</label>
                             <select id="inputPelanggan" name="pelanggan_id[]" multiple class="form-control selectpicker" data-live-search="true" data-actions-box="true">
                                 @foreach ($rekening as $item)
-                                <option data-tokens="data" value={{ $item -> id }}>{{ $item ->  no_rekening}} ({{ $item -> pelanggan ? $item -> pelanggan -> nama_pelanggan : "" }})</option>
+                                <option data-tokens="data" value={{ $item -> id }}>{{ $item ->  no_rekening}}</option>
                                 @endforeach
                             </select>
                         </div>
