@@ -55,6 +55,12 @@ class Rekening extends Model
             array_push($data, $dt);
         }
 
+        krsort($data, 1);
+
+        $n = count($data) > 10 ? 10 : count($data);
+
+        $data = array_slice($data, 0, $n);
+
         return $data;
     }
 }
