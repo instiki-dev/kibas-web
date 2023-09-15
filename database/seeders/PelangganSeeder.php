@@ -26,7 +26,6 @@ class PelangganSeeder extends Seeder
             $username = $item['username'];
             $password = $item['password'];
             $id = (string)$index;
-            $password .= $id;
             $password = bcrypt($password);
             $user = [
                 "name" => $username.$id,

@@ -20,8 +20,8 @@ class PengumumanController extends Controller
     public function __invoke(Request $request)
     {
         $jenis = JenisPengumuman::all();
-        $area = Area::all();
-        $rekening = Rekening::all();
+        $area = Area::select('id', 'area') -> get();
+        $rekening = Rekening::select('id', 'no_rekening') -> get();
         return view('adminlte.pengumuman', [
             "jenis" => $jenis,
             "area" => $area,

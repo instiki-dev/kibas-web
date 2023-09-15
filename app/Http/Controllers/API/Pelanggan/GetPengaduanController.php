@@ -22,7 +22,6 @@ class GetPengaduanController extends Controller
         try {
             $pengaduanList = Pengaduan::where([
                 ["rekening_id", $rekening -> id],
-                ["status", "!=", 1]
             ]) -> get();
 
             $payload = [];
@@ -41,6 +40,7 @@ class GetPengaduanController extends Controller
                     "link_foto" => $pengaduan -> link_foto,
                     "status" => $pengaduan -> status,
                     "petugas" => $pengaduan -> petugas,
+                    "rate" => $pengaduan -> rate,
                     "keterangan_selesai" => $pengaduan -> keterangan_selesai,
                     "tgl_selesai" => $pengaduan -> tgl_selesai,
                     "nilai" => $pengaduan -> nilai,

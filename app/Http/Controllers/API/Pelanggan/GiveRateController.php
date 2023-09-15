@@ -40,7 +40,10 @@ class GiveRateController extends Controller
                 ], 400);
             }
 
-            $data = ["nilai" => $request -> nilai];
+            $data = [
+                "nilai" => $request -> nilai,
+                "rate" => true
+            ];
 
             Pengaduan::where("id", $pengaduan -> id) -> update($data);
             return response(

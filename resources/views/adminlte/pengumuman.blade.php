@@ -44,7 +44,7 @@
                           <label for="inputPelanggan">Pilih Pelanggan</label>
                             <select id="inputPelanggan" name="pelanggan_id[]" multiple class="form-control selectpicker" data-live-search="true" data-actions-box="true">
                                 @foreach ($rekening as $item)
-                                <option data-tokens="data" value={{ $item -> id }}>{{ $item ->  no_rekening}} ({{ $item -> pelanggan -> nama_pelanggan }})</option>
+                                <option data-tokens="data" value={{ $item -> id }}>{{ $item ->  no_rekening}} ({{ $item -> pelanggan ? $item -> pelanggan -> nama_pelanggan : "" }})</option>
                                 @endforeach
                             </select>
                         </div>

@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             KelurahanSeeder::class,
             GolonganSeeder::class,
             PegawaiSeeder::class,
-            PelangganSeeder::class,
+            // PelangganSeeder::class,
+            // RekeningSeeder::class
         ]);
     }
 }
