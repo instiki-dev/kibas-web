@@ -45,12 +45,14 @@ class Rekening extends Model
         $data = [];
         foreach($master as $item) {
             $dt["pengumuman"] = $item -> pengumuman;
+            $dt['jenis_id'] =  $item -> jenis_id;
             $dt["created_at"] = $item -> created_at;
             array_push($data, $dt);
         }
 
         foreach($detail as $item) {
             $dt["pengumuman"] = $item -> master -> pengumuman;
+            $dt['jenis_id'] = $item -> master -> jenis_id;
             $dt["created_at"] = $item -> master -> created_at;
             array_push($data, $dt);
         }
