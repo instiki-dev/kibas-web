@@ -21,7 +21,7 @@ class TambahPegawaiController extends Controller
         $validate = $request -> validate([
             "fullname" => "required",
             "name" => "required|unique:users",
-            "email" => "required|email",
+            "email" => "required|email|unique:users",
             "password" => "required|min:10",
             "area_id" => "required",
             "password2" => "required|same:password"
