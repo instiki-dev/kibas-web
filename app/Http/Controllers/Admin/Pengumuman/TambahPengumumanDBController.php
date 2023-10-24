@@ -28,7 +28,7 @@ class TambahPengumumanDBController extends Controller
         ];
         if((int)$request -> jenis < 3) {
             $validation["pelanggan_id"] = "required|array|min:1";
-        } else {
+        } else if((int)$request -> jenis != 5) {
             $validation["area_id"] = "required|array|min:1";
         }
         $validate = $request -> validate($validation);
@@ -48,6 +48,9 @@ class TambahPengumumanDBController extends Controller
                 PengumumanDetail::create($detail);
             }
             $deviceToken = Rekening::whereIn('id', $intArray) -> pluck('device_token');
+        } else if($validate["jenis"] == 5) {
+             $master = PengumumanMaster::create($data);
+             $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
         } else {
             $intArr = array_map('intVal', $validate["area_id"]);
             foreach($intArr as $item) {
@@ -73,8 +76,8 @@ class TambahPengumumanDBController extends Controller
 
         $token = ['c-C5F3eX1PlSMY8vF20KZ3:APA91bHdZwp_1kcprdYPk2JQvClfYufjXtQULVCV8dA5mymnES1tNVYqkCcVISJ8Zb5zg0iRgyjJe8IvXIPzwzNIdKAs4SptgxFw6jIo6xZOS1szyhQL-s0DjpORmnSyoDHvkxoXMk7F'];
 
-        // $message = ["registration_ids" => $deviceToken];
-        $message = ["registration_ids" => $token];
+        $message = ["registration_ids" => $deviceToken];
+        // $message = ["registration_ids" => $token];
         $message["notification"] = [
             "title" => $title,
             "body" => $data["pengumuman"]
