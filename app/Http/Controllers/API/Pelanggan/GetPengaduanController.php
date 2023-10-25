@@ -20,9 +20,17 @@ class GetPengaduanController extends Controller
     public function __invoke(Request $request, Rekening $rekening)
     {
         try {
+            if($request -> query('menunggu')) {
+                $pengaduan = Pengaduan::where([
+                    ['rekening_id', $rekening -> id],
+                    ['status', '<', 3]
+                ]) -> select('id', 'keluhan', 'status') -> orderBy('created_at', 'DESC') -> get();
+                return response($pengaduan, 200);
+            }
+
             $pengaduanList = Pengaduan::where([
                 ["rekening_id", $rekening -> id],
-            ]) -> get();
+            ]) -> orderBy('created_at', 'DESC') -> get();
 
             $payload = [];
 
@@ -51,7 +59,6 @@ class GetPengaduanController extends Controller
                 array_push($payload, $item);
 
             }
-
 
             return response($payload, 200);
         } catch(Exception $e) {
