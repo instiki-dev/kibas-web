@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Pegawai\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pegawai;
 use App\Models\Rekening;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -63,9 +64,12 @@ class LoginController extends Controller
 
             User::where('id', $user -> id) -> update($deviceToken);
 
+            $pegawai = Pegawai::where('user_id', $user -> id) -> first();
+
             return response()->json([
                 'status' => true,
                 'message' => 'Login berhasil',
+                'detail_pegawai' => $pegawai,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
         } catch (\Throwable $th) {

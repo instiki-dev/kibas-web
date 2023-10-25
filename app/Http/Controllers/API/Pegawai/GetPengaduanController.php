@@ -20,7 +20,10 @@ class GetPengaduanController extends Controller
     {
         try {
             $pegawai = auth('sanctum') -> user() -> pegawai;
-            $pengaduanList = Pengaduan::where('petugas_id', $pegawai -> id) -> orderBy('petugas_id', 'ASC') -> get();
+            $pengaduanList = Pengaduan::where('petugas_id', $pegawai -> id)
+                    -> with('rekening:rekening_id,pelanggan_id')
+                    -> with('pelanggan')
+                    -> orderBy('status', 'ASC') -> get();
             $response = [];
             foreach ($pengaduanList as $pengaduan) {
                 $riwayat = PengaduanRiwayat::where([
@@ -36,6 +39,7 @@ class GetPengaduanController extends Controller
                     "link_foto" => $pengaduan -> link_foto,
                     "status" => $pengaduan -> status,
                     "petugas" => $pegawai -> nama,
+                    "pelanggan" => $pengaduan -> pelanggan -> nama_pelanggan,
                     "keterangan_selesai" => $pengaduan -> keterangan_selesai,
                     "tgl_selesai" => $pengaduan -> tgl_selesai,
                     "nilai" => $pengaduan -> nilai,
