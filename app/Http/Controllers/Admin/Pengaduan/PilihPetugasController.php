@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
 use App\Models\Pengaduan;
 use App\Models\PengaduanRiwayat;
+use App\Models\Penugasan;
 use Illuminate\Http\Request;
 
 class PilihPetugasController extends Controller
@@ -27,12 +28,18 @@ class PilihPetugasController extends Controller
         Pengaduan::where('id', $pengaduan -> id) -> update($data);
 
         $emp = Pegawai::where('id', $data["petugas_id"]) -> first();
+        Penugasan::where('petugas_id', $emp -> id)
+            -> update(['jumlah' => $emp -> penugasan -> jumlah + 1]);
+        $rekeningToken = Pengaduan::where('id', $pengaduan -> id) -> first() -> rekening -> device_token;
+        $rekeningToken = $rekeningToken ? $rekeningToken : '';
 
         if($emp -> user -> device_token) {
             $url = 'https://fcm.googleapis.com/fcm/send';
             $serverKey = env('SERVER_KEY');
-            $token = [$emp -> user -> device_token];
-
+            $token = [
+                $emp -> user -> device_token,
+                $rekeningToken
+            ];
             $message = ["registration_ids" => $token];
             $message["notification"] = [
                 "title" => 'Pengaduan Baru',
