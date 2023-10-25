@@ -19,6 +19,13 @@ class GetTagihanController extends Controller
     public function __invoke(Request $request, Rekening $rekening)
     {
         try {
+            if ($request -> query('dashboard')) {
+                $tagihan = Tagihan::where([
+                    ['rekening_id', $rekening -> id],
+                    ['status', 0]
+                ]) -> paginate(3);
+                return response($tagihan, 200);
+            }
             $tagihan = Tagihan::where('rekening_id', $rekening ->id) -> paginate();
             return response($tagihan, 200);
         } catch(Exception $e) {
