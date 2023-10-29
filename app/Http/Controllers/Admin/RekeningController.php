@@ -22,10 +22,15 @@ class RekeningController extends Controller
         // return view('adminlte.rekening', ["data" => $rekening]);
         //
 
+        // $data = Rekening::orderBy('id', 'ASC')
+        //         -> with('pelanggan:id,nama_pelanggan')
+        //         -> select('id', 'no_rekening', 'pelanggan_id')
+        //         -> get();
+        // dd($data[0]);
         if($request -> ajax()) {
             $data = Rekening::orderBy('id', 'ASC')
                     -> with('pelanggan:id,nama_pelanggan')
-                    -> select('no_rekening', 'pelanggan_id')
+                    -> select('id', 'no_rekening', 'pelanggan_id')
                     -> get();
             return DataTables::of($data)
                 ->addIndexColumn()
