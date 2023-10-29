@@ -25,9 +25,8 @@ class RekeningController extends Controller
         if($request -> ajax()) {
             $data = Rekening::orderBy('id', 'ASC')
                     -> with('pelanggan:id,nama_pelanggan')
-                    -> select('id', 'no_rekening', 'pelanggan_id')
+                    -> select('no_rekening', 'pelanggan_id')
                     -> get();
-            dd($data[0]);
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('aksi', function($row){
