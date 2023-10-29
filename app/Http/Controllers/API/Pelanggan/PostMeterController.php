@@ -23,6 +23,18 @@ class PostMeterController extends Controller
         try {
             $bulan = (int)Carbon::now() -> format('m');
             $tahun = (int)Carbon::now() -> format('Y');
+
+            $validate = Validator::make($request -> all(), [
+                "angka" => "required"
+            ]);
+
+            if ($validate -> fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => $validate -> errors(),
+                ], 400);
+            }
+
             if (!$request -> file('foto_meter')) {
                 return response()->json([
                     'status' => false,
