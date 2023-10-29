@@ -46,6 +46,7 @@
                             <th class="text-center">No</th>
                             <th class="text-center">Username</th>
                             <th class="text-center">Email</th>
+                            <th class="text-center">Nama Pegawai (Jika Pegawai)</th>
                             <th class="text-center">Aksi</th>
                         </thead>
                     </table>
@@ -72,6 +73,7 @@
                       {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                       {data: 'name', name: 'name'},
                       {data: 'email', name: 'email'},
+                      {data: 'nama', name: 'nama'},
                       {data: 'aksi', name: 'aksi'},
                   ]
               });        });

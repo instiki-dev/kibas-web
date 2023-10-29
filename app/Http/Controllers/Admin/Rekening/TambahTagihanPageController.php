@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Rekening;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
+use App\Models\Rekening;
 use Illuminate\Http\Request;
 
 class TambahTagihanPageController extends Controller
@@ -17,6 +18,10 @@ class TambahTagihanPageController extends Controller
     public function __invoke(Request $request)
     {
         $pegawai = Pegawai::where('jabatan', 'Pembaca Meter') -> get();
-        return view('adminlte.tambahtagihanpage', ['petugas' => $pegawai]);
+        $rekening = Rekening::all();
+        return view('adminlte.tambahtagihanpage', [
+            'petugas' => $pegawai,
+            "rekening" => $rekening
+        ]);
     }
 }

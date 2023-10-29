@@ -30,7 +30,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('show-tambah-pengumuman') }}">Tambah Pengumuman</a></li>
                     <li class="breadcrumb-item active">Daftar Pengumuman</li>
                 </ol>
             </div>
@@ -41,6 +40,11 @@
     <div class="container-fluid">
         <div class="col-12">
         <div class="card">
+            <div class="card-header">
+                <a href="{{ route('show-tambah-pengumuman') }}" class="btn btn-danger" style="color: #fff;">
+                    Tambah Pengumuman
+                </a>
+            </div>
             <div class="card-body table-responsive px-3 py-0" style="height: 90vh;">
                 <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
                     <thead>

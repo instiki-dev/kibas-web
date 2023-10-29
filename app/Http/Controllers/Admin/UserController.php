@@ -22,15 +22,25 @@ class UserController extends Controller
         // return view('adminlte.user', ["data" => $data]);
 
         if($request -> ajax()) {
-            $data = User::select('id', 'name', 'email') -> get();
+            $data = User::orderBy('id', 'ASC')
+                -> select('id', 'name', 'email')
+                -> with('pegawai:id,user_id,nama')
+                -> get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('nama', function($row) {
+                    if ($row -> pegawai) {
+                        return $row -> pegawai -> nama;
+                    } else {
+                        return '-';
+                    }
+                })
                 ->addColumn('aksi', function($row){
                     $edit = route('show-ubah-password', ['user' => $row -> id]);
                     $actionBtn = '<a href="'.$edit.'" class="edit btn btn-success btn-sm">Edit</a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['aksi'])
+                ->rawColumns(['nama', 'aksi'])
                 ->make(true);
         }
         return view('adminlte.user');

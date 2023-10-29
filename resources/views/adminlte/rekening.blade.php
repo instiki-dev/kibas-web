@@ -30,7 +30,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('show-tambah-rekening') }}">Tambah Rekening</a></li>
                     <li class="breadcrumb-item active">Daftar Rekening</li>
                 </ol>
             </div>
@@ -41,12 +40,10 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <form id="tagihanForm" action="{{ route('import-tagihan') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input id="inputFile" name="file" type="file" hidden>
-                        <button id="btnFile" type="button" class="btn btn-danger" style="color: #fff;">Import Tagihan</button>
-                    </form>
+                <div class="card-header d-flex justify-content-start align-items-center">
+                    <a href="{{ route('show-tambah-rekening') }}" class="btn btn-danger" style="color: #fff;">
+                        Tambah Rekening
+                    </a>
                 </div>
                 <div class="px-3 py-0 card-body table-responsive p-0" style="height: 90vh;">
                     <table id="myTable" class="w-100 table table-head-fixed text-nowrap">

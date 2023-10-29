@@ -31,7 +31,7 @@
                               <label for="inputEmail4">Pelanggan</label>
                             <select id="inputPelanggan" name="pelanggan_id" class="form-control selectpicker" data-live-search="true">
                                 @foreach ($pelanggan as $item)
-                                <option data-tokens="data" value={{ $item -> id }}>{{ $item -> nama_pelanggan }} ({{ $item -> nik_pelanggan }})</option>
+                                <option data-tokens="data" value={{ $item -> id }}>{{ $item -> nama_pelanggan }} {{ $item -> nik_pelanggan == '' ? '' : '('.$item -> nik_pelanggan.')' }}</option>
                                 @endforeach
                                 <!-- <option data-tokens="data" value="0">Lainnya</option> -->
                             </select>

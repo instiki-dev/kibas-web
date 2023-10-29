@@ -19,7 +19,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('show-tambah-area') }}">Tambah Area</a></li>
                     <li class="breadcrumb-item active">Daftar Area</li>
                 </ol>
             </div>
@@ -31,11 +30,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm"  style="width: 250px;">
-                            <input id="inputSearch" class="form-control float-right" type="text" placeholder="Search">
-                        </div>
-                    </div>
+                    <a href="{{ route('show-tambah-area') }}" class="btn btn-danger" style="color: #fff;">
+                        Tambah Area
+                    </a>
                 </div>
 
                 <div class="card-body table-responsive p-0" style="height: 60vh;">

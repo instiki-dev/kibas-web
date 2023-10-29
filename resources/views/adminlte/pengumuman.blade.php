@@ -131,7 +131,10 @@
           if (jenis.value < 3) {
               inputPelanggan.classList.remove("d-none")
               inputArea.classList.add("d-none")
-          } else {
+          } else if (jenis.value == 5) {
+              inputPelanggan.classList.add("d-none")
+              inputArea.classList.add("d-none")
+        } else {
               inputPelanggan.classList.add("d-none")
               inputArea.classList.remove("d-none")
           }

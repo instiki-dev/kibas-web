@@ -29,7 +29,12 @@
                         </div>
                         <div class="form-group col-md-6">
                           <label for="inputNoTagihan">No Rekening</label>
-                          <input name="no_rekening" type="text" class="form-control" id="inputNoTagihan" placeholder="No Rekening">
+                        <select id="inputRekening" name="no_rekening" class="form-control selectpicker" data-live-search="true">
+                            @foreach ($rekening as $item)
+                            <option data-tokens="data" value={{ $item -> no_rekening }}>{{ $item -> no_rekening }}</option>
+                            @endforeach
+                            <!-- <option data-tokens="data" value="0">Lainnya</option> -->
+                        </select>
                         </div>
                   </div>
                     <div class="form-row px-3">

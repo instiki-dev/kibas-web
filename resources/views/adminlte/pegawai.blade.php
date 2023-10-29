@@ -30,7 +30,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('show-tambah-pegawai') }}">Tambah Pegawai</a></li>
                     <li class="breadcrumb-item active">Daftar Pegawai</li>
                 </ol>
             </div>
@@ -42,13 +41,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm"  style="width: 250px;">
-                            <input id="inputSearch" class="form-control float-right" type="text" placeholder="Search">
-                        </div>
-                    </div>
+                    <a href="{{ route('show-tambah-pegawai') }}" class="btn btn-danger" style="color: #fff;">
+                        Tambah Pegawai
+                    </a>
                 </div>
-
                 <div class="card-body table-responsive px-3 py-0" style="height: 60vh;">
                     <table id="myTable" class="table w-100 table-head-fixed text-nowrap">
                         <thead>

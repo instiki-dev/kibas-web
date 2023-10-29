@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pelanggan;
+use App\Models\Rekening;
 use Illuminate\Http\Request;
 
 class ShowTambahRekeningController extends Controller
