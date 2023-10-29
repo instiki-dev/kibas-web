@@ -27,6 +27,7 @@ class RekeningController extends Controller
                     -> with('pelanggan:id,nama_pelanggan')
                     -> select('id', 'no_rekening', 'pelanggan_id')
                     -> get();
+            dd($data[0]);
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('aksi', function($row){
