@@ -26,7 +26,11 @@
                     @method('PUT')
                     <div class="form-group col-md-10">
                       <label for="inputAngka">Angka</label>
-                      <input name="angka" type="number" class="form-control" id="inputAngka" placeholder="Angka">
+                      <input name="angka" type="number" class="form-control" id="inputAngka" placeholder="Angka" value="{{ $data -> angka }}" disabled>
+                    </div>
+                    <div class="form-group col-md-10">
+                      <label for="inputAngka">Angka Final</label>
+                      <input name="angka_final" type="number" class="form-control" id="inputAngka" placeholder="Angka">
                     </div>
                     @if($errors -> first())
                     <div class="alert alert-danger px-3" role="alert">

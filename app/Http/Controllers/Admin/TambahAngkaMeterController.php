@@ -18,8 +18,10 @@ class TambahAngkaMeterController extends Controller
     public function __invoke(Request $request, BacaMeter $meter)
     {
         $validate = $request -> validate([
-            "angka" => "required"
+            "angka_final" => "required"
         ]);
+
+        $validate["verifikasi"] = true;
 
         BacaMeter::where('id', $meter -> id) -> update($validate);
         return redirect() -> route('baca-meter-mandiri') -> with('successMessage', 'Berhasil mengkonfirmasi angka meter');

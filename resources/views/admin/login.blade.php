@@ -16,8 +16,8 @@
                     <img src="/img/loginbg.jpg">
                 </div>
             </div>
-            <img src="/img/removebg.png" class="mr-4">
-            <h2 class="mr-5 mt-3">Layanan Pelanggan PDAM Tirta Danu Arta</h2>
+            <img src="/img/kibas.png" class="mr-4">
+            <!-- <h2 class="mr-5 mt-3">Layanan Pelanggan PDAM Tirta Danu Arta</h2> -->
         </div>
         <div class="right d-flex justify-content-center align-items-center">
             <div class="login-card w-75 px-4 py-3">

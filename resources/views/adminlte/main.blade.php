@@ -42,8 +42,8 @@
 
             <aside class="main-sidebar sidebar-light-primary elevation-4 bg-red">
                 <a href="index3.html" class="brand-link">
-                    <img src="/img/danuarta.jpg" alt="Tirta Danu Arta Logo" class="brand-image elevation-3" style="opacity: .8; border-radius: 1vmin;">
-                    <span class="brand-text font-weight-light">Tirta Danu Arta</span>
+                    <img src="/img/kibas.png" alt="Kibas" class="brand-image elevation-3" style="opacity: .8; border-radius: 1vmin;">
+                    <span class="brand-text font-weight-light">Kibas</span>
                 </a>
 
                 <div class="sidebar">
