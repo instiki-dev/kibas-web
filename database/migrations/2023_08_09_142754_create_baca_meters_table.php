@@ -17,9 +17,11 @@ class CreateBacaMetersTable extends Migration
             $table->id();
             $table->string('no_rekening', 100) -> nullable();
             $table->string('link_foto');
+            $table->boolean('verifikasi')->default(false);
             $table->integer('bulan');
             $table->integer('tahun');
-            $table->integer('angka') -> nullable();
+            $table->integer('angka');
+            $table->integer('angka_final') -> nullable();
             $table->softDeletes();
             // $table->foreign('no_rekening')
             //     ->references('no_rekening')

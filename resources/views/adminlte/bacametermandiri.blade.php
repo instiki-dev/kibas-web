@@ -35,7 +35,8 @@
                             <th class="text-center">Rekening</th>
                             <th class="text-center">Bulan</th>
                             <th class="text-center">Tahun</th>
-                            <th class="text-center">Angka</th>
+                            <th class="text-center">Angka Final</th>
+                            <th class="text-center">Status</th>
                             <th class="text-center">Aksi</th>
                         </thead>
                         <tbody class="text-center" id="tableContent">
@@ -45,8 +46,13 @@
                                   <td scope="col">{{ $item -> no_rekening }}</td>
                                   <td scope="col">{{ $item -> bulan }}</td>
                                   <td scope="col">{{ $item -> tahun }}</td>
-                                  <td scope="col">{{ $item -> angka ? $item -> angka : "-"}}</td>
-                                    @if(!$item -> angka)
+                                  <td scope="col">{{ $item -> angka_final ? $item -> angka_final : "-"}}</td>
+                                    @if($item -> verifikasi)
+                                      <td scope="col"><span class="badge badge-success">Terverifikasi</span></td>
+                                    @else
+                                      <td scope="col"><span class="badge badge-info">Belum Terverifikasi</span></td>
+                                    @endif
+                                    @if(!$item -> angka_final)
                                     <td scope="col">
                                         <div class="wrapper d-inline">
                                             <a href="{{ route('show-tambah-angka', ['meter' => $item -> id]) }}" type="button" class="btn btn-outline-info mr-3">Konfirmasi Besaran Meter</a>

@@ -47,6 +47,7 @@ class PostMeterController extends Controller
 
             $data = [
                 "no_rekening" => $rekening -> no_rekening,
+                "angka" => $request -> angka,
                 "bulan" => $bulan,
                 "tahun" => $tahun,
                 "link_foto" => $url,
