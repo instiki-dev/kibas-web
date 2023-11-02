@@ -28,7 +28,7 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-body" style="height: 66vh;">
+                <div class="card-body table-responsive py-0 px-3" style="height: 66vh;">
                     <table id="myTable" class="table table-head-fixed text-nowrap">
                         <thead>
                             <th class="text-center">No</th>
