@@ -33,6 +33,7 @@
                         <thead>
                             <th class="text-center">No</th>
                             <th class="text-center">Rekening</th>
+                            <th class="text-center">Pelanggan</th>
                             <th class="text-center">Bulan</th>
                             <th class="text-center">Tahun</th>
                             <th class="text-center">Angka Final</th>
@@ -64,6 +65,7 @@
                   columns: [
                       {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                       {data: 'no_rekening', name: 'no_rekening'},
+                      {data: 'pelanggan', name: 'pelanggan'},
                       {data: 'bulan', name: 'bulan'},
                       {data: 'tahun', name: 'tahun'},
                       {data: 'final', name: 'final'},

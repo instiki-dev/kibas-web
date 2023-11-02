@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BacaMeter;
-use App\Models\Pengaduan;
+use App\Models\Rekening;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -33,6 +33,10 @@ class BacaMeterMandiriController extends Controller
                         return $row -> angka_final;
                     }
                     return '-';
+                })
+                ->addColumn('pelanggan', function($row) {
+                    $rekening = $row -> no_rekening;
+                    return Rekening::where('no_rekening', $rekening) -> first() -> pelanggan -> nama_pelanggan;
                 })
                 ->addColumn('status', function($row) {
                     if ($row -> verifikasi) {
