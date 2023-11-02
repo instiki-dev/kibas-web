@@ -29,7 +29,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body" style="height: 66vh;">
-                    <table class="table table-head-fixed text-nowrap">
+                    <table id="myTable" class="table table-head-fixed text-nowrap">
                         <thead>
                             <th class="text-center">No</th>
                             <th class="text-center">Rekening</th>
@@ -40,27 +40,6 @@
                             <th class="text-center">Aksi</th>
                         </thead>
                         <tbody class="text-center" id="tableContent">
-                            @foreach($data as $item)
-                            <tr>
-                                  <td scope="col">{{ $loop -> index + 1}}</td>
-                                  <td scope="col">{{ $item -> no_rekening }}</td>
-                                  <td scope="col">{{ $item -> bulan }}</td>
-                                  <td scope="col">{{ $item -> tahun }}</td>
-                                  <td scope="col">{{ $item -> angka_final ? $item -> angka_final : "-"}}</td>
-                                    @if($item -> verifikasi)
-                                      <td scope="col"><span class="badge badge-success">Terverifikasi</span></td>
-                                    @else
-                                      <td scope="col"><span class="badge badge-info">Belum Terverifikasi</span></td>
-                                    @endif
-                                    @if(!$item -> angka_final)
-                                    <td scope="col">
-                                        <div class="wrapper d-inline">
-                                            <a href="{{ route('show-tambah-angka', ['meter' => $item -> id]) }}" type="button" class="btn btn-outline-info mr-3">Konfirmasi Besaran Meter</a>
-                                        </div>
-                                    </td>
-                                    @endif
-                            </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -71,4 +50,25 @@
 @endsection
 
 @section('script')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+              var table = $('#myTable').DataTable({
+                  processing: true,
+                  serverSide: true,
+                  ajax: "{{ route('pengaduan') }}",
+                  columns: [
+                      {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                      {data: 'no_rekening', name: 'no_rekening'},
+                      {data: 'bulan', name: 'bulan'},
+                      {data: 'tahun', name: 'tahun'},
+                      {data: 'status', name: 'status'},
+                      {data: 'aksi', name: 'aksi'},
+                  ]
+              });        });
+    </script>
 @endsection

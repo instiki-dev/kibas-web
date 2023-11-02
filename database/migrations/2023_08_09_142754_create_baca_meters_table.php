@@ -15,7 +15,7 @@ class CreateBacaMetersTable extends Migration
     {
         Schema::create('baca_meters', function (Blueprint $table) {
             $table->id();
-            $table->string('no_rekening', 100) -> nullable();
+            $table->string('no_rekening', 100);
             $table->string('link_foto');
             $table->boolean('verifikasi')->default(false);
             $table->integer('bulan');
@@ -25,8 +25,7 @@ class CreateBacaMetersTable extends Migration
             $table->softDeletes();
             $table->foreign('no_rekening')
                 ->references('no_rekening')
-                ->on('rekenings')
-                ->onDelete('set null');
+                ->on('rekenings');
             $table->timestamps();
         });
     }
