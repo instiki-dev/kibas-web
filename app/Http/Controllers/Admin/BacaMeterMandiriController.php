@@ -7,6 +7,7 @@ use App\Models\BacaMeter;
 use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class BacaMeterMandiriController extends Controller
 {
@@ -18,6 +19,14 @@ class BacaMeterMandiriController extends Controller
      */
     public function __invoke(Request $request)
     {
+
+
+        // if($request-> ajax()) {
+        //     $month = Carbon::now() -> subDays(30) ->toDateString();
+        //     $meter = BacaMeter::where('created_at', '>', $month) -> orderBy('angka', 'ASC') -> get();
+        //     return DataTables::of($meter)
+        // }
+
         $month = Carbon::now() -> subDays(30) ->toDateString();
         $meter = BacaMeter::where('created_at', '>', $month) -> orderBy('angka', 'ASC') -> get();
         return view('adminlte.bacametermandiri', ["data" => $meter]);

@@ -23,10 +23,10 @@ class CreateBacaMetersTable extends Migration
             $table->integer('angka');
             $table->integer('angka_final') -> nullable();
             $table->softDeletes();
-            // $table->foreign('no_rekening')
-            //     ->references('no_rekening')
-            //     ->on('rekenings')
-            //     ->onDelete('set null');
+            $table->foreign('no_rekening')
+                ->references('no_rekening')
+                ->on('rekenings')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }
