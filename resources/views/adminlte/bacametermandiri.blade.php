@@ -66,6 +66,7 @@
                       {data: 'no_rekening', name: 'no_rekening'},
                       {data: 'bulan', name: 'bulan'},
                       {data: 'tahun', name: 'tahun'},
+                      {data: 'final', name: 'final'},
                       {data: 'status', name: 'status'},
                       {data: 'aksi', name: 'aksi'},
                   ]

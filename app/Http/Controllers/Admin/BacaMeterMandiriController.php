@@ -28,6 +28,12 @@ class BacaMeterMandiriController extends Controller
                 -> get();
             return DataTables::of($meter)
                 ->addIndexColumn()
+                ->addColumn('final', function($row) {
+                    if ($row -> angka_final) {
+                        return $row -> angka_final;
+                    }
+                    return '-';
+                })
                 ->addColumn('status', function($row) {
                     if ($row -> verifikasi) {
                         return '<td scope="col"><span class="badge badge-success">Terverifikasi</span></td>';
