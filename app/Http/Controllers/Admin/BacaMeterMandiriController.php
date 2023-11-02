@@ -20,7 +20,6 @@ class BacaMeterMandiriController extends Controller
     public function __invoke(Request $request)
     {
 
-
         if($request-> ajax()) {
             $month = Carbon::now() -> subDays(30) ->toDateString();
             $meter = BacaMeter::where('created_at', '>', $month)

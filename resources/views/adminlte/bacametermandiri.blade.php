@@ -60,7 +60,7 @@
               var table = $('#myTable').DataTable({
                   processing: true,
                   serverSide: true,
-                  ajax: "{{ route('pengaduan') }}",
+                  ajax: "{{ route('baca-meter-mandiri') }}",
                   columns: [
                       {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                       {data: 'no_rekening', name: 'no_rekening'},
