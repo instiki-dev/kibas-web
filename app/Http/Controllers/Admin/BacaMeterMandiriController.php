@@ -42,11 +42,13 @@ class BacaMeterMandiriController extends Controller
                         return $button;
                     }
                     return;
-                });
+                })
+                ->rawColumns(['aksi', 'status'])
+                ->make(true);
         }
 
         // $month = Carbon::now() -> subDays(30) ->toDateString();
         // $meter = BacaMeter::where('created_at', '>', $month) -> orderBy('angka', 'ASC') -> get();
-        // return view('adminlte.bacametermandiri', ["data" => $meter]);
+        return view('adminlte.bacametermandiri');
     }
 }
