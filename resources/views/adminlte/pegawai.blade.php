@@ -4,9 +4,10 @@
     <style>
         #myTable_processing {
             position: absolute;
-            top: 15%;
+            box-shadow: none;
+            top: 200%;
             left: 50%;
-            background-color: #DDDDDD;
+            background-color: #FFFFFF;
         }
     </style>
 @endsection
@@ -75,6 +76,8 @@
               var table = $('#myTable').DataTable({
                   processing: true,
                   serverSide: true,
+                    language : {
+                    processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'},
                   ajax: "{{ route('pegawai') }}",
                   columns: [
                       {data: 'DT_RowIndex', name: 'DT_RowIndex'},

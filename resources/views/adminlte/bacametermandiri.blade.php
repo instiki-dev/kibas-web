@@ -1,5 +1,17 @@
 @extends('adminlte.main')
 
+@section('style')
+    <style>
+        #myTable_processing {
+            position: absolute;
+            box-shadow: none;
+            top: 200%;
+            left: 50%;
+            background-color: #FFFFFF;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="content-header">
     @if(session() -> has('successMessage'))
@@ -61,6 +73,8 @@
               var table = $('#myTable').DataTable({
                   processing: true,
                   serverSide: true,
+                    language : {
+                    processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'},
                   ajax: "{{ route('baca-meter-mandiri') }}",
                   columns: [
                       {data: 'DT_RowIndex', name: 'DT_RowIndex'},

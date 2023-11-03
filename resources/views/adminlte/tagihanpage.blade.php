@@ -4,9 +4,10 @@
     <style>
         #myTable_processing {
             position: absolute;
-            top: 15%;
+            box-shadow: none;
+            top: 200%;
             left: 50%;
-            background-color: #DDDDDD;
+            background-color: #FFFFFF;
         }
     </style>
 @endsection
@@ -40,14 +41,19 @@
     <div class="container-fluid">
         <div class="col-12">
         <div class="card">
-            <div class="card-header d-flex justify-content-start align-items-center">
-                <form id="tagihanForm" action="{{ route('import-tagihan') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input id="inputFile" name="file" type="file" hidden>
-                    <button id="btnFile" type="button" class="btn btn-danger" style="color: #fff;">Import Tagihan</button>
-                </form>
-                <a class="btn btn-danger ml-3" href="{{ route('tambah-tagihan-page') }}" style="color: #fff;">
-                    Tambah Tagihan
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="tambah-wrapper d-flex">
+                    <form id="tagihanForm" action="{{ route('import-tagihan') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input id="inputFile" name="file" type="file" hidden>
+                        <button id="btnFile" type="button" class="btn btn-danger" style="color: #fff;">Import Tagihan</button>
+                    </form>
+                    <a class="btn btn-danger ml-3" href="{{ route('tambah-tagihan-page') }}" style="color: #fff;">
+                        Tambah Tagihan
+                    </a>
+                </div>
+                <a class="btn btn-success ml-3" style="color: #fff;">
+                    Sinkronkan
                 </a>
             </div>
             <div class="card-body table-responsive px-3 py-0" style="height: 90vh;">
@@ -98,6 +104,8 @@
               var table = $('#myTable').DataTable({
                   processing: true,
                   serverSide: true,
+                    language : {
+                    processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'},
                   ajax: "{{ route('tagihan') }}",
                   columns: [
                       {data: 'DT_RowIndex', name: 'DT_RowIndex'},

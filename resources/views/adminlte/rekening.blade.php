@@ -1,12 +1,12 @@
 @extends('adminlte.main')
-
 @section('style')
     <style>
         #myTable_processing {
             position: absolute;
-            top: 15%;
+            box-shadow: none;
+            top: 200%;
             left: 50%;
-            background-color: #DDDDDD;
+            background-color: #FFFFFF;
         }
     </style>
 @endsection
@@ -44,23 +44,26 @@
                     <a href="{{ route('show-tambah-rekening') }}" class="btn btn-danger" style="color: #fff;">
                         Tambah Rekening
                     </a>
-                    <div class="sync d-flex justify-content-start align-items-center">
+                    <div class="sync d-flex justify-content-center align-items-center">
                       <div class="form-group">
                         <label for="golongan">Kode Golongan</label>
                         <select class="form-control" id="golongan">
                             @foreach ($golongan as $item)
-                              <option>1</option>
+                              <option>{{ $item -> golongan }}</option>
                             @endforeach
                         </select>
                       </div>
-                    <div class="form-group">
+                        <div class="form-group ml-4">
                         <label for="golongan">Kode Rayon</label>
                         <select class="form-control" id="golongan">
                             @foreach ($rayon as $item)
-                              <option>1</option>
+                              <option>{{ $item -> kode_rayon }}</option>
                             @endforeach
                         </select>
                       </div>
+                        <a class="btn btn-success ml-4" style="color: #fff;">
+                            Sinkronkan
+                        </a>
                     </div>
                 </div>
                 <div class="px-3 py-0 card-body table-responsive p-0" style="height: 90vh;">
@@ -107,6 +110,8 @@
         $(function () {
               var table = $('#myTable').DataTable({
                   processing: true,
+                language : {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'},
                   serverSide: true,
                   ajax: "{{ route('rekening') }}",
                   columns: [
