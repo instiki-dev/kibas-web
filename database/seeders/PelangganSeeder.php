@@ -19,31 +19,32 @@ class PelangganSeeder extends Seeder
     public function run()
     {
 
-       $xls = (new FastExcel()) -> import('/home/freak_mei/Downloads/uas/pelanggan_data.xlsx');
+       $xls = (new FastExcel()) -> import('/home/freak_mei/Projects/new-python/kibas/credential.xlsx');
 
         foreach($xls as $index=>$item) {
             // Create instance in table user
             $username = $item['username'];
-            $password = $item['password'];
+            $username = str_replace(" ", "", $username);
+            $username = strtolower($username);
             $id = (string)$index;
-            $password = bcrypt($password);
+            $password = bcrypt($username);
             $user = [
-                "name" => $username.$id,
+                "name" => $username,
                 "email" => $username.$id."@gmail.com",
                 "password" => $password
             ];
             $userData = User::create($user);
             $userData -> assignRole('Pelanggan');
 
-            $golongan = Golongan::where('golongan', $item['golongan']) -> first() -> id;
+            $golongan = Golongan::where('golongan', $item['user_golongan']) -> first() -> id;
 
             // Create instance in table pelanggan
             $pelangganData = [
                 "user_id" => $userData -> id,
-                "nama_pelanggan" => $item['nama_pelanggan'],
+                "nama_pelanggan" => $item['username'],
                 "nik_pelanggan" => "",
                 "no_pelanggan" => "",
-                "alamat_pelanggan" => $item['alamat_pelanggan'],
+                "alamat_pelanggan" => $item['alamat'],
                 "golongan_id" => $golongan,
             ];
             Pelanggan::create($pelangganData);

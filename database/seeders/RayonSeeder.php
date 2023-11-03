@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Rayon;
 use Illuminate\Database\Seeder;
 
 class RayonSeeder extends Seeder
@@ -34,8 +35,8 @@ class RayonSeeder extends Seeder
             '0922',
         ];
         foreach ($kode as $item) {
-            $data = ["golongan" => $item];
-            ::create($data);
+            $data = ["kode_rayon" => $item];
+            Rayon::create($data);
         }
     }
 }
