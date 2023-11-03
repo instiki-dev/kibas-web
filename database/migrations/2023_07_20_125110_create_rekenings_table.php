@@ -20,6 +20,8 @@ class CreateRekeningsTable extends Migration
             $table->unsignedBigInteger('kecamatan_id') -> nullable();
             $table->unsignedBigInteger('kelurahan_id') -> nullable();
             $table->unsignedBigInteger('area_id') -> nullable();
+            $table->unsignedBigInteger('golongan_id') -> nullable();
+            $table->unsignedBigInteger('rayon_id') -> nullable();
             $table->string('lat', 100);
             $table->string('lng', 100);
             $table->softDeletes();
@@ -39,6 +41,14 @@ class CreateRekeningsTable extends Migration
             $table->foreign('area_id')
                 ->references('id')
                 ->on('areas')
+                ->onDelete('set null');
+            $table->foreign('golongan_id')
+                ->references('id')
+                ->on('golongans')
+                ->onDelete('set null');
+            $table->foreign('rayon_id')
+                ->references('id')
+                ->on('rayons')
                 ->onDelete('set null');
         });
     }

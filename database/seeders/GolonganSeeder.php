@@ -15,14 +15,17 @@ class GolonganSeeder extends Seeder
     public function run()
     {
         $kode = [
-            "IA",
-            "IVA2",
-            "IVB1",
-            "III",
-            "II",
-            "IB",
-            "III A",
-            "IVA3"
+            'IA',
+            'IB',
+            'II',
+            'III',
+            'IIIA',
+            'IVA',
+            'IVA1',
+            'IVA2',
+            'IVA3',
+            'IVB',
+            'IVB1',
         ];
         foreach ($kode as $item) {
             $data = ["golongan" => $item];
