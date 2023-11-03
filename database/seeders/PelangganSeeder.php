@@ -36,7 +36,7 @@ class PelangganSeeder extends Seeder
             $userData = User::create($user);
             $userData -> assignRole('Pelanggan');
 
-            $golongan = Golongan::where('golongan', $item['user_golongan']) -> first() -> id;
+            $golongan = Golongan::where('golongan', $item['golongan']) -> first() -> id;
 
             // Create instance in table pelanggan
             $pelangganData = [
