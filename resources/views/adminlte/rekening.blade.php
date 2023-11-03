@@ -40,10 +40,28 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-start align-items-center">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <a href="{{ route('show-tambah-rekening') }}" class="btn btn-danger" style="color: #fff;">
                         Tambah Rekening
                     </a>
+                    <div class="sync d-flex justify-content-start align-items-center">
+                      <div class="form-group">
+                        <label for="golongan">Kode Golongan</label>
+                        <select class="form-control" id="golongan">
+                            @foreach ($golongan as $item)
+                              <option>1</option>
+                            @endforeach
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <label for="golongan">Kode Rayon</label>
+                        <select class="form-control" id="golongan">
+                            @foreach ($rayon as $item)
+                              <option>1</option>
+                            @endforeach
+                        </select>
+                      </div>
+                    </div>
                 </div>
                 <div class="px-3 py-0 card-body table-responsive p-0" style="height: 90vh;">
                     <table id="myTable" class="w-100 table table-head-fixed text-nowrap">

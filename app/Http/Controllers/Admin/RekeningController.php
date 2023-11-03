@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Golongan;
+use App\Models\Rayon;
 use App\Models\Rekening;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -27,6 +29,10 @@ class RekeningController extends Controller
         //         -> select('id', 'no_rekening', 'pelanggan_id')
         //         -> get();
         // dd($data[0]);
+        //
+
+        $golongan = Golongan::all();
+        $rayon = Rayon::all();
         if($request -> ajax()) {
             $data = Rekening::orderBy('id', 'ASC')
                     -> with('pelanggan:id,nama_pelanggan')
@@ -44,6 +50,9 @@ class RekeningController extends Controller
                 ->rawColumns(['aksi'])
                 ->make(true);
         }
-        return view('adminlte.rekening');
+        return view('adminlte.rekening', [
+            'golongan' => $golongan,
+            'rayon' => $rayon
+        ]);
     }
 }
