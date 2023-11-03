@@ -14,7 +14,7 @@ class JenisPengumumanSeeder extends Seeder
      */
     public function run()
     {
-        $jenis = ["Pencabutan", "Penyegelan", "Tagihan", "Pengumuman"];
+        $jenis = ["Pencabutan", "Penyegelan", "Tagihan", "Pengumuman", "Bangli Terkini"];
 
         foreach ($jenis as $item) {
             $data = ["jenis" => $item];
