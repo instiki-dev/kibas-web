@@ -22,24 +22,27 @@ class RekeningSeeder extends Seeder
         foreach($xls as $index=>$item) {
             $namaPelanggan = $item['pelanggan'];
             $no_rekening = $item['nosamb'];
+            $rekening = Rekening::where('no_rekening', $no_rekening) -> first();
 
-            $golongan = Golongan::where('golongan', $item['gol']) -> first();
-            $rayon = Rayon::where('kode_rayon', $item['koderayon']) -> first();
+            if ($rekening) {
+                $golongan = Golongan::where('golongan', $item['gol']) -> first();
+                $rayon = Rayon::where('kode_rayon', $item['koderayon']) -> first();
 
-            $pelanggan = Pelanggan::where('nama_pelanggan', $namaPelanggan) -> first();
-            $value = [
-                "pelanggan_id" => $pelanggan -> id,
-                "no_rekening" => $no_rekening,
-                "kecamatan_id" => null,
-                "kelurahan_id" => null,
-                "area_id" => null,
-                "lat" => "-8.4639394",
-                "lng" => "115.3497947",
-                "golongan_id" => $golongan -> id,
-                "rayon_id" => $rayon -> id,
-                "register" => 0
-            ];
-            Rekening::create($value);
+                $pelanggan = Pelanggan::where('nama_pelanggan', $namaPelanggan) -> first();
+                $value = [
+                    "pelanggan_id" => $pelanggan -> id,
+                    "no_rekening" => $no_rekening,
+                    "kecamatan_id" => null,
+                    "kelurahan_id" => null,
+                    "area_id" => null,
+                    "lat" => "-8.4639394",
+                    "lng" => "115.3497947",
+                    "golongan_id" => $golongan -> id,
+                    "rayon_id" => $rayon -> id,
+                    "register" => 0
+                ];
+                Rekening::create($value);
+            }
         }
     }
 }
