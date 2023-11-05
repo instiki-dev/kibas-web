@@ -69,7 +69,6 @@ class TambahPengumumanDBController extends Controller
             $data["link_foto"] = $url;
              $master = PengumumanMaster::create($data);
              $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
-            dd($deviceToken);
         } else {
             $intArr = array_map('intVal', $validate["area_id"]);
             foreach($intArr as $item) {
@@ -102,7 +101,10 @@ class TambahPengumumanDBController extends Controller
             "body" => $data["pengumuman"]
         ];
 
+
         $encodedData = json_encode($message);
+
+        dd($encodedData);
 
          $headers = [
             'Authorization:key=' . $serverKey,
