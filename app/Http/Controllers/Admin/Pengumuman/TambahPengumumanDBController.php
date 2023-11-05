@@ -136,7 +136,7 @@ class TambahPengumumanDBController extends Controller
         // Close connection
         curl_close($ch);
 
-        // dd($result);
+        dd($result);
 
         return redirect() -> route('pengumuman') -> with('successMessage', "Berita telah ditambahkan");
     }
