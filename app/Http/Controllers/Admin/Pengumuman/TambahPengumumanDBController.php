@@ -78,6 +78,7 @@ class TambahPengumumanDBController extends Controller
              $master = PengumumanMaster::create($data);
              $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
         } else {
+            dd('You in here');
             $intArr = array_map('intVal', $validate["area_id"]);
             foreach($intArr as $item) {
                 $data["area_id"] = $item;
