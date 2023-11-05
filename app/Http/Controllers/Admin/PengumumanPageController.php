@@ -26,8 +26,9 @@ class PengumumanPageController extends Controller
                 ->editColumn('pengumuman', function($row) {
                     if ($row -> jenis_pengumuman == 5) {
                         return $row -> judul;
+                    } else {
+                        return $row -> pengumuman;
                     }
-                    return $row -> pengumuman;
                 })
                 ->editColumn('created_at', function($data){
                     $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s',
