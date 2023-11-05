@@ -128,7 +128,7 @@ class TambahPengumumanDBController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
 
-        //   $result = curl_exec($ch);
+          $result = curl_exec($ch);
         // if ($result === FALSE) {
         //     // die('Curl failed: ' . curl_error($ch));
         //     return redirect() -> route('pengumuman') -> with('errorMessage', "Gagal memberikan notif kepada pelanggan");
