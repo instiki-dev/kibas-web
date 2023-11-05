@@ -26,23 +26,6 @@ class TambahPengumumanDBController extends Controller
             "jenis" => "required",
             "berita" => "required"
         ];
-        $url = '';
-
-        if ($request -> jenis == 5) {
-            $validation = [
-                "jenis" => "required",
-                "judul" => "required",
-                "penulis" => "required",
-                "berita" => "required",
-            ];
-
-            if (!$request -> file('foto')) {
-                return redirect() -> route('pengumuman') -> with('errorMessage', "Gagal menambah pengumuman karena foto tidak tersedia");
-            }
-            $filename = $request -> file('foto') -> store('public/berita');
-            $file = str_replace("public", "", 'storage'.$filename);
-            $url = url($file);
-        }
 
         if((int)$request -> jenis < 3) {
             $validation["pelanggan_id"] = "required|array|min:1";
@@ -67,18 +50,9 @@ class TambahPengumumanDBController extends Controller
             }
             $deviceToken = Rekening::whereIn('id', $intArray) -> pluck('device_token');
         } else if($validate["jenis"] == 5) {
-            $data = [
-                "pengumuman" => $validate["berita"],
-                "jenis_id" => $validate["jenis"],
-                "judul" => $validate["judul"],
-                "penulis" => $validate["penulis"],
-                "link_foto" => $url
-            ];
-
              $master = PengumumanMaster::create($data);
              $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
         } else {
-            dd('You in here');
             $intArr = array_map('intVal', $validate["area_id"]);
             foreach($intArr as $item) {
                 $data["area_id"] = $item;
@@ -125,19 +99,19 @@ class TambahPengumumanDBController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        // // Disabling SSL Certificate
+        // Disabling SSL Certificate
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
 
           $result = curl_exec($ch);
         if ($result === FALSE) {
             // die('Curl failed: ' . curl_error($ch));
-            return redirect() -> route('pengumuman') -> with('errorMessage', "Gagal memberikan notif kepada pelanggan");
+            return redirect() -> route('dashboard') -> with('errorMessage', "Gagal memberikan notif kepada pelanggan");
         }
         // Close connection
         curl_close($ch);
 
-        dd($result);
+        // dd($result);
 
         return redirect() -> route('pengumuman') -> with('successMessage', "Berita telah ditambahkan");
     }
