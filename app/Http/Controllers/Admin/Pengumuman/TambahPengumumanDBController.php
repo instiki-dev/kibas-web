@@ -86,8 +86,6 @@ class TambahPengumumanDBController extends Controller
             $deviceToken = Rekening::whereIn('area_id', $intArr) -> whereNotNull('device_token') -> pluck('device_token');
         }
 
-        dd($deviceToken);
-
         switch((int)$validate["jenis"]) {
             case 1 :
                 $title = "Peringatan Pencabutan Rekening";
@@ -117,6 +115,8 @@ class TambahPengumumanDBController extends Controller
             'Authorization:key=' . $serverKey,
             'Content-Type: application/json',
         ];
+
+        dd($headers);
 
         $ch = curl_init();
 
