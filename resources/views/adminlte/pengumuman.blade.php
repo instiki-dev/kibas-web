@@ -62,14 +62,14 @@
                       <div class="form-group row w-50 d-none" id="divJudul">
                         <label for="judul" class="col-sm-2 col-form-label">Judul</label>
                         <div class="col-sm-10">
-                          <input name="judul" type="text" class="form-control" id="judul" required>
+                          <input name="judul" type="text" class="form-control" id="judul">
                         </div>
                       </div>
 
                     <div class="form-group w-50 row d-none" id="divFoto">
                         <label for="judul" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
-                          <input name="foto" type="file" class="form-control" id="foto" required>
+                          <input name="foto" type="file" class="form-control" id="foto">
                         </div>
                       </div>
 
