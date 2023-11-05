@@ -66,7 +66,7 @@ class TambahPengumumanDBController extends Controller
         } else if($validate["jenis"] == 5) {
             $data["judul"] = $validate["judul"];
             $data["penulis"] = $validate["penulis"];
-            $data["link_foto"] = $validate["url"];
+            $data["link_foto"] = $url;
              $master = PengumumanMaster::create($data);
              $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
         } else {
