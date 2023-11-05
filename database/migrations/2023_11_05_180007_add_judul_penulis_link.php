@@ -16,7 +16,7 @@ class AddJudulPenulisLink extends Migration
         Schema::table('pengumuman_masters', function (Blueprint $table) {
             $table->string('judul')->nullable();
             $table->string('penulis')->nullable();
-            $table->link_foto('foto')->nullable();
+            $table->string('link_foto')->nullable();
         });
     }
 
