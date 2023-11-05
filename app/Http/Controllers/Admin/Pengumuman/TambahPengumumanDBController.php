@@ -67,6 +67,7 @@ class TambahPengumumanDBController extends Controller
             $data["judul"] = $validate["judul"];
             $data["penulis"] = $validate["penulis"];
             $data["link_foto"] = $url;
+            dd($data);
              $master = PengumumanMaster::create($data);
              $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
         } else {
