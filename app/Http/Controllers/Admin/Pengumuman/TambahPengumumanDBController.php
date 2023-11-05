@@ -116,8 +116,6 @@ class TambahPengumumanDBController extends Controller
             'Content-Type: application/json',
         ];
 
-        dd($headers);
-
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
