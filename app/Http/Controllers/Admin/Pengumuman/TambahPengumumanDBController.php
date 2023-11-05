@@ -26,6 +26,20 @@ class TambahPengumumanDBController extends Controller
             "jenis" => "required",
             "berita" => "required"
         ];
+
+        if ($request -> jenis == 5) {
+            $validation = [
+                "jenis" => "required",
+                "judul" => "required",
+                "penulis" => "required",
+                "berita" => "required",
+            ];
+
+            if (!$request -> file('foto')) {
+                return redirect() -> route('pengumuman') -> with('errorMessage', "Gagal menambah pengumuman karena foto tidak tersedia");
+            }
+        }
+
         if((int)$request -> jenis < 3) {
             $validation["pelanggan_id"] = "required|array|min:1";
         } else if((int)$request -> jenis != 5) {
@@ -105,7 +119,7 @@ class TambahPengumumanDBController extends Controller
           $result = curl_exec($ch);
         if ($result === FALSE) {
             // die('Curl failed: ' . curl_error($ch));
-            return redirect() -> route('dashboard') -> with('errorMessage', "Gagal memberikan notif kepada pelanggan");
+            return redirect() -> route('pengumuman') -> with('errorMessage', "Gagal memberikan notif kepada pelanggan");
         }
         // Close connection
         curl_close($ch);

@@ -29,8 +29,8 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-body" style="height: 80vh;">
-                    <form class="px-4 pt-3" action="{{ route('post-tambah-berita') }}" method="post">
+                <div class="card-body table-responsive pb-4 px-3" style="height: 80vh;">
+                    <form class="px-4 pt-3" action="{{ route('post-tambah-berita') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group col-md-8">
                           <label for="inputJenis">Jenis Pengumuman</label>
@@ -59,17 +59,24 @@
                             </div>
                         </div>
 
-                      <div class="form-group row" id="divJudul">
+                      <div class="form-group row w-50 d-none" id="divJudul">
                         <label for="judul" class="col-sm-2 col-form-label">Judul</label>
                         <div class="col-sm-10">
-                          <input name="judul" type="text" class="form-control-plaintext" id="judul" required>
+                          <input name="judul" type="text" class="form-control" id="judul" required>
                         </div>
                       </div>
 
-                    <div class="form-group row" id="divFoto">
+                    <div class="form-group w-50 row d-none" id="divFoto">
                         <label for="judul" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
-                          <input name="foto" type="file" class="form-control-plaintext" id="foto" required>
+                          <input name="foto" type="file" class="form-control" id="foto" required>
+                        </div>
+                      </div>
+
+                    <div class="form-group row w-50 d-none" id="divPenulis">
+                        <label for="penulis" class="col-sm-2 col-form-label">Penulis</label>
+                        <div class="col-sm-10">
+                          <input name="penulis" type="text" class="form-control" id="penulis" required>
                         </div>
                       </div>
 
@@ -137,6 +144,7 @@
       const inputArea = document.getElementById("area")
       const judul = document.getElementById("divJudul")
       const foto = document.getElementById("divFoto")
+      const penulis = document.getElementById("divPenulis")
 
       $("#summernote").on("summernote.change", function (e) {   // callback as jquery custom event
            input.value =  $('#summernote').summernote('code');
@@ -150,16 +158,19 @@
               inputArea.classList.add("d-none")
               judul.classList.add("d-none")
               foto.classList.add("d-none")
+              penulis.classList.add("d-none")
           } else if (jenis.value == 5) {
               inputPelanggan.classList.add("d-none")
               inputArea.classList.add("d-none")
               judul.classList.remove("d-none")
               foto.classList.remove("d-none")
+              penulis.classList.remove("d-none")
         } else {
               inputPelanggan.classList.add("d-none")
               inputArea.classList.remove("d-none")
               judul.classList.add("d-none")
               foto.classList.add("d-none")
+              penulis.classList.add("d-none")
           }
       })
     </script>
