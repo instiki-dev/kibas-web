@@ -10,7 +10,7 @@ class PengumumanMaster extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ["pengumuman", "area_id", "jenis_id"];
+    protected $fillable = ["pengumuman", "area_id", "jenis_id", "judul", "penulis"];
 
     public function detail() {
         return $this -> hasMany(PengumumanDetail::class, "master_id");
