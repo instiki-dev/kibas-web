@@ -18,7 +18,7 @@ class RekeningSeeder extends Seeder
      */
     public function run()
     {
-       $xls = (new FastExcel()) -> import('/home/freak_mei/Downloads/uas/pelanggan.xlsx');
+       $xls = (new FastExcel()) -> import('/home/freak_mei/Projects/new-python/kibas/pelanggan.xlsx');
         foreach($xls as $index=>$item) {
             $namaPelanggan = $item['pelanggan'];
             $no_rekening = $item['nosamb'];
