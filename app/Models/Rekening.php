@@ -51,6 +51,7 @@ class Rekening extends Model
             $dt["penulis"] = null;
             $dt["link_foto"] = null;
             if ($item -> jenis_id == 5) {
+                $dt["test"] = "Yes";
                 $dt["judul"] = $item -> judul;
                 $dt["penulis"] = $item -> penulis;
                 $dt["link_foto"] = $item -> link_foto;

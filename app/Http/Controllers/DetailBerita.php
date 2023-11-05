@@ -15,6 +15,7 @@ class DetailBerita extends Controller
      */
     public function __invoke(Request $request, PengumumanMaster $berita)
     {
-        return view('adminlte.berita');
+        return view('adminlte.berita', ['berita' => $berita]);
+
     }
 }
