@@ -24,7 +24,7 @@ class RekeningSeeder extends Seeder
             $no_rekening = $item['nosamb'];
             $rekening = Rekening::where('no_rekening', $no_rekening) -> first();
 
-            if ($rekening) {
+            if (!$rekening) {
                 $golongan = Golongan::where('golongan', $item['gol']) -> first();
                 $rayon = Rayon::where('kode_rayon', $item['koderayon']) -> first();
 
