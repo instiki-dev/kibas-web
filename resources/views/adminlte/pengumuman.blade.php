@@ -58,6 +58,21 @@
                                 </select>
                             </div>
                         </div>
+
+                      <div class="form-group row" id="divJudul">
+                        <label for="judul" class="col-sm-2 col-form-label">Judul</label>
+                        <div class="col-sm-10">
+                          <input name="judul" type="text" class="form-control-plaintext" id="judul" required>
+                        </div>
+                      </div>
+
+                    <div class="form-group row" id="divFoto">
+                        <label for="judul" class="col-sm-2 col-form-label">Foto</label>
+                        <div class="col-sm-10">
+                          <input name="foto" type="file" class="form-control-plaintext" id="foto" required>
+                        </div>
+                      </div>
+
                         <div class="form-group col-md-12">
                           <label for="inputBerita">Tulis Berita</label>
                           <input id="pengumuman" type="hidden" name="berita">
@@ -120,6 +135,8 @@
       const jenis = document.querySelector("#inputJenis")
       const inputPelanggan = document.getElementById("pelanggan")
       const inputArea = document.getElementById("area")
+      const judul = document.getElementById("divJudul")
+      const foto = document.getElementById("divFoto")
 
       $("#summernote").on("summernote.change", function (e) {   // callback as jquery custom event
            input.value =  $('#summernote').summernote('code');
@@ -131,12 +148,18 @@
           if (jenis.value < 3) {
               inputPelanggan.classList.remove("d-none")
               inputArea.classList.add("d-none")
+              judul.classList.add("d-none")
+              foto.classList.add("d-none")
           } else if (jenis.value == 5) {
               inputPelanggan.classList.add("d-none")
               inputArea.classList.add("d-none")
+              judul.classList.remove("d-none")
+              foto.classList.remove("d-none")
         } else {
               inputPelanggan.classList.add("d-none")
               inputArea.classList.remove("d-none")
+              judul.classList.add("d-none")
+              foto.classList.add("d-none")
           }
       })
     </script>
