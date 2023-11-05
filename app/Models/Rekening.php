@@ -47,6 +47,14 @@ class Rekening extends Model
             $dt["pengumuman"] = $item -> pengumuman;
             $dt['jenis_id'] =  $item -> jenis_id;
             $dt["created_at"] = $item -> created_at;
+            $dt["judul"] = null;
+            $dt["penulis"] = null;
+            $dt["link_foto"] = null;
+            if ($item -> jenis_id == 5) {
+                $dt["judul"] = $item -> judul;
+                $dt["penulis"] = $item -> penulis;
+                $dt["link_foto"] = $item -> link_foto;
+            }
             array_push($data, $dt);
         }
 
@@ -54,6 +62,9 @@ class Rekening extends Model
             $dt["pengumuman"] = $item -> master -> pengumuman;
             $dt['jenis_id'] = $item -> master -> jenis_id;
             $dt["created_at"] = $item -> master -> created_at;
+            $dt["judul"] = null;
+            $dt["penulis"] = null;
+            $dt["link_foto"] = null;
             array_push($data, $dt);
         }
 
