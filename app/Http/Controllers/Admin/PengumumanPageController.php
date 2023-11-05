@@ -41,6 +41,7 @@ class PengumumanPageController extends Controller
                         return $actionBtn;
                     }
                 })
+                ->rawColumns(['pengumuman', 'aksi'])
                 ->make(true);
         }
         return view('adminlte.pengumumanpage');
