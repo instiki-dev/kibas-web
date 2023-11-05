@@ -27,7 +27,7 @@ class TambahPengumumanDBController extends Controller
             "berita" => "required"
         ];
 
-        $url = '';
+        $urlImage = '';
 
         if ($request -> jenis == 5) {
             $validation["judul"] = "required";
@@ -38,7 +38,7 @@ class TambahPengumumanDBController extends Controller
             }
             $filename = $request -> file('foto') -> store('public/pengaduan');
             $file = str_replace("public", "", 'storage'.$filename);
-            $url = url($file);
+            $urlImage = url($file);
         }
 
         if((int)$request -> jenis < 3) {
@@ -66,7 +66,7 @@ class TambahPengumumanDBController extends Controller
         } else if($validate["jenis"] == 5) {
             $data["judul"] = $validate["judul"];
             $data["penulis"] = $validate["penulis"];
-            $data["link_foto"] = $url;
+            $data["link_foto"] = $urlImage;
              $master = PengumumanMaster::create($data);
              $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
         } else {
@@ -106,8 +106,6 @@ class TambahPengumumanDBController extends Controller
 
 
         $encodedData = json_encode($message);
-
-        dd($encodedData);
 
          $headers = [
             'Authorization:key=' . $serverKey,
