@@ -40,8 +40,8 @@ class Rekening extends Model
     }
 
     public function pengumuman() {
-        $master = PengumumanMaster::where('area_id', $this -> area_id) -> orWhere('jenis_id', 5) -> select('pengumuman', 'jenis_id', 'created_at') -> get() ;
-        $detail = PengumumanDetail::where('rekening_id', $this -> id) -> select('id', 'master_id') -> with('master:id,pengumuman,jenis_id,created_at') -> get();
+        $master = PengumumanMaster::where('area_id', $this -> area_id) -> orWhere('jenis_id', 5) -> select('pengumuman', 'jenis_id', 'created_at', 'judul', 'link_foto', 'penulis') -> get() ;
+        $detail = PengumumanDetail::where('rekening_id', $this -> id) -> select('id', 'master_id') -> with('master:id,pengumuman,jenis_id,created_at,judul,link_foto,penulis') -> get();
         $data = [];
         foreach($master as $item) {
             $dt["pengumuman"] = $item -> pengumuman;
@@ -51,7 +51,6 @@ class Rekening extends Model
             $dt["penulis"] = null;
             $dt["link_foto"] = null;
             if ($item -> jenis_id == 5) {
-                $dt["test"] = $item;
                 $dt["judul"] = $item -> judul;
                 $dt["penulis"] = $item -> penulis;
                 $dt["link_foto"] = $item -> link_foto;
