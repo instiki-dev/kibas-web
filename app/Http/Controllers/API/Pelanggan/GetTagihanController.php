@@ -29,9 +29,9 @@ class GetTagihanController extends Controller
     public function __invoke(Request $request, Rekening $rekening)
     {
         try {
-            $dt = $this -> getTagihan('0'.$rekening -> no_rekening);
+            $dt = $this -> getTagihan($rekening -> no_rekening);
             $data = json_decode($dt);
-            if ($data -> data) {
+            if ($data -> mssg == 'oke') {
                 foreach($data -> data as $item) {
                     $waktu = explode(" ", $item -> bulan);
                     $bulan = $waktu[0];
@@ -65,6 +65,7 @@ class GetTagihanController extends Controller
                     }
                 }
             }
+
             if ($request -> query('dashboard')) {
                 $tagihan = Tagihan::where([
                     ['rekening_id', $rekening -> id],
