@@ -27,6 +27,20 @@ class TambahPengumumanDBController extends Controller
             "berita" => "required"
         ];
 
+        $url = '';
+
+        if ($request -> jenis == 5) {
+            $validation["judul"] = "required";
+            $validation["penulis"] = "required";
+
+            if (!$request -> file('foto')) {
+                return redirect() -> route('dashboard') -> with('errorMessage', "Gagal memberikan notif kepada pelanggan");
+            }
+            $filename = $request -> file('foto') -> store('public/pengaduan');
+            $file = str_replace("public", "", 'storage'.$filename);
+            $url = url($file);
+        }
+
         if((int)$request -> jenis < 3) {
             $validation["pelanggan_id"] = "required|array|min:1";
         } else if((int)$request -> jenis != 5) {
@@ -50,6 +64,9 @@ class TambahPengumumanDBController extends Controller
             }
             $deviceToken = Rekening::whereIn('id', $intArray) -> pluck('device_token');
         } else if($validate["jenis"] == 5) {
+            $data["judul"] = $validate["judul"];
+            $data["penulis"] = $validate["penulis"];
+            $data["link_foto"] = $validate["url"];
              $master = PengumumanMaster::create($data);
              $deviceToken = Rekening::whereNotNull('device_token') -> pluck('device_token');
         } else {
