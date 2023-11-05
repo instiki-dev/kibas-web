@@ -24,7 +24,7 @@ class PengumumanPageController extends Controller
                 ->addIndexColumn()
                 ->escapeColumns([])
                 ->editColumn('pengumuman', function($row) {
-                    if ($row -> jenis_pengumuman == 5) {
+                    if ($row -> jenis_id == 5) {
                         return $row -> judul;
                     } else {
                         return $row -> pengumuman;
@@ -35,7 +35,7 @@ class PengumumanPageController extends Controller
                         $data->created_at)->format('d-m-Y');
                     return $formatedDate; })
                 ->addColumn('aksi', function($row){
-                    if ($row -> jenis_pengumuman == 5) {
+                    if ($row -> jenis_id == 5) {
                         $detail = route('show-detail-pengaduan', ['pengaduan' => $row -> id]);
                         $actionBtn = '<a href="'.$detail.'" class="edit btn btn-info btn-sm">Detail</a>';
                         return $actionBtn;
