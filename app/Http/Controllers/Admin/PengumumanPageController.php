@@ -36,7 +36,7 @@ class PengumumanPageController extends Controller
                     return $formatedDate; })
                 ->addColumn('aksi', function($row){
                     if ($row -> jenis_id == 5) {
-                        $detail = route('show-detail-pengaduan', ['pengaduan' => $row -> id]);
+                        $detail = route('berita', ['berita' => $row -> id]);
                         $actionBtn = '<a href="'.$detail.'" class="edit btn btn-info btn-sm">Detail</a>';
                         return $actionBtn;
                     }

@@ -94,6 +94,7 @@ use App\Http\Controllers\Admin\User\SearchUserController;
 use App\Http\Controllers\Admin\User\ShowUpdateUserController;
 use App\Http\Controllers\Admin\User\UpdateUserController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\DetailBerita;
 use App\Http\Controllers\ShowDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -239,6 +240,7 @@ Route::group(["prefix" => "admin"], function() {
 
     Route::group(["prefix" => "pengumuman", "middleware" => ["isadmin"]], function() {
         Route::get("/", PengumumanPageController::class)-> name('pengumuman');
+        Route::get("/berita/{berita:id}", DetailBerita::class)-> name('berita');
         Route::get("/tambah-pengumuman", PengumumanController::class)-> name('show-tambah-pengumuman');
     });
 
