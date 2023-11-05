@@ -23,10 +23,23 @@ class PengumumanPageController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->escapeColumns([])
+                ->editColumn('pengumuman', function($row) {
+                    if ($row -> jenis_pengumuman == 5) {
+                        return $row -> pengumuman;
+                    }
+                    return $row -> judul;
+                })
                 ->editColumn('created_at', function($data){
                     $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s',
                         $data->created_at)->format('d-m-Y');
                     return $formatedDate; })
+                ->addColumn('aksi', function($row){
+                    if ($row -> jenis_pengumuman == 5) {
+                        $detail = route('show-detail-pengaduan', ['pengaduan' => $row -> id]);
+                        $actionBtn = '<a href="'.$detail.'" class="edit btn btn-info btn-sm">Detail</a>';
+                        return $actionBtn;
+                    }
+                })
                 ->make(true);
         }
         return view('adminlte.pengumumanpage');

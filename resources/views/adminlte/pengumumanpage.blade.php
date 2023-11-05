@@ -53,6 +53,7 @@
                         <th class="text-center">Jenis Pengumuman</th>
                         <th class="text-center">Detail</th>
                         <th class="text-center">Tanggal Keluar</th>
+                        <th class="text-center">Aksi</th>
                     </thead>
                     <tbody class="text-center">
                     </tbody>
@@ -81,7 +82,8 @@
                       {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                       {data: 'jenis.jenis', name: 'jenis.jenis'},
                       {data: 'pengumuman', name: 'pengumuman'},
-                      {data: 'created_at', name: 'created_at'}
+                      {data: 'created_at', name: 'created_at'},
+                      {data: 'aksi', name: 'aksi'}
                   ]
             });
         });
