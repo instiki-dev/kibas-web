@@ -50,6 +50,7 @@
                             <th class="text-center">Waktu Lapor</th>
                             <th class="text-center">Petugas</th>
                             <th class="text-center">Status</th>
+                            <th class="text-center">Nilai</th>
                             <th class="text-center">Aksi</th>
                         </thead>
                         <tbody class="text-center" id="tableContent">
