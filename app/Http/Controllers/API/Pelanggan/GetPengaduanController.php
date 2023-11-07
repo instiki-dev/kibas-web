@@ -24,7 +24,7 @@ class GetPengaduanController extends Controller
                 $pengaduan = Pengaduan::where([
                     ['rekening_id', $rekening -> id],
                     ['status', '<', 3]
-                ]) -> select('id', 'keluhan', 'status') -> orderBy('created_at', 'DESC') -> get();
+                ]) -> select('id', 'keluhan', 'status', 'created_at') -> orderBy('created_at', 'DESC') -> get();
                 return response($pengaduan, 200);
             }
 

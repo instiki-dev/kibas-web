@@ -31,7 +31,6 @@ class PilihPetugasController extends Controller
         Penugasan::where('petugas_id', $emp -> id)
             -> update(['jumlah' => $emp -> penugasan -> jumlah + 1]);
         $rekeningToken = Pengaduan::where('id', $pengaduan -> id) -> first() -> rekening -> device_token;
-        $rekeningToken = $rekeningToken ? $rekeningToken : '';
 
         if($emp -> user -> device_token) {
             $url = 'https://fcm.googleapis.com/fcm/send';
@@ -74,8 +73,46 @@ class PilihPetugasController extends Controller
             curl_close($ch);
         }
 
+        if ($rekeningToken) {
+            $url = 'https://fcm.googleapis.com/fcm/send';
+            $serverKey = env('SERVER_KEY');
+            $token = [
+                $emp -> user -> device_token,
+                $rekeningToken
+            ];
+            $message = ["registration_ids" => $token];
+            $message["notification"] = [
+                "title" => 'Pengaduan Baru',
+                "body" => 'Segera proses pengaduan dari pelanggan'
+            ];
 
+            $encodedData = json_encode($message);
 
+             $headers = [
+                'Authorization:key=' . $serverKey,
+                'Content-Type: application/json',
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+            // Disabling SSL Certificate
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
+
+              $result = curl_exec($ch);
+            if ($result === FALSE) {
+                // die('Curl failed: ' . curl_error($ch));
+                curl_close($ch);
+                return redirect() -> route('pengaduan') -> with('errorMessage', "Gagal memberikan notif kepada pelanggan");
+            }
+            curl_close($ch);
+        }
 
         $riwayat = [
             "pengaduan_id" => $pengaduan -> id,
