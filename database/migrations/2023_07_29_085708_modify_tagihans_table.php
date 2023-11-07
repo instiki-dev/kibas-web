@@ -16,6 +16,7 @@ class ModifyTagihansTable extends Migration
         Schema::table('tagihans', function (Blueprint $table) {
             $table -> integer("nominal");
             $table -> integer("kilometer");
+            $table -> integer("denda") -> default(0);
         });
     }
 
