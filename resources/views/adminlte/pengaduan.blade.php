@@ -82,6 +82,7 @@
                       {data: 'created_at', name: 'created_at'},
                       {data: 'petugas_id', name: 'petugas_id'},
                       {data: 'status', name: 'status'},
+                      {data: 'nilai', name: 'nilai'},
                       {data: 'aksi', name: 'aksi'},
                   ]
               });        });

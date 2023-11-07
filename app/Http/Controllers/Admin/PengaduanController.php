@@ -23,13 +23,26 @@ class PengaduanController extends Controller
         // return view('adminlte.pengaduan', ["data" => $pengaduan]);
 
         if($request -> ajax()) {
-            $data = Pengaduan::select('id', 'rekening_id', 'petugas_id', 'created_at', 'status') -> orderBy('status', 'ASC') -> get();
+            $data = Pengaduan::select('id', 'rekening_id', 'petugas_id', 'created_at', 'status', 'nilai') -> orderBy('status', 'ASC') -> get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('aksi', function($row){
                     $detail = route('show-detail-pengaduan', ['pengaduan' => $row -> id]);
                     $actionBtn = '<a href="'.$detail.'" class="edit btn btn-info btn-sm">Detail</a>';
                     return $actionBtn;
+                })
+                ->addColumn('nilai', function($row) {
+                    $star = '<i class="fa fa-star-o"></i>';
+                    $nilai = '<div class="d-inline">';
+                    if ($row -> nilai) {
+                        for ($i = 0; $i < $row -> nilai; $i++) {
+                            $nilai .= $star;
+                        }
+                        $nilai .= '</div>';
+                    } else {
+                        $nilai = '-';
+                    }
+                    return $nilai;
                 })
                 ->editColumn('rekening_id', function($row){
                     return $row -> rekening -> no_rekening;
@@ -57,7 +70,7 @@ class PengaduanController extends Controller
                             break;
                     }
                 })
-                ->rawColumns(['aksi', 'status'])
+                ->rawColumns(['aksi', 'status', 'nilai'])
                 ->make(true);
         }
         return view('adminlte.pengaduan');
