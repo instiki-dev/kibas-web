@@ -25,7 +25,9 @@ class GetPengumumanController extends Controller
             // $pengumumanMaster - PengumumanMaster::where()
 
             if ($request -> query('berita')) {
-                $berita = PengumumanMaster::where('jenis_id', 5) -> get();
+                $berita = PengumumanMaster::where('jenis_id', 5)
+                    -> orderBy('created_at', 'DESC')
+                    -> get();
                 return response($berita, 200);
             }
 

@@ -17,7 +17,9 @@ class GetBacaMeter extends Controller
      */
     public function __invoke(Request $request, Rekening $rekening)
     {
-        $meter = BacaMeter::where('no_rekening', $rekening -> no_rekening) -> get();
+        $meter = BacaMeter::where('no_rekening', $rekening -> no_rekening)
+            -> orderBy('created_at', 'DESC')
+            -> get();
         return response($meter, 200);
     }
 }
