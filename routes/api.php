@@ -7,6 +7,7 @@ use App\Http\Controllers\API\Pegawai\ProsesPengaduanController;
 use App\Http\Controllers\API\Pelanggan\Auth\LoginController as PelangganLogin;
 use App\Http\Controllers\API\Pelanggan\Auth\LogoutController;
 use App\Http\Controllers\API\Pelanggan\GetAllSurveyController;
+use App\Http\Controllers\API\Pelanggan\GetBacaMeter;
 use App\Http\Controllers\API\Pelanggan\GetPengaduanController;
 use App\Http\Controllers\API\Pelanggan\GetPengumumanController;
 use App\Http\Controllers\API\Pelanggan\GetRekeningController;
@@ -46,6 +47,7 @@ Route::group(["prefix" => "rekening", "middleware" => ["auth:sanctum", "same", "
     Route::get("/tagihan/{rekening:no_rekening}", GetTagihanController::class);
     Route::put("/pengaduan/rate/{rekening:no_rekening}/{pengaduan:id}", GiveRateController::class);
     Route::post("/baca-meter/{rekening:no_rekening}", PostMeterController::class);
+    Route::get("/baca-meter/{rekening:no_rekening}", GetBacaMeter::class);
 });
 
 Route::group(["prefix" => "pengumuman-survey", "middleware" => ["auth:sanctum", "can:customer-access"]], function() {
