@@ -21,7 +21,7 @@ class GetPengaduanController extends Controller
         try {
             $pegawai = auth('sanctum') -> user() -> pegawai;
             $pengaduanList = Pengaduan::where('petugas_id', $pegawai -> id)
-                    -> with('rekening:rekening_id,pelanggan_id')
+                    -> with('rekening:id,pelanggan_id')
                     -> with('pelanggan')
                     -> orderBy('status', 'ASC') -> get();
             $response = [];
