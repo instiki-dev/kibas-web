@@ -89,7 +89,7 @@ class TambahPengumumanDBController extends Controller
                 $title = "Periode Pembayaran";
                 break;
             case 5 :
-                $title = 'Bangli Terkini'.$data["judul"];
+                $title = 'Bangli Terkini';
                 break;
             default :
                 $title = "Pengumuman KIBAS";
@@ -101,7 +101,7 @@ class TambahPengumumanDBController extends Controller
         // $message = ["registration_ids" => $token];
         $message["notification"] = [
             "title" => $title,
-            "body" => $data["pengumuman"]
+            "body" => $data["judul"]
         ];
 
 
