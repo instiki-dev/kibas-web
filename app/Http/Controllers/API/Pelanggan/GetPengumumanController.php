@@ -23,6 +23,12 @@ class GetPengumumanController extends Controller
 
             // $pengumumanMaster = PengumumanMaster::orderBy('created_at', 'DESC') -> where('area_id', $rekening -> area_id) -> paginate();
             // $pengumumanMaster - PengumumanMaster::where()
+
+            if ($request -> query('berita')) {
+                $berita = PengumumanMaster::where('jenis_id', 5) -> get();
+                return response($berita, 200);
+            }
+
             return response($rekening -> pengumuman(), 200);
         } catch(Exception $e) {
             return response([
