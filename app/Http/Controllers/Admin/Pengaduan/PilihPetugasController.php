@@ -36,8 +36,7 @@ class PilihPetugasController extends Controller
             $url = 'https://fcm.googleapis.com/fcm/send';
             $serverKey = env('SERVER_KEY');
             $token = [
-                $emp -> user -> device_token,
-                $rekeningToken
+                $emp -> user -> device_token
             ];
             $message = ["registration_ids" => $token];
             $message["notification"] = [
@@ -77,13 +76,12 @@ class PilihPetugasController extends Controller
             $url = 'https://fcm.googleapis.com/fcm/send';
             $serverKey = env('SERVER_KEY');
             $token = [
-                $emp -> user -> device_token,
                 $rekeningToken
             ];
             $message = ["registration_ids" => $token];
             $message["notification"] = [
-                "title" => 'Pengaduan Baru',
-                "body" => 'Segera proses pengaduan dari pelanggan'
+                "title" => 'Pengaduan Telah Dikonfirmasi',
+                "body" => 'Pengaduan anda akan segera ditangani petugas, harap bersabar untuk menunggu'
             ];
 
             $encodedData = json_encode($message);

@@ -89,7 +89,7 @@ class TambahPengumumanDBController extends Controller
                 $title = "Periode Pembayaran";
                 break;
             case 5 :
-                $title = $data["judul"];
+                $title = 'Bangli Terkini'.$data["judul"];
                 break;
             default :
                 $title = "Pengumuman KIBAS";
