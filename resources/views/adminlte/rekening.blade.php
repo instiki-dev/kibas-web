@@ -1,4 +1,18 @@
 @extends('adminlte.main')
+<<<<<<< Updated upstream
+=======
+@section('style')
+    <style>
+        #myTable_processing {
+            position: absolute;
+            box-shadow: none;
+            top: 30vh;
+            left: 50%;
+            background-color: #FFFFFF;
+        }
+    </style>
+@endsection
+>>>>>>> Stashed changes
 
 @section('content')
 <div class="content-header">
