@@ -32,38 +32,49 @@ class GetTagihanController extends Controller
             $dt = $this -> getTagihan($rekening -> no_rekening);
             $data = json_decode($dt);
             if ($data -> mssg == 'oke') {
+                Tagihan::where('rekening_id', $rekening -> id)
+                -> update(["status" => 1]);
                 foreach($data -> data as $item) {
-                    $waktu = explode(" ", $item -> bulan);
-                    $bulan = $waktu[0];
-                    if ($bulan == 'Okt') {
-                        $bulan = 10;
-                    } else {
-                        $bulan = 11;
-                    }
-                    $tahun = (int)$waktu[1];
+                    $periode = $data -> periode;
+                    $bulan = substr($periode, -2, strlen($periode));
+                    $tahun = substr($periode, 0, -2);
                     $tagihan = Tagihan::where([
                         ["rekening_id", $rekening -> id],
                         ["bulan", $bulan],
                         ["tahun", $tahun],
+                        ["status", 0]
                     ])
                     -> first();
 
                     if (!$tagihan) {
-                        $create = [
-                            "no_tagihan" => $item -> tagihan,
-                            "pelanggan_id" => $rekening -> pelanggan -> id,
-                            "rekening_id" => $rekening -> id,
-                            "bulan" => $bulan,
-                            "tahun" => $tahun,
-                            "tgl_jatuh_tempo" => now(),
-                            "status" => 1,
-                            "nominal" => $item -> tagihan,
-                            "kilometer" => $item -> pakai,
-                            "denda" => $item -> denda
-                        ];
-                        Tagihan::create($create);
+                        $exist = Tagihan::where([
+                            ["rekening_id", $rekening -> id],
+                            ["bulan", $bulan],
+                            ["tahun", $tahun]
+                        ]);
+
+                        if ($exist -> first()) {
+                            $exist -> update(["status" => 0]);
+                        } else {
+                            $create = [
+                                "no_tagihan" => $item -> tagihan,
+                                "pelanggan_id" => $rekening -> pelanggan -> id,
+                                "rekening_id" => $rekening -> id,
+                                "bulan" => $bulan,
+                                "tahun" => $tahun,
+                                "tgl_jatuh_tempo" => now(),
+                                "status" => 0,
+                                "nominal" => $item -> tagihan,
+                                "kilometer" => $item -> pakai,
+                                "denda" => $item -> denda
+                            ];
+                            Tagihan::create($create);
+                        }
                     }
                 }
+            } else if($data -> mssg == "empty") {
+                Tagihan::where('rekening_id', $rekening -> id)
+                -> update(["status" => 1]);
             }
 
             if ($request -> query('dashboard')) {
