@@ -36,6 +36,7 @@ class GetTagihanController extends Controller
                 -> update(["status" => 1]);
                 foreach($data -> data as $item) {
                     $periode = $data -> periode;
+                    return response($periode);
                     $bulan = substr($periode, -2, strlen($periode));
                     $tahun = substr($periode, 0, -2);
                     $tagihan = Tagihan::where([
