@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule -> command(function() {
+        $schedule -> call(function() {
             $day = Carbon::now() -> toArray()["day"];
             $month = Carbon::now() -> toArray()["month"];
             $url = 'https://fcm.googleapis.com/fcm/send';
