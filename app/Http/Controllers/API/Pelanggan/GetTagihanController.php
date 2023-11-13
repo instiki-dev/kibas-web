@@ -34,6 +34,7 @@ class GetTagihanController extends Controller
             if ($data -> mssg == 'oke') {
                 Tagihan::where('rekening_id', $rekening -> id)
                 -> update(["status" => 1]);
+                return response($data -> data);
                 foreach($data -> data as $item) {
                     $periode = $data -> periode;
                     return response($periode);
