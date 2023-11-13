@@ -81,7 +81,8 @@ class GetTagihanController extends Controller
                 $tagihan = Tagihan::where([
                     ['rekening_id', $rekening -> id],
                     ['status', 0]
-                ]) -> paginate(3);
+                ]) -> orderBy('created_at', 'DESC')
+                -> paginate(3);
                 return response($tagihan, 200);
             }
             $tagihan = Tagihan::where('rekening_id', $rekening ->id) -> paginate();
