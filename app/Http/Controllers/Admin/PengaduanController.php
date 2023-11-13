@@ -23,7 +23,9 @@ class PengaduanController extends Controller
         // return view('adminlte.pengaduan', ["data" => $pengaduan]);
 
         if($request -> ajax()) {
-            $data = Pengaduan::select('id', 'rekening_id', 'petugas_id', 'created_at', 'status', 'nilai') -> orderBy('status', 'ASC') -> get();
+            $data = Pengaduan::select('id', 'rekening_id', 'petugas_id', 'created_at', 'status', 'nilai')
+            -> orderBy('status', 'ASC')
+            -> get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('aksi', function($row){

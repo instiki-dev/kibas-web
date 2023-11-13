@@ -5,7 +5,7 @@
         #myTable_processing {
             position: absolute;
             box-shadow: none;
-            top: 200%;
+            top: 30vh;
             left: 50%;
             background-color: #FFFFFF;
         }

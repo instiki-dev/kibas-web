@@ -5,7 +5,7 @@
         #myTable_processing {
             position: absolute;
             box-shadow: none;
-            top: 200%;
+            top: 30vh;
             left: 50%;
             background-color: #FFFFFF;
         }
@@ -41,7 +41,6 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-
                 <div class="card-body table-responsive py-0 px-3" style="height: 60vh;">
                     <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
                         <thead>
@@ -64,6 +63,7 @@
 @endsection
 
 @section('script')
+    <script src="/js/SearchPengaduan.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>

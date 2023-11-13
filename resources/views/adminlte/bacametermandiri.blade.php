@@ -5,7 +5,7 @@
         #myTable_processing {
             position: absolute;
             box-shadow: none;
-            top: 200%;
+            top: 30vh;
             left: 50%;
             background-color: #FFFFFF;
         }
@@ -38,7 +38,7 @@
 </div>
 <div class="content">
     <div class="container-fluid">
-        <div class="col-12">
+        <div class="col-12 d-relative">
             <div class="card">
                 <div class="card-body table-responsive py-0 px-3" style="height: 66vh;">
                     <table id="myTable" class="table table-head-fixed text-nowrap">
@@ -86,6 +86,7 @@
                       {data: 'status', name: 'status'},
                       {data: 'aksi', name: 'aksi'},
                   ]
-              });        });
+            });
+        });
     </script>
 @endsection
