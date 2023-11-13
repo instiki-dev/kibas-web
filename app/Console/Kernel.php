@@ -110,11 +110,7 @@ class Kernel extends ConsoleKernel
 
             }
 
-        }) -> everyTenMinutes();
-
-        // $schedule -> call(function() {
-        //     dd('Hi');
-        // }) -> everyMinute();
+        }) -> dailyAt('06:00');
     }
 
     /**
