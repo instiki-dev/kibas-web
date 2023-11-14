@@ -31,6 +31,16 @@ class GetPengumumanController extends Controller
                 return response($berita, 200);
             }
 
+            if ($request -> query('info')) {
+                $berita = PengumumanMaster::where([
+                    ['jenis_id', '!=', 5],
+                    ['jenis_id', '!=', 3],
+                    ])
+                    -> orderBy('created_at', 'DESC')
+                    -> get();
+                return response($berita, 200);
+            }
+
             return response($rekening -> pengumuman(), 200);
         } catch(Exception $e) {
             return response([
