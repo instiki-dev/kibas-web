@@ -40,6 +40,48 @@ class PengaduanSelesaiController extends Controller
                 "created_by" => $pengaduan -> pelanggan -> id,
             ];
             PengaduanRiwayat::create($riwayat);
+
+            $tkn = $pengaduan -> rekening -> device_token;
+
+            if ($tkn) {
+                $url = 'https://fcm.googleapis.com/fcm/send';
+                $serverKey = env('SERVER_KEY');
+                $token = [
+                    $tkn
+                ];
+                $message = ["registration_ids" => $token];
+                $message["notification"] = [
+                    "title" => 'Pengaduan Selesai',
+                    "body" => 'Pengaduan anda telah diselesaikan oleh petugas, mohon untuk memberikan penilaian pada penanganan pengaduan anda'
+                ];
+
+                $encodedData = json_encode($message);
+
+                 $headers = [
+                    'Authorization:key=' . $serverKey,
+                    'Content-Type: application/json',
+                ];
+
+                $ch = curl_init();
+
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+                // Disabling SSL Certificate
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
+
+                  $result = curl_exec($ch);
+                if ($result === FALSE) {
+                    // die('Curl failed: ' . curl_error($ch));
+                    curl_close($ch);
+                }
+                curl_close($ch);
+            }
+
             return response([
                 "status" => true,
                 "message" => "Berhasil mengubah status pengaduan menjadi 'selesai'"
