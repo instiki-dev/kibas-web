@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\Admin\Auth\LoginController;
+use App\Http\Controllers\API\Admin\GetAdminPengaduanController;
+use App\Http\Controllers\API\Admin\GetPegawaiController;
+use App\Http\Controllers\API\Admin\PilihPegawaiController;
 use App\Http\Controllers\API\Pegawai\Auth\LoginController as PegawaiLogin;
 use App\Http\Controllers\API\Pegawai\GetPengaduanController as PegawaiGetPengaduanController;
 use App\Http\Controllers\API\Pegawai\PengaduanSelesaiController;
@@ -35,6 +39,7 @@ use Illuminate\Support\Facades\Route;
 Route::post("/pelanggan/login", PelangganLogin::class);
 Route::post("/pelanggan/register", RegisterPelangganController::class);
 Route::post("/pegawai/login", PegawaiLogin::class);
+Route::post("/admin/login", LoginController::class);
 Route::get("/logout", LogoutController::class) -> middleware('auth:sanctum');
 
 
@@ -60,6 +65,12 @@ Route::group(["prefix" => "pegawai", "middleware" => ["auth:sanctum", "can:reade
     Route::get("/pengaduan", PegawaiGetPengaduanController::class);
     Route::put("/pengaduan/proses/{pengaduan:id}", ProsesPengaduanController::class);
     Route::put("/pengaduan/selesai/{pengaduan:id}", PengaduanSelesaiController::class);
+});
+
+Route::group(["prefix" => "admin", "middleware" => ["auth:sanctum", "can:isadmin"]], function() {
+    Route::get("/list-pegawai", GetPegawaiController::class);
+    Route::get("/get-pengaduan", GetAdminPengaduanController::class);
+    Route::post("/pilih-pegawai", PilihPegawaiController::class);
 });
 
 
