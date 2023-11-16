@@ -19,7 +19,7 @@ class GetAdminPengaduanController extends Controller
     public function __invoke(Request $request) {
         try {
             $pengaduan = Pengaduan::orderBy('status', 'ASC')
-                -> with(['pelanggan:id,nama_pelanggan', 'rekening', 'petugas:id,nama'])
+                -> with(['pelanggan:id,nama_pelanggan', 'rekening.area', 'petugas:id,nama'])
                 -> paginate(10);
 
             return response($pengaduan, 200);
