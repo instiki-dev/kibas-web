@@ -67,7 +67,7 @@ Route::group(["prefix" => "pegawai", "middleware" => ["auth:sanctum", "can:reade
     Route::put("/pengaduan/selesai/{pengaduan:id}", PengaduanSelesaiController::class);
 });
 
-Route::group(["prefix" => "admin", "middleware" => ["auth:sanctum", "can:isadmin"]], function() {
+Route::group(["prefix" => "admin", "middleware" => ["auth:sanctum", "can:employee-access"]], function() {
     Route::get("/list-pegawai", GetPegawaiController::class);
     Route::get("/get-pengaduan", GetAdminPengaduanController::class);
     Route::post("/pilih-pegawai", PilihPegawaiController::class);
