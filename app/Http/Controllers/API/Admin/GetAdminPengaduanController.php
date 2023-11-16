@@ -46,7 +46,7 @@ class GetAdminPengaduanController extends Controller
                     "tgl_konfirmasi_pdam" => $riwayat ? $riwayat -> created_at : "-",
                 ];
 
-                array_push($payload, $item);
+                array_push($response, $item);
 
             }
             return response($response, 200);
