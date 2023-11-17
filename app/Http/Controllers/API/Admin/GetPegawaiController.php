@@ -19,7 +19,7 @@ class GetPegawaiController extends Controller
     {
         try {
             $pegawai = Pegawai::where('jabatan', 'Pembaca Meter')
-                -> with('penugasan:petugas_id,jumlah')
+                -> with(['penugasan:petugas_id,jumlah', 'user:id,device_token'])
                 -> get();
 
             if ($request -> query('area')) {
@@ -29,12 +29,12 @@ class GetPegawaiController extends Controller
                     ['jabatan', 'Pembaca Meter'],
                     ['area_id', $area]
                 ])
-                -> with('penugasan:petugas_id,jumlah')
+                -> with(['penugasan:petugas_id,jumlah', 'user:id,device_token'])
                 -> get();
 
                 if (count($pegawai) == 0) {
                     $pegawai = Pegawai::where('jabatan', 'Pembaca Meter')
-                        -> with('penugasan:petugas_id,jumlah')
+                        -> with(['penugasan:petugas_id,jumlah', 'user:id,device_token'])
                         -> get();
                 }
             }
