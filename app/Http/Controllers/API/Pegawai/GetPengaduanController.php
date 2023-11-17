@@ -25,6 +25,7 @@ class GetPengaduanController extends Controller
                     -> with('pelanggan')
                     -> orderBy('status', 'ASC') -> get();
             $response = [];
+            return $pengaduanList;
             foreach ($pengaduanList as $pengaduan) {
                 $riwayat = PengaduanRiwayat::where([
                         ["pengaduan_id", $pengaduan ->id],
