@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pegawai;
 use App\Models\Pengaduan;
 use App\Models\Penugasan;
 use Error;
@@ -53,8 +54,9 @@ class PilihPegawaiController extends Controller
 
 
             $pengaduan -> update($data);
-            $jumlahPenugasan = $pengaduan -> penugasan -> jumlah;
-            Penugasan::where('id', $pengaduan -> penugasan -> id)
+            $pegawai = Pegawai::where('id', $request -> petugas_id) -> first();
+            $jumlahPenugasan = $pegawai -> penugasan -> jumlah;
+            Penugasan::where('id', $pegawai -> penugasan -> id)
                 -> update(["jumlah" => $jumlahPenugasan + 1]);
 
             $p = Pengaduan::where('id', $request -> pengaduan_id)
