@@ -19,6 +19,7 @@ class GetPengaduanController extends Controller
     public function __invoke(Request $request)
     {
         try {
+            return "Hello World";
             $pegawai = auth('sanctum') -> user() -> pegawai;
             $pengaduanList = Pengaduan::where('petugas_id', $pegawai -> id)
                     -> with('rekening:id,pelanggan_id')
