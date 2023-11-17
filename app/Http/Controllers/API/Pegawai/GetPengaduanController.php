@@ -43,7 +43,7 @@ class GetPengaduanController extends Controller
                     "keterangan_selesai" => $pengaduan -> keterangan_selesai,
                     "tgl_selesai" => $pengaduan -> tgl_selesai,
                     "nilai" => $pengaduan -> nilai,
-                    // "tgl_lapor" => $pengaduan -> created_at,
+                    "tgl_lapor" => $pengaduan -> created_at,
                     "tgl_konfirmasi_pdam" => $riwayat -> created_at,
                 ];
 

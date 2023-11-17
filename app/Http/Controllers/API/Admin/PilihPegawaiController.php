@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
 use App\Models\Pengaduan;
+use App\Models\PengaduanRiwayat;
 use App\Models\Penugasan;
 use Error;
 use Illuminate\Http\Request;
@@ -58,6 +59,15 @@ class PilihPegawaiController extends Controller
             $jumlahPenugasan = $pegawai -> penugasan -> jumlah;
             Penugasan::where('id', $pegawai -> penugasan -> id)
                 -> update(["jumlah" => $jumlahPenugasan + 1]);
+
+            $riwayat = [
+                "pengaduan_id" => $pengaduan -> id,
+                "keterangan" => "Pengaduan telah terkonfirmasi, mohon ditunggu",
+                "status" => 2,
+                "created_by" => $pengaduan -> pelanggan -> id,
+            ];
+
+            PengaduanRiwayat::create($riwayat);
 
             $p = Pengaduan::where('id', $request -> pengaduan_id)
                 -> first();
