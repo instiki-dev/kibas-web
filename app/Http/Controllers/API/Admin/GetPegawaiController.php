@@ -31,6 +31,12 @@ class GetPegawaiController extends Controller
                 ])
                 -> with('penugasan:petugas_id,jumlah')
                 -> get();
+
+                if (count($pegawai) == 0) {
+                    $pegawai = Pegawai::where('jabatan', 'Pembaca Meter')
+                        -> with('penugasan:petugas_id,jumlah')
+                        -> get();
+                }
             }
 
             return response(
