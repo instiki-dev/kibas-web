@@ -22,6 +22,17 @@ class GetPegawaiController extends Controller
                 -> with('penugasan:petugas_id,jumlah')
                 -> get();
 
+            if ($request -> query('area')) {
+                $area = $request -> query('area');
+                $area = (int)$area;
+                $pegawai = Pegawai::where([
+                    ['jabatan', 'Pembaca Meter'],
+                    ['area_id', $area]
+                ])
+                -> with('penugasan:petugas_id,jumlah')
+                -> get();
+            }
+
             return response(
                 $pegawai,
                 200
