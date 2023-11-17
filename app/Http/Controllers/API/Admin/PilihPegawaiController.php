@@ -60,11 +60,13 @@ class PilihPegawaiController extends Controller
             Penugasan::where('id', $pegawai -> penugasan -> id)
                 -> update(["jumlah" => $jumlahPenugasan + 1]);
 
+            $p = Pengaduan::where('id', $request -> pengaduan_id) -> first();
+
             $riwayat = [
-                "pengaduan_id" => $pengaduan -> id,
+                "pengaduan_id" => $p -> id,
                 "keterangan" => "Pengaduan telah terkonfirmasi, mohon ditunggu",
                 "status" => 2,
-                "created_by" => $pengaduan -> pelanggan -> id,
+                "created_by" => $p -> pelanggan -> id,
             ];
 
             PengaduanRiwayat::create($riwayat);
