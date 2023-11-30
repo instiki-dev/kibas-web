@@ -1,5 +1,13 @@
 @extends('adminlte.main')
 
+@section('style')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+@endsection
+
+
 @section('content')
 <div class="content-header">
     @if(session() -> has('successMessage'))
@@ -43,15 +51,17 @@
                     </div>
                 </div>
 
-                <div class="card-body table-responsive p-0" style="height: 60vh;">
-                    <table class="table table-head-fixed text-nowrap">
+                <div class="card-body table-responsive p-2" style="height: 60vh;">
+                    <table class="table table-bordered table-striped" id="data-tabel">
                         <thead>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Rekening</th>
-                            <th class="text-center">Waktu</th>
-                            <th class="text-center">ID Pengaduan</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Aksi</th>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Rekening</th>
+                                <th class="text-center">Waktu</th>
+                                <th class="text-center">ID Pengaduan</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
                         </thead>
                         <tbody class="text-center" id="tableContent">
                             @foreach($data as $item)
@@ -118,4 +128,19 @@
                 select.classList.add("w-75")
             }
         </script>
+
+        <!-- DataTables  & Plugins -->
+        <script src="/plugins/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/plugins/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="/plugins/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/plugins/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script>
+        $(function () {
+            $("#data-tabel").DataTable({
+                "responsive": true
+            });
+        });
+        </script>
+
 @endsection
+

@@ -9,7 +9,15 @@
             left: 50%;
             background-color: #FFFFFF;
         }
+        table td:nth-child(3) {
+            text-align: start;
+        }
     </style>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 
 @section('content')
@@ -27,13 +35,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Tagihan</h1>
+                <h1 class="m-0">Daftar Tagihan</h1>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item active">Daftar Tagihan</li>
                 </ol>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -46,26 +54,28 @@
                     <form id="tagihanForm" action="{{ route('import-tagihan') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input id="inputFile" name="file" type="file" hidden>
-                        <button id="btnFile" type="button" class="btn btn-danger" style="color: #fff;">Import Tagihan</button>
+                        <button id="btnFile" type="button" class="btn btn-secondary" style="color: #fff;">Import Tagihan <i class="fa fa-download" aria-hidden="true"></i></button>
                     </form>
                     <a class="btn btn-danger ml-3" href="{{ route('tambah-tagihan-page') }}" style="color: #fff;">
-                        Tambah Tagihan
+                        Tambah Tagihan <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                 </div>
                 <a class="btn btn-success ml-3" style="color: #fff;">
-                    Sinkronkan
+                    Sinkronkan <i class="fa fa-cloud" aria-hidden="true"></i>
                 </a>
             </div>
-            <div class="card-body table-responsive px-3 py-0" style="height: 90vh;">
-                <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
+            <div class="card-body table-responsive p-3" style="min-height: 50vh;">
+                <table id="myTable" class="w-100 table table-bordered table-striped">
                     <thead>
-                        <th class="text-center">No</th>
-                        <th class="text-center">No Rekening</th>
-                        <th class="text-center">Nama</th>
-                        <th class="text-center">Nominal</th>
-                        <th class="text-center">Jatuh Tempo</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Aksi</th>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">No Rekening</th>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Nominal</th>
+                            <th class="text-center">Jatuh Tempo</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
                     </thead>
                     <tbody class="text-center">
                     </tbody>

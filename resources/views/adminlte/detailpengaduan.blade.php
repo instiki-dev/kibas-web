@@ -1,5 +1,13 @@
 @extends('adminlte.main')
 
+@section('style')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+@endsection
+
+
 @section('content')
 <div class="content-header">
     <div class="container-fluid">
@@ -9,7 +17,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('pengaduan') }}">Kembali</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('pengaduan') }}" class="btn btn-outline-secondary">Kembali <i class="fa fa-arrow-left" aria-hidden="true"></i>
+</a></li>
                 </ol>
             </div>
         </div>
@@ -27,14 +36,16 @@
           </div>
           <div class="modal-body">
             <div class="card">
-                <div class="card-body table-responsive p-0" style="height: 70%;">
-                    <table class="table table-head-fixed text-nowrap">
+                <div class="card-body table-responsive p-2" style="height: 70%;">
+                    <table class="table table-bordered table-striped" id="data-tabel">
                         <thead>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">Area</th>
-                            <th class="text-center">Jumlah Penugasan</th>
-                            <th class="text-center">Aksi</th>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">Area</th>
+                                <th class="text-center">Jumlah Penugasan</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
                         </thead>
                         <tbody class="text-center" id="tableContent">
                             @foreach($pegawai as $item)
@@ -92,4 +103,19 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <!-- DataTables  & Plugins -->
+    <script src="/plugins/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script>
+    $(function () {
+        $("#data-tabel").DataTable({
+            "responsive": true
+        });
+    });
+    </script>
 @endsection

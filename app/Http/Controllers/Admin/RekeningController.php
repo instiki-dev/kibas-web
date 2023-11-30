@@ -44,7 +44,10 @@ class RekeningController extends Controller
                     $edit = route('show-update-rekening', ['rekening' => $row -> id]);
                     $hapus = route('hapus-rekening', ['rekening' => $row -> id]);
                     $detail = route('show-detail-rekening', ['rekening' => $row -> id]);
-                    $actionBtn = '<a href="'.$edit.'" class="edit btn btn-success btn-sm">Edit</a> <a href="'.$detail.'" class="edit btn btn-info btn-sm">Detail</a> <a href="'.$hapus.'" onclick="return confirm('."'Yakin ingin menhapus data?'".')" class="delete btn btn-danger btn-sm">Hapus</a>';
+                    $actionBtn = '
+                    <a href="'.$edit.'" class="edit btn btn-outline-success btn-sm">Edit <i class="fa fa-pen" aria-hidden="true"></i></a> 
+                    <a href="'.$detail.'" class="edit btn btn-outline-info btn-sm">Detail <i class="fa fa-info-circle" aria-hidden="true"></i></a> 
+                    <a href="'.$hapus.'" onclick="return confirm('."'Yakin ingin menhapus data?'".')" class="delete btn btn-outline-danger btn-sm">Hapus <i class="fa fa-trash" aria-hidden="true"></i></a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['aksi'])

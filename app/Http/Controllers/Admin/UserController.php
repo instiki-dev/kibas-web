@@ -37,7 +37,7 @@ class UserController extends Controller
                 })
                 ->addColumn('aksi', function($row){
                     $edit = route('show-ubah-password', ['user' => $row -> id]);
-                    $actionBtn = '<a href="'.$edit.'" class="edit btn btn-success btn-sm">Edit</a>';
+                    $actionBtn = '<a href="'.$edit.'" class="edit btn btn-outline-success btn-sm">Edit <i class="fa fa-pen" aria-hidden="true"></i></a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['nama', 'aksi'])

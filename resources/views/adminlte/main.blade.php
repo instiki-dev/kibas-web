@@ -10,6 +10,7 @@
 
         <link rel="stylesheet" href="/plugins/adminlte/dist/css/adminlte.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+        
         <link rel="stylesheet" href="/plugins/adminlte/plugins/fontawesome-free/css/all.min.css">
 
         <link rel="stylesheet" href="/plugins/adminlte/plugins/summernote/summernote-bs4.min.css">
