@@ -19,7 +19,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('pengumuman') }}">Kembali</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('pengumuman') }}" class="btn btn-outline-secondary">Kembali <i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
                 </ol>
             </div>
         </div>
@@ -86,7 +86,7 @@
                           <div id="summernote"></div>
                         </div>
 
-                        <button onclick="return confirm('Yakin ingin membuat pengumuman?')" type="submit" class="btn btn-danger mt-3 ml-3">Buat Pengumuman</button>
+                        <button onclick="return confirm('Yakin ingin membuat pengumuman?')" type="submit" class="btn btn-danger mt-3 ml-3">Tambah Pengumuman <i class="fa fa-plus" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>

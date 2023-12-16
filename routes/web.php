@@ -55,6 +55,7 @@ use App\Http\Controllers\Admin\Pengaduan\PilihPetugasController;
 use App\Http\Controllers\Admin\Pengaduan\SearchPengaduanController;
 use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\Pengumuman\HapusPengumumanController;
+use App\Http\Controllers\Admin\Pengumuman\HapusPengumumanDBController;
 use App\Http\Controllers\Admin\Pengumuman\TambahPengumumanController;
 use App\Http\Controllers\Admin\Pengumuman\TambahPengumumanDBController;
 use App\Http\Controllers\Admin\PengumumanController;
@@ -242,6 +243,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::get("/", PengumumanPageController::class)-> name('pengumuman');
         Route::get("/berita/{berita:id}", DetailBerita::class)-> name('berita');
         Route::get("/tambah-pengumuman", PengumumanController::class)-> name('show-tambah-pengumuman');
+        Route::get("/hapus-pengumuman/{pengumuman:id}", HapusPengumumanDBController::class) ->name('hapus-pengumuman');
     });
 
     Route::group(["prefix" => "baca-meter-mandiri", "middleware" => ["isadmin"]], function() {

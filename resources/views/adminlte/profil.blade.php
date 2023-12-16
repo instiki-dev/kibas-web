@@ -53,7 +53,7 @@
                         </div>
                       </div>
                       <div class="d-inline">
-                          <button id="updateBtn" onclick="return confirm('Yakin ingin merubah data')" type="submit" class="btn btn-danger" style="border: none;">Update Profil</button>
+                          <button id="updateBtn" onclick="return confirm('Yakin ingin merubah data')" type="submit" class="btn btn-danger" style="border: none;">Update Profil <i class="fa fa-user" aria-hidden="true"></i></button>
                       </div>
                     </form>
                 </div>

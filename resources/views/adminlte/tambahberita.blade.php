@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Kembali</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="btn btn-outline-secondary">Kembali <i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
                 </ol>
             </div>
         </div>
@@ -24,7 +24,7 @@
                         @csrf
                           <input id="pengumuman" type="hidden" name="berita">
                           <div id="summernote"></div>
-                        <button type="submit" class="btn btn-primary mt-3">Buat Pengumuman</button>
+                        <button type="submit" class="btn btn-primary mt-3">Buat Pengumuman <i class="fa fa-plus" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>

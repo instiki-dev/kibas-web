@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('show-riwayat', ['rekening' => $rekening -> id]) }}">Kembali</a></li>
+                    <li class="breadcrumb-item"><a class="btn btn-outline-secondary" href="{{ route('show-riwayat', ['rekening' => $rekening -> id]) }}">Kembali <i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
                 </ol>
             </div>
         </div>

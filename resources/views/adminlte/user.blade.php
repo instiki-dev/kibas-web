@@ -9,7 +9,21 @@
             left: 50%;
             background-color: #FFFFFF;
         }
+
+        table td {
+            text-align: center;
+        }
+        table td:nth-child(2),
+        table td:nth-child(3),
+        table td:nth-child(4) {
+            text-align: start;
+        }
     </style>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 
 @section('content')
@@ -27,13 +41,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">User</h1>
+                <h1 class="m-0">Daftar User</h1>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item active">Daftar User</li>
                 </ol>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -41,14 +55,16 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-body table-responsive py-0 px-3" style="height: 90vh;">
-                    <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
+            <div class="card-body table-responsive p-3" style="min-height: 50vh;">
+                <table id="myTable" class="w-100 table table-bordered table-striped">
                         <thead>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Username</th>
-                            <th class="text-center">Email</th>
-                            <th class="text-center">Nama Pegawai (Jika Pegawai)</th>
-                            <th class="text-center">Aksi</th>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Username</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Nama Pegawai (Jika Pegawai)</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
                         </thead>
                     </table>
                 </div>

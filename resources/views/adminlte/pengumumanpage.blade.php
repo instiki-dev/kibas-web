@@ -43,7 +43,7 @@
         <div class="card">
             <div class="card-header">
                 <a href="{{ route('show-tambah-pengumuman') }}" class="btn btn-danger" style="color: #fff;">
-                    Tambah Pengumuman
+                    Tambah Pengumuman <i class="fa fa-plus" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="card-body table-responsive px-3 py-0" style="height: 90vh;">

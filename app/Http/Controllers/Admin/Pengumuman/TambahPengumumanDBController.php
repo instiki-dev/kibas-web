@@ -99,9 +99,10 @@ class TambahPengumumanDBController extends Controller
 
         $message = ["registration_ids" => $deviceToken];
         // $message = ["registration_ids" => $token];
+
         $message["notification"] = [
             "title" => $title,
-            "body" => $data["judul"]
+            "body" => $data['judul'] ?? null,
         ];
 
 

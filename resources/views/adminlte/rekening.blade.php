@@ -8,7 +8,15 @@
             left: 50%;
             background-color: #FFFFFF;
         }
+        table td:nth-child(3) {
+            text-align: start;
+        }
     </style>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 
 @section('content')
@@ -26,13 +34,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Rekening</h1>
+                <h1 class="m-0">Daftar Rekening</h1>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item active">Daftar Rekening</li>
                 </ol>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -42,7 +50,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <a href="{{ route('show-tambah-rekening') }}" class="btn btn-danger" style="color: #fff;">
-                        Tambah Rekening
+                        Tambah Rekening <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                     <div class="sync d-flex justify-content-center align-items-center">
                       <div class="form-group">
@@ -62,17 +70,19 @@
                         </select>
                       </div>
                         <a class="btn btn-success ml-4" style="color: #fff;">
-                            Sinkronkan
+                            Sinkronkan <i class="fa fa-cloud" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
-                <div class="px-3 py-0 card-body table-responsive p-0" style="height: 90vh;">
-                    <table id="myTable" class="w-100 table table-head-fixed text-nowrap">
+                <div class="card-body table-responsive p-3" style="min-height: 50vh;">
+                    <table id="myTable" class="w-100 table table-bordered table-striped">
                         <thead>
+                            <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">No Rekening</th>
                             <th class="text-center">Pelanggan</th>
                             <th class="text-center">Aksi</th>
+                            </tr>
                         </thead>
                         <tbody class="text-center" id="tableContent">
                         </tbody>

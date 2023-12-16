@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('pelanggan') }}">Kembali</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('pelanggan') }}" class="btn btn-outline-secondary">Kembali <i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
                 </ol>
             </div>
         </div>
@@ -21,39 +21,41 @@
             <div class="card">
                 <div class="card-body">
                     <form class="px-4 pt-3" action="{{ route('update-pelanggan', ['pelanggan' => $pelanggan -> id]) }}" method="post">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group col-md-8">
+                      @csrf
+                      @method('PUT')
+                      <div class="row">
+                        <div class="form-group col-md-12">
                           <label for="inputNama">Nama Lengkap</label>
                           <input value="{{ $pelanggan -> nama_pelanggan }}" name="fullname" type="text" class="form-control" id="inputNama" placeholder="Nama Lengkap">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                           <label for="inputEmail4">Email</label>
                           <input value="{{ $pelanggan -> user -> email }}" name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
                         </div>
-
-                    <div class="form-row px-4 mt-5">
-                        <div class="form-group col-md-5">
-                          <label for="inputNomor">Nomor Pelanggan</label>
-                          <input value="{{ $pelanggan -> no_pelanggan }}" name="nomor_pelanggan" type="text" class="form-control" id="inputNomor" placeholder="Nomor Pelanggan">
-                        </div>
-                        <div class="form-group col-md-5">
-                          <label for="inputNIK">NIK</label>
-                          <input value="{{ $pelanggan -> nik_pelanggan }}" name="nik" type="text" class="form-control" id="inputNIK" placeholder="NIK">
-                        </div>
-                        <div class="form-group col-md-2">
-                          <label for="inputGolongan">Golongan</label>
-                            <select id="inputGolongan" name="golongan_id" class="form-control selectpicker" data-live-search="true">
-                                @foreach ($golongan as $item)
-                                <option data-tokens="data" value={{ $item -> id }}>{{ $item -> golongan }}</option>
-                                @endforeach
-                                <!-- <option data-tokens="data" value="0">Lainnya</option> -->
-                            </select>
-                        </div>
                       </div>
 
-                    <div class="form-row px-4">
-                        <div class="form-group col-md-5">
+                      <div class="row">
+                          <div class="form-group col-md-5">
+                            <label for="inputNomor">Nomor Pelanggan</label>
+                            <input value="{{ $pelanggan -> no_pelanggan }}" name="nomor_pelanggan" type="text" class="form-control" id="inputNomor" placeholder="Nomor Pelanggan">
+                          </div>
+                          <div class="form-group col-md-5">
+                            <label for="inputNIK">NIK</label>
+                            <input value="{{ $pelanggan -> nik_pelanggan }}" name="nik" type="text" class="form-control" id="inputNIK" placeholder="NIK">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="inputGolongan">Golongan</label>
+                              <select id="inputGolongan" name="golongan_id" class="form-control selectpicker" data-live-search="true">
+                                  @foreach ($golongan as $item)
+                                  <option data-tokens="data" value={{ $item -> id }}>{{ $item -> golongan }}</option>
+                                  @endforeach
+                                  <!-- <option data-tokens="data" value="0">Lainnya</option> -->
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-md-6">
                           <label for="inputAlamat">Alamat</label>
                           <input value="{{ $pelanggan -> alamat_pelanggan }}" name="alamat_pelanggan" type="text" class="form-control" id="inputAlamat" placeholder="Alamat">
                         </div>
@@ -85,7 +87,7 @@
                           </button>
                         </div>
                         @endif
-                      <button onclick="return confirm('Yakin ingin merubah data?')" type="submit" class="btn btn-danger ml-4 mt-2 mb-3" style="border: none;">Edit</button>
+                      <button onclick="return confirm('Yakin ingin merubah data?')" type="submit" class="btn btn-danger mt-2 mb-3" style="border: none;">Perbaharui <i class="fa fa-check" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>

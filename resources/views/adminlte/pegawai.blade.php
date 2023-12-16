@@ -9,7 +9,17 @@
             left: 50%;
             background-color: #FFFFFF;
         }
+        table td:nth-child(2),
+        table td:nth-child(3),
+        table td:nth-child(4) {
+            text-align: start;
+        }
     </style>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 
 @section('content')
@@ -27,13 +37,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Pegawai</h1>
+                <h1 class="m-0">Daftar Pegawai</h1>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item active">Daftar Pegawai</li>
                 </ol>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -43,17 +53,19 @@
             <div class="card">
                 <div class="card-header">
                     <a href="{{ route('show-tambah-pegawai') }}" class="btn btn-danger" style="color: #fff;">
-                        Tambah Pegawai
+                        Tambah Pegawai <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                 </div>
-                <div class="card-body table-responsive px-3 py-0" style="height: 60vh;">
-                    <table id="myTable" class="table w-100 table-head-fixed text-nowrap">
+                <div class="card-body table-responsive p-3" style="min-height: 50vh;">
+                    <table id="myTable" class="w-100 table table-bordered table-striped">
                         <thead>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">Jabatan</th>
-                            <th class="text-center">Area</th>
-                            <th class="text-center">Aksi</th>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">Jabatan</th>
+                                <th class="text-center">Area</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
                         </thead>
                         <tbody class="text-center" id="tableContent">
                         </tbody>

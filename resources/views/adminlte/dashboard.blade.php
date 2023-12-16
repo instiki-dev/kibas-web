@@ -28,7 +28,9 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('show-tambah-admin') }}">Tambah Admin</a></li>
+                    <li class="breadcrumb-item">
+                      <a href="{{ route('show-tambah-admin') }}" class="btn btn-outline-primary">Tambah Admin <i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -43,7 +45,7 @@
                     <h4 class="col-6">Pengumuman</h4>
                     <ul class="nav nav-pills card-header-pills col-6 d-flex justify-content-end">
                       <li class="nav-item">
-                        <a style="background-color: #ff0000;" class="nav-link active" href="{{ route('pengumuman') }}">Buat Pengumuman</a>
+                        <a class="btn btn-danger" href="{{ route('pengumuman') }}">Buat Pengumuman <i class="fa fa-plus" aria-hidden="true"></i></a>
                       </li>
                     </ul>
                   </div>
@@ -52,6 +54,9 @@
                     <div class="card mt-2 bg-gray">
                       <div class="card-body">
                         <p class="card-text">{!! $item -> pengumuman !!}</p>
+                        <div class="d-flex">
+                            <a onclick="return confirm('Yakin ingin menghapus?')" href="{{ route('hapus-pengumuman', ['pengumuman' => $item -> id]) }}" class="btn mr-3 btn-danger">Hapus</a>
+                        </div>
                       </div>
                     </div>
                     @endforeach
@@ -65,7 +70,7 @@
                     <h4 class="col-6">Survey</h4>
                     <ul class="nav nav-pills card-header-pills col-6 d-flex justify-content-end">
                       <li class="nav-item">
-                        <a style="background-color: #ff0000;" class="nav-link active" href="{{ route('show-tambah-survey') }}">Buat Survey</a>
+                        <a class="btn btn-danger" href="{{ route('show-tambah-survey') }}">Buat Survey <i class="fa fa-plus" aria-hidden="true"></i></a>
                       </li>
                     </ul>
                   </div>

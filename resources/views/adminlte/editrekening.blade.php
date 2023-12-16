@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('rekening') }}">Kembali</a></li>
+                    <li class="breadcrumb-item"><a class="btn btn-outline-secondary" href="{{ route('rekening') }}">Kembali <i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
                 </ol>
             </div>
         </div>
@@ -76,7 +76,7 @@
                               </button>
                             </div>
                             @endif
-                          <button type="submit" class="btn btn-danger ml-4 mt-2" style="border: none;">Edit</button>
+                          <button type="submit" class="btn btn-danger ml-4 mt-2" style="border: none;">Perbaharui <i class="fa fa-check" aria-hidden="true"></i></button>
                         </form>
 
                 </div>

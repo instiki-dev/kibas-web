@@ -10,6 +10,8 @@ class PengumumanMaster extends Model
 {
     use HasFactory, SoftDeletes;
 
+    // protected $table = 'pengumuman_master';
+
     protected $fillable = ["pengumuman", "area_id", "jenis_id", "judul", "penulis", "link_foto"];
 
     public function detail() {
