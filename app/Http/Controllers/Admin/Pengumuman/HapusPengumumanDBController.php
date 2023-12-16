@@ -20,6 +20,6 @@ class HapusPengumumanDBController extends Controller
         // return 'halo';
         // dd(PengumumanMaster::where('id', $pengumuman -> id)->get());
         PengumumanMaster::where('id', $pengumuman -> id) -> delete();
-        return redirect() -> route('dashboard') -> with('successMessage', 'Pengumuman telah terhapus');
+        return redirect()->back()-> with('successMessage', 'Pengumuman telah terhapus');
     }
 }

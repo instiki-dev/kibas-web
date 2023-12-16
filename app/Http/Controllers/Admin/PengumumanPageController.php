@@ -35,14 +35,14 @@ class PengumumanPageController extends Controller
                         $data->created_at)->format('d-m-Y');
                     return $formatedDate; })
                 ->addColumn('aksi', function($row){
-                    if ($row -> jenis_id == 5) {
+                    // if ($row -> jenis_id == 5) {
                         $detail = route('berita', ['berita' => $row -> id]);
                         $hapus = route("hapus-pengumuman", ["pengumuman" => $row -> id]);
                         $actionBtn = '
                             <a href="'.$detail.'" class="edit btn btn-outline-primary btn-sm">Detail <i class="fa fa-info" aria-hidden="true"></i></a> 
                             <a href="'.$hapus.'" onclick="return confirm('."'Yakin ingin menhapus data?'".')" class="delete btn btn-outline-danger btn-sm">Hapus <i class="fa fa-trash" aria-hidden="true"></i></a>';
                         return $actionBtn;
-                    }
+                    // }
                 })
                 ->rawColumns(['pengumuman', 'aksi'])
                 ->make(true);

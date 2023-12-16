@@ -9,6 +9,8 @@ use App\Models\PengumumanMaster;
 use App\Models\Rekening;
 use Illuminate\Http\Request;
 
+
+
 class TambahPengumumanDBController extends Controller
 {
     /**
@@ -42,6 +44,7 @@ class TambahPengumumanDBController extends Controller
         }
 
         if((int)$request -> jenis < 3) {
+
             $validation["pelanggan_id"] = "required|array|min:1";
         } else if((int)$request -> jenis != 5) {
             $validation["area_id"] = "required|array|min:1";
@@ -81,28 +84,34 @@ class TambahPengumumanDBController extends Controller
         switch((int)$validate["jenis"]) {
             case 1 :
                 $title = "Peringatan Pencabutan Rekening";
+ 		$judul = "Peringatan Pencabutan Rekening";
                 break;
             case 2 :
                 $title = "Peringatan Penyegelan Rekening";
+		$judul = "Peringatan Penyegelan Rekening";
                 break;
             case 3 :
                 $title = "Periode Pembayaran";
+		$judul = "Periode Pembayaran";
+
                 break;
             case 5 :
                 $title = 'Bangli Terkini';
+		$judul = 'Bangli Terkini';
                 break;
             default :
                 $title = "Pengumuman KIBAS";
+		$judul = "Pengumuman KIBAS";
+
         }
 
         $token = ['c-C5F3eX1PlSMY8vF20KZ3:APA91bHdZwp_1kcprdYPk2JQvClfYufjXtQULVCV8dA5mymnES1tNVYqkCcVISJ8Zb5zg0iRgyjJe8IvXIPzwzNIdKAs4SptgxFw6jIo6xZOS1szyhQL-s0DjpORmnSyoDHvkxoXMk7F'];
 
         $message = ["registration_ids" => $deviceToken];
         // $message = ["registration_ids" => $token];
-
         $message["notification"] = [
             "title" => $title,
-            "body" => $data['judul'] ?? null,
+            "body" => $judul
         ];
 
 
