@@ -54,6 +54,9 @@
                     <div class="card mt-2 bg-gray">
                       <div class="card-body">
                         <p class="card-text">{!! $item -> pengumuman !!}</p>
+                        <div class="d-flex">
+                            <a onclick="return confirm('Yakin ingin menghapus?')" href="{{ route('hapus-pengumuman', ['pengumuman' => $item -> id]) }}" class="btn mr-3 btn-danger">Hapus</a>
+                        </div>
                       </div>
                     </div>
                     @endforeach

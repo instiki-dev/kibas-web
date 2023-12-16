@@ -20,7 +20,7 @@ class PengumumanPageController extends Controller
     {
         if($request -> ajax()) {
             $data = PengumumanMaster::orderBy('created_at', 'DESC') -> with('jenis') -> get();
-            return DataTables::of($data)
+            $datas = DataTables::of($data)
                 ->addIndexColumn()
                 ->escapeColumns([])
                 ->editColumn('pengumuman', function($row) {
@@ -37,12 +37,17 @@ class PengumumanPageController extends Controller
                 ->addColumn('aksi', function($row){
                     if ($row -> jenis_id == 5) {
                         $detail = route('berita', ['berita' => $row -> id]);
-                        $actionBtn = '<a href="'.$detail.'" class="edit btn btn-info btn-sm">Detail</a>';
+                        $hapus = route("hapus-pengumuman", ["pengumuman" => $row -> id]);
+                        $actionBtn = '
+                            <a href="'.$detail.'" class="edit btn btn-outline-primary btn-sm">Detail <i class="fa fa-info" aria-hidden="true"></i></a> 
+                            <a href="'.$hapus.'" onclick="return confirm('."'Yakin ingin menhapus data?'".')" class="delete btn btn-outline-danger btn-sm">Hapus <i class="fa fa-trash" aria-hidden="true"></i></a>';
                         return $actionBtn;
                     }
                 })
                 ->rawColumns(['pengumuman', 'aksi'])
                 ->make(true);
+            
+            return $datas;
         }
         return view('adminlte.pengumumanpage');
     }
