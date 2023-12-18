@@ -30,7 +30,7 @@ class PengaduanController extends Controller
                 ->addIndexColumn()
                 ->addColumn('aksi', function($row){
                     $detail = route('show-detail-pengaduan', ['pengaduan' => $row -> id]);
-                    $actionBtn = '<a href="'.$detail.'" class="edit btn btn-info btn-sm">Detail</a>';
+                    $actionBtn = '<a href="'.$detail.'" class="edit btn btn-outline-info btn-sm">Detail <i class="fa fa-info" aria-hidden="true"></i></a> ';
                     return $actionBtn;
                 })
                 ->addColumn('nilai', function($row) {

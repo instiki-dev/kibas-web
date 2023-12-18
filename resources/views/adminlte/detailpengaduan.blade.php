@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- lightbox -->
+    <link href="/plugins/lightbox/dist/css/lightbox.css" rel="stylesheet" />
 @endsection
 
 
@@ -36,8 +38,8 @@
           </div>
           <div class="modal-body">
             <div class="card">
-                <div class="card-body table-responsive p-2" style="height: 70%;">
-                    <table class="table table-bordered table-striped" id="data-tabel">
+                <div class="card-body table-responsive p-2" style="height: 70%;width:100%">
+                    <table class="table table-bordered table-striped" id="data-tabel" style="width:100%">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
@@ -61,7 +63,7 @@
                                                 @csrf
                                                 @method('PUT')
                                                 <input name="petugas_id" value="{{ $item -> id }}" type="hidden">
-                                                <button onclick="return confirm('Yakin ingin memilih petugas ini?')" type="submit" class="btn btn-outline-success mr-3">Pilih</button>
+                                                <button onclick="return confirm('Yakin ingin memilih petugas ini?')" type="submit" class="btn btn-outline-danger mr-3">Pilih <i class="fa fa-check"></i></button>
                                             </form>
                                         @endif
                                     </div>
@@ -80,25 +82,28 @@
     <div class="container-fluid">
         <div class="col-12">
            <div class="card mb-2">
-              <img class="card-img-top" src="{{ $pengaduan -> link_foto }}" alt="Card image cap">
-              <div class="card-body px-3 d-flex justify-content-between">
-                    <div class="card-content">
-                        <h2>{{ $pengaduan -> pelanggan ? $pengaduan -> pelanggan -> nama_pelanggan : '-' }}</h3>
-                        <h3>{{ $pengaduan -> rekening ? $pengaduan -> rekening -> no_rekening : '-' }}</h4>
-                        <h5 class="description">{{ $pengaduan -> keluhan }}</h5>
+                <a href="{{$pengaduan -> link_foto}}" data-lightbox="image-1" data-title="My caption">
+                    <img src="{{$pengaduan -> link_foto}}" alt="image" style="max-height:300px;opacity:0;width:100%;position:absolute;top:0;z-index:9">
+                </a>
+                <div style="background-image: url('{{$pengaduan -> link_foto}}');width:100%;height:300px;background-size: cover;background-position:center" ></div>
+                <div class="card-body px-3 d-flex justify-content-between">
+                        <div class="card-content">
+                            <h2>{{ $pengaduan -> pelanggan ? $pengaduan -> pelanggan -> nama_pelanggan : '-' }}</h3>
+                            <h3>{{ $pengaduan -> rekening ? $pengaduan -> rekening -> no_rekening : '-' }}</h4>
+                            <h5 class="description">{{ $pengaduan -> keluhan }}</h5>
 
-                        <h6>Nomor Telepon : {{ $pengaduan -> pelanggan ? $pengaduan -> pelanggan -> no_pelanggan : '-' }}</h6>
-                        <h6>Kecamatan : {{ $pengaduan -> rekening -> kecamatan ? $pengaduan -> rekening -> kecamatan -> kecamatan : '-' }}</h6>
-                        <h6>Kelurahan : {{ $pengaduan -> rekening -> kelurahan ? $pengaduan -> rekening -> kelurahan -> kelurahan : '-' }}</h6>
-                        @if(!$pengaduan -> petugas)
-                        <div class="action">
-                            <button type="button" class="btn btn-danger ml-3 mt-3" data-toggle="modal" data-target="#exampleModal">
-                                Pilih Petugas
-                            </button>
+                            <h6>Nomor Telepon : {{ $pengaduan -> pelanggan ? $pengaduan -> pelanggan -> no_pelanggan : '-' }}</h6>
+                            <h6>Kecamatan : {{ $pengaduan -> rekening -> kecamatan ? $pengaduan -> rekening -> kecamatan -> kecamatan : '-' }}</h6>
+                            <h6>Kelurahan : {{ $pengaduan -> rekening -> kelurahan ? $pengaduan -> rekening -> kelurahan -> kelurahan : '-' }}</h6>
+                            @if(!$pengaduan -> petugas)
+                            <div class="action">
+                                <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#exampleModal">
+                                    Pilih Petugas <i class="fa fa-user"></i>
+                                </button>
+                            </div>
+                            @endif
                         </div>
-                        @endif
-                    </div>
-              </div>
+                </div>
             </div>
         </div>
     </div>
@@ -118,4 +123,6 @@
         });
     });
     </script>
+    <!-- lightbox -->
+    <script src="/plugins/lightbox/dist/js/lightbox.js"></script>
 @endsection

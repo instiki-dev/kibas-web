@@ -40,12 +40,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Pengaduan</h1>
+                <h1 class="m-0">Daftar Pengaduan</h1>
             </div>
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
+                <!-- <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item active">Daftar Pengaduan</li>
-                </ol>
+                </ol> -->
             </div>
         </div>
     </div>
