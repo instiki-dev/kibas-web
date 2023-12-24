@@ -65,7 +65,7 @@ class TambahPengumumanDBController extends Controller
                 ];
                 PengumumanDetail::create($detail);
             }
-            $deviceToken = Rekening::whereIn('id', $intArray) -> pluck('device_token');
+            $deviceToken = Rekening::whereIn('id', $intArray) -> whereNotNull('device_token') -> pluck('device_token');
         } else if($validate["jenis"] == 5) {
             $data["judul"] = $validate["judul"];
             $data["penulis"] = $validate["penulis"];
@@ -84,24 +84,24 @@ class TambahPengumumanDBController extends Controller
         switch((int)$validate["jenis"]) {
             case 1 :
                 $title = "Peringatan Pencabutan Rekening";
- 		$judul = "Peringatan Pencabutan Rekening";
+                $judul = "Peringatan Pencabutan Rekening";
                 break;
             case 2 :
                 $title = "Peringatan Penyegelan Rekening";
-		$judul = "Peringatan Penyegelan Rekening";
+                $judul = "Peringatan Penyegelan Rekening";
                 break;
             case 3 :
                 $title = "Periode Pembayaran";
-		$judul = "Periode Pembayaran";
+                $judul = "Periode Pembayaran";
 
                 break;
             case 5 :
                 $title = 'Bangli Terkini';
-		$judul = 'Bangli Terkini';
+                $judul = 'Bangli Terkini';
                 break;
             default :
                 $title = "Pengumuman KIBAS";
-		$judul = "Pengumuman KIBAS";
+                $judul = "Pengumuman KIBAS";
 
         }
 
@@ -116,6 +116,7 @@ class TambahPengumumanDBController extends Controller
 
 
         $encodedData = json_encode($message);
+
 
          $headers = [
             'Authorization:key=' . $serverKey,
