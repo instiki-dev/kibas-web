@@ -31,6 +31,19 @@
                           <label for="inputEmail4">Email</label>
                           <input value="{{ $pegawai -> user -> email }}" name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
                         </div>
+                        <div class="form-group col-md-6">
+                              <label for="inputArea">Area</label>
+                                <!-- <select id="inputArea" name="area_id" class="form-control selectpicker" data-live-search="true"> -->
+                                <!--     @foreach ($area as $item) -->
+                                <!--     <option data-tokens="data" value={{ $item -> id }}>{{ $item -> area }}</option> -->
+                                <!--     @endforeach -->
+                                <!-- </select> -->
+                                <select id="inputArea" name="area_id[]" class="form-control selectpicker" multiple data-live-search="true" data-actions-box="true">
+                                    @foreach ($area as $item)
+                                    <option data-tokens="data" value={{ $item -> id }}>{{ $item -> area}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         @if($errors -> first())
                         <div class="alert alert-danger px-3" role="alert">
                             {{ $errors -> first() }}
@@ -46,4 +59,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $('.selectpicker').selectpicker('val', {{ $selectArea }});
+    </script>
 @endsection

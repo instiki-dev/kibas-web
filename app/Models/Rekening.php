@@ -40,7 +40,11 @@ class Rekening extends Model
     }
 
     public function pengumuman() {
-        $master = PengumumanMaster::where('area_id', $this -> area_id) -> orWhere('jenis_id', 5) -> select('pengumuman', 'jenis_id', 'created_at', 'judul', 'link_foto', 'penulis') -> get() ;
+        if ($this -> area_id != null) {
+            $master = PengumumanMaster::where('area_id', $this -> area_id) -> orWhere('jenis_id', 5) -> select('pengumuman', 'jenis_id', 'created_at', 'judul', 'link_foto', 'penulis') -> get() ;
+        } else {
+            $master = PengumumanMaster::where('jenis_id', 5) -> select('pengumuman', 'jenis_id', 'created_at', 'judul', 'link_foto', 'penulis') -> get() ;
+        }
         $detail = PengumumanDetail::where('rekening_id', $this -> id) -> select('id', 'master_id') -> with('master:id,pengumuman,jenis_id,created_at,judul,link_foto,penulis') -> get();
         $data = [];
         foreach($master as $item) {
@@ -59,13 +63,15 @@ class Rekening extends Model
         }
 
         foreach($detail as $item) {
-            $dt["pengumuman"] = $item -> master -> pengumuman;
-            $dt['jenis_id'] = $item -> master -> jenis_id;
-            $dt["created_at"] = $item -> master -> created_at;
-            $dt["judul"] = null;
-            $dt["penulis"] = null;
-            $dt["link_foto"] = null;
-            array_push($data, $dt);
+            if ($item -> master) {
+                $dt["pengumuman"] = $item -> master -> pengumuman;
+                $dt['jenis_id'] = $item -> master -> jenis_id;
+                $dt["created_at"] = $item -> master -> created_at;
+                $dt["judul"] = null;
+                $dt["penulis"] = null;
+                $dt["link_foto"] = null;
+                array_push($data, $dt);
+            }
         }
 
         krsort($data, 1);

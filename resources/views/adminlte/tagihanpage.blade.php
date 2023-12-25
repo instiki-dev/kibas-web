@@ -60,7 +60,7 @@
                         Tambah Tagihan <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                 </div>
-                <a class="btn btn-success ml-3" style="color: #fff;">
+                <a class="btn btn-success ml-3" style="color: #fff;" href="{{ route('sinkron-tagihan') }}" onclick="return confirm('Proses ini akan memakan waktu yang cukup lama, yakin ingin melanjutkan?')">
                     Sinkronkan <i class="fa fa-cloud" aria-hidden="true"></i>
                 </a>
             </div>
