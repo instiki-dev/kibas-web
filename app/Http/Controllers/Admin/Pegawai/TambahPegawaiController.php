@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Pegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
+use App\Models\PegawaiArea;
 use App\Models\Penugasan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ class TambahPegawaiController extends Controller
             "password" => $password,
         ];
 
+        $areas = array_map('intVal', $validate["area_id"]);
+
 
         $userData = User::create($user);
 
@@ -43,7 +46,7 @@ class TambahPegawaiController extends Controller
         $readerData = [
             "user_id" => $userData -> id,
             "nama" => $validate["fullname"],
-            "area_id" => (int)$validate["area_id"],
+            "area_id" => $areas[0],
             "jabatan" => 'Pembaca Meter'
         ];
         $p = Pegawai::create($readerData);
@@ -52,6 +55,15 @@ class TambahPegawaiController extends Controller
             "jumlah" => 0
         ];
         Penugasan::create($penugasan);
+
+        foreach ($areas as $area) {
+            $pegArea = [
+                "area_id" => $area,
+                "pegawai_id" => $p -> id
+            ];
+
+            PegawaiArea::create($pegArea);
+        }
         return redirect() -> route('pegawai') -> with('successMessage', 'Pegawai berhasil ditambah');
     }
 }

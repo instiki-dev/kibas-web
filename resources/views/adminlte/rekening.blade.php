@@ -30,6 +30,13 @@
           </button>
         </div>
     </div>
+    @elseif($errors -> first())
+    <div class="alert alert-danger px-3" role="alert">
+        {{ $errors -> first() }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     @endif
     <div class="container-fluid">
         <div class="row mb-2">
@@ -52,10 +59,11 @@
                     <a href="{{ route('show-tambah-rekening') }}" class="btn btn-danger" style="color: #fff;">
                         Tambah Rekening <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
-                    <div class="sync d-flex justify-content-center align-items-center">
+                    <form method="post" class="sync d-flex justify-content-center align-items-center" action="{{ route('sinkron-rekening') }}">
+                        @csrf
                       <div class="form-group">
                         <label for="golongan">Kode Golongan</label>
-                        <select class="form-control" id="golongan">
+                        <select class="form-control" id="golongan" name="golongan">
                             @foreach ($golongan as $item)
                               <option>{{ $item -> golongan }}</option>
                             @endforeach
@@ -63,16 +71,16 @@
                       </div>
                         <div class="form-group ml-4">
                         <label for="golongan">Kode Rayon</label>
-                        <select class="form-control" id="golongan">
+                        <select class="form-control" id="golongan" name="rayon">
                             @foreach ($rayon as $item)
                               <option>{{ $item -> kode_rayon }}</option>
                             @endforeach
                         </select>
                       </div>
-                        <a class="btn btn-success ml-4" style="color: #fff;">
+                        <button class="btn btn-success ml-4" style="color: #fff;" type="submit">
                             Sinkronkan <i class="fa fa-cloud" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                        </button>
+                    </form>
                 </div>
                 <div class="card-body table-responsive p-3" style="min-height: 50vh;">
                     <table id="myTable" class="w-100 table table-bordered table-striped">

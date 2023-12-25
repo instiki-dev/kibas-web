@@ -34,4 +34,8 @@ class Pegawai extends Model
     public function area() {
         return $this -> belongsTo(Area::class, "area_id");
     }
+
+    public function areas() {
+        return $this -> hasMany(PegawaiArea::class, "pegawai_id");
+    }
 }

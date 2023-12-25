@@ -35,9 +35,14 @@
                         <div class="form-row px-3">
                             <div class="form-group col-md-6">
                               <label for="inputArea">Area</label>
-                                <select id="inputArea" name="area_id" class="form-control selectpicker" data-live-search="true">
+                                <!-- <select id="inputArea" name="area_id" class="form-control selectpicker" data-live-search="true"> -->
+                                <!--     @foreach ($area as $item) -->
+                                <!--     <option data-tokens="data" value={{ $item -> id }}>{{ $item -> area }}</option> -->
+                                <!--     @endforeach -->
+                                <!-- </select> -->
+                                <select id="inputArea" name="area_id[]" class="form-control selectpicker" multiple data-live-search="true" data-actions-box="true">
                                     @foreach ($area as $item)
-                                    <option data-tokens="data" value={{ $item -> id }}>{{ $item -> area }}</option>
+                                    <option data-tokens="data" value={{ $item -> id }}>{{ $item -> area}}</option>
                                     @endforeach
                                 </select>
                             </div>

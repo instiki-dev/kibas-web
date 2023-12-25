@@ -26,4 +26,8 @@ class Area extends Model
     public function master() {
         return $this -> hasMany(PengumumanMaster::class, "area_id");
     }
+
+    public function pegawais() {
+        return $this -> hasMany(PegawaiArea::class, 'area_id');
+    }
 }

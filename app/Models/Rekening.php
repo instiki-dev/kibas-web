@@ -63,13 +63,15 @@ class Rekening extends Model
         }
 
         foreach($detail as $item) {
-            $dt["pengumuman"] = $item -> master -> pengumuman;
-            $dt['jenis_id'] = $item -> master -> jenis_id;
-            $dt["created_at"] = $item -> master -> created_at;
-            $dt["judul"] = null;
-            $dt["penulis"] = null;
-            $dt["link_foto"] = null;
-            array_push($data, $dt);
+            if ($item -> master) {
+                $dt["pengumuman"] = $item -> master -> pengumuman;
+                $dt['jenis_id'] = $item -> master -> jenis_id;
+                $dt["created_at"] = $item -> master -> created_at;
+                $dt["judul"] = null;
+                $dt["penulis"] = null;
+                $dt["link_foto"] = null;
+                array_push($data, $dt);
+            }
         }
 
         krsort($data, 1);

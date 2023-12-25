@@ -21,10 +21,14 @@ class DetailPengaduanController extends Controller
         if (!$area) {
             $pegawai = Pegawai::where('jabatan', 'Pembaca Meter') -> get();
         } else {
-            $pegawai = Pegawai::where([
-                ['jabatan', 'Pembaca Meter'],
-                ['area_id', $area -> id]
-            ]) -> get();
+            $pegs = $area -> pegawais;
+            // $pegawai = Pegawai::where([
+            //     ['jabatan', 'Pembaca Meter'],
+            //     ['area_id', $area -> id]
+            // ]) -> get();
+            //
+
+            $pegawai = Pegawai::whereIn('id', $pegs) -> get();
         }
 
 

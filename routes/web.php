@@ -73,6 +73,7 @@ use App\Http\Controllers\Admin\Rekening\RekeningTagihanController;
 use App\Http\Controllers\Admin\Rekening\SearchRekeningController;
 use App\Http\Controllers\Admin\Rekening\ShowTambahRekeningController;
 use App\Http\Controllers\Admin\Rekening\ShowUpdateRekeningController;
+use App\Http\Controllers\Admin\Rekening\SinkronRekeningController;
 use App\Http\Controllers\Admin\Rekening\TambahRecordTagihanController;
 use App\Http\Controllers\Admin\Rekening\TambahRekeningController;
 use App\Http\Controllers\Admin\Rekening\TambahTagihanBaruController;
@@ -84,6 +85,7 @@ use App\Http\Controllers\Admin\RiwayatPengaduan\DetailRiwayatController;
 use App\Http\Controllers\Admin\RiwayatPengaduan\FilterRiwayatControlller;
 use App\Http\Controllers\Admin\RiwayatPengaduanController;
 use App\Http\Controllers\Admin\ShowTambahAngkaMeterController;
+use App\Http\Controllers\Admin\SinkronTagihanController;
 use App\Http\Controllers\Admin\Survey\DetailSurveyController;
 use App\Http\Controllers\Admin\Survey\HapusSurveyDBController;
 use App\Http\Controllers\Admin\Survey\TambahSurveyController;
@@ -222,6 +224,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::get("/tagihan/detail/{tagihan:no_tagihan}", DetailTagihanController::class)-> name('show-detail-tagihan');
         Route::get("/tagihan/{rekening:no_rekening}", RekeningTagihanController::class)-> name('show-tagihan');
         Route::post("/tagihan/import", ImportTagihanController::class)-> name('import-tagihan');
+        Route::post("/sinkron-rekening", SinkronRekeningController::class) -> name('sinkron-rekening');
     });
 
     Route::group(["prefix" => "tagihan", "middleware" => ["isadmin"]], function() {
@@ -229,6 +232,7 @@ Route::group(["prefix" => "admin"], function() {
         Route::get("/konfirmasi/{tagihan:id}", KonfirmasiTagihanController::class) -> name('konfirmasi-tagihan');
         Route::get("/tambah-tagihan", TambahTagihanPageController::class) -> name('tambah-tagihan-page');
         Route::post("/tambah-tagihan", TambahTagihanBaruController::class) -> name('tambah-tagihan-baru');
+        Route::get("/sinkron-tagihan", SinkronTagihanController::class) -> name('sinkron-tagihan');
     });
 
     Route::group(["prefix" => "pengaduan", "middleware" => ["isadmin"]], function() {
