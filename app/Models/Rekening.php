@@ -82,4 +82,20 @@ class Rekening extends Model
 
         return $data;
     }
+
+    public function pengumumanInfo() {
+        $data = $this -> pengumuman();
+        $newData = [];
+
+        foreach ($data as $dt) {
+            $jenis = $dt["jenis_id"];
+            if (($jenis != 3) && ($jenis != 5)) {
+                array_push($newData, $dt);
+            }
+        }
+
+        krsort($newData, 1);
+
+        return $newData;
+    }
 }
