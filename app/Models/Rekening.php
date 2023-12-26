@@ -84,18 +84,63 @@ class Rekening extends Model
     }
 
     public function pengumumanInfo() {
-        $data = $this -> pengumuman();
-        $newData = [];
+        // $pengumuman = PengumumanMaster::where([
+        //     ["jenis_id", '!=', 3],
+        //     ["jenis_id", '!=', 5],
+        //     ["area_id", $this -> area_id]
+        // ])
+        //     -> with([
+        //         'detail' => function($query) {
+        //             return $query->where('rekening_id', $this -> id);
+        //         }
+        //     ])
+        //     -> get();
+        //
 
-        foreach ($data as $dt) {
-            $jenis = $dt["jenis_id"];
-            if (($jenis != 3) && ($jenis != 5)) {
-                array_push($newData, $dt);
+
+        $allPengumuman = [];
+
+        $pengumumanMaster = PengumumanMaster::where([
+            ["jenis_id", 4],
+            ["area_id", $this -> area_id]
+        ])
+        ->orderBy('created_at', 'DESC')
+        -> get();
+
+        // $pengumuman = PengumumanMaster::with([
+        //     'detail' => function($query) {
+        //         return $query->where('rekening_id', $this -> id);
+        //     }
+        // ])
+        // ->has('detail')
+        // -> where([
+        //     ["jenis_id", '!=', 3],
+        //     ["jenis_id", '!=', 5],
+        //     ["area_id", $this -> area_id]
+        // ])
+        // -> get();
+        //
+
+        foreach ($pengumumanMaster as $item) {
+            array_push($allPengumuman, $item);
+        }
+
+        $pengumuman = PengumumanMaster::with([
+            'detail' => function($query) {
+                return $query->where('rekening_id', $this -> id);
+            }
+        ])
+        -> orderBy('created_at', 'DESC')
+        -> get();
+
+        foreach ($pengumuman as $item) {
+            if ($item -> detail -> count() != 0) {
+                array_push($allPengumuman, $item);
             }
         }
 
-        krsort($newData, 1);
+        $allPengumuman = collect($allPengumuman);
 
-        return $newData;
+        return $allPengumuman;
     }
 }
