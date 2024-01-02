@@ -18,15 +18,28 @@ class RekeningSeeder extends Seeder
      */
     public function run()
     {
-       $xls = (new FastExcel()) -> import('/home/freak_mei/Projects/new-python/kibas/pelanggan.xlsx');
+       $xls = (new FastExcel()) -> import('/home/freak_mei/Downloads/uas/data_pelanggan_new.xlsx');
         foreach($xls as $index=>$item) {
-            $namaPelanggan = $item['pelanggan'];
+            $namaPelanggan = $item['nama'];
             $no_rekening = $item['nosamb'];
+            if (strlen($no_rekening) < 9) {
+                $no_rekening = '0'.$no_rekening;
+            }
             $rekening = Rekening::where('no_rekening', $no_rekening) -> first();
+            $kodeRayon = $item["koderayon"];
+            $len = strlen(($item['koderayon']));
+            if($len < 4) {
+                $kodeRayon = '0'.$kodeRayon;
+            }
 
             if (!$rekening) {
-                $golongan = Golongan::where('golongan', $item['gol']) -> first();
-                $rayon = Rayon::where('kode_rayon', $item['koderayon']) -> first();
+                $golongan = Golongan::where('golongan', $item['kodegol']) -> first();
+                $rayon = Rayon::where('kode_rayon', $kodeRayon) -> first();
+
+                if (!$rayon) {
+                    dd($kodeRayon);
+                }
+
 
                 $pelanggan = Pelanggan::where('nama_pelanggan', $namaPelanggan) -> first();
                 $value = [
