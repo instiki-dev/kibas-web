@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Area;
 use App\Models\Golongan;
 use App\Models\Pelanggan;
 use App\Models\Rayon;
@@ -35,6 +36,7 @@ class RekeningSeeder extends Seeder
             if (!$rekening) {
                 $golongan = Golongan::where('golongan', $item['kodegol']) -> first();
                 $rayon = Rayon::where('kode_rayon', $kodeRayon) -> first();
+                $area = Area::where('area', $item['namarayon']) -> first();
 
                 if (!$rayon) {
                     dd($kodeRayon);
@@ -47,7 +49,7 @@ class RekeningSeeder extends Seeder
                     "no_rekening" => $no_rekening,
                     "kecamatan_id" => null,
                     "kelurahan_id" => null,
-                    "area_id" => null,
+                    "area_id" => $area ? $area -> id : null,
                     "lat" => "-8.4639394",
                     "lng" => "115.3497947",
                     "golongan_id" => $golongan -> id,
