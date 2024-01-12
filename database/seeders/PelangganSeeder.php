@@ -19,35 +19,44 @@ class PelangganSeeder extends Seeder
     public function run()
     {
 
-       $xls = (new FastExcel()) -> import('/home/freak_mei/Projects/new-python/kibas/credential.xlsx');
+       $xls = (new FastExcel()) -> import('/home/freak_mei/Downloads/uas/data_pelanggan_new.xlsx');
 
         foreach($xls as $index=>$item) {
             // Create instance in table user
-            $username = $item['username'];
-            $username = str_replace(" ", "", $username);
-            $username = strtolower($username);
-            $id = (string)$index;
-            $password = bcrypt($username);
-            $user = [
-                "name" => $username,
-                "email" => $username.$id."@gmail.com",
-                "password" => $password
-            ];
-            $userData = User::create($user);
-            $userData -> assignRole('Pelanggan');
 
-            $golongan = Golongan::where('golongan', $item['golongan']) -> first() -> id;
+            $pelanggan = Pelanggan::where('nama_pelanggan', $item["nama"]) -> first();
 
-            // Create instance in table pelanggan
-            $pelangganData = [
-                "user_id" => $userData -> id,
-                "nama_pelanggan" => $item['username'],
-                "nik_pelanggan" => "",
-                "no_pelanggan" => "",
-                "alamat_pelanggan" => $item['alamat'],
-                "golongan_id" => $golongan,
-            ];
-            Pelanggan::create($pelangganData);
+            if (!$pelanggan) {
+
+                $username = $item['nama'];
+                $username = str_replace(" ", "", $username);
+                $username = strtolower($username);
+                $id = (string)$index;
+                $password = bcrypt($username);
+                $user = [
+                    "name" => $username,
+                    "email" => $username.$id."@gmail.com",
+                    "password" => $password
+                ];
+                $userData = User::create($user);
+                $userData -> assignRole('Pelanggan');
+
+                $golongan = Golongan::where('golongan', $item['kodegol']) -> first() -> id;
+
+                // Create instance in table pelanggan
+                $pelangganData = [
+                    "user_id" => $userData -> id,
+                    "nama_pelanggan" => $item['nama'],
+                    "nik_pelanggan" => "",
+                    "no_pelanggan" => "",
+                    "alamat_pelanggan" => $item['alamat'],
+                    "golongan_id" => $golongan,
+                ];
+                Pelanggan::create($pelangganData);
+
+            }
+
+
         }
 
 

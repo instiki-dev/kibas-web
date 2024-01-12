@@ -19,7 +19,7 @@ class GolonganSeeder extends Seeder
             'IB',
             'II',
             'III',
-            'IIIA',
+            'III A',
             'IVA',
             'IVA1',
             'IVA2',

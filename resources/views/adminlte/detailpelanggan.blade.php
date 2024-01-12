@@ -25,11 +25,17 @@
                     </h3>
                 </div>
                 <div class="card-body table-responsive px-3" style="height: 60vh;">
-                    <h5>No Pelanggan : {{ $pelanggan -> no_pelanggan }}</h5>
+                    <h5>No Pelanggan : {{ $pelanggan -> no_pelanggan ? $pelanggan -> no_pelanggan : "-" }}</h5>
                     <h5>Alamat Pelanggan : {{ $pelanggan -> alamat_pelanggan }}</h5>
                     <h5>Kecamatan : {{ $pelanggan -> kecamatan ?  $pelanggan -> kecamatan -> kecamatan : '-'}}</h5>
                     <h5>Kelurahan : {{ $pelanggan -> kelurahan ? $pelanggan -> kelurahan -> kelurahan : '-'}}</h5>
                     <h5>Golongan : {{ $pelanggan -> golongan ? $pelanggan -> golongan -> golongan : '-'}}</h5>
+                    <h5>No Sambungan : </h5>
+                    <ul>
+                        @foreach ($pelanggan -> rekening as $item )
+                        <li>{{ $item -> no_rekening }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
