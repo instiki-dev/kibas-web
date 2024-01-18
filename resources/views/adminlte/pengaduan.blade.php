@@ -59,7 +59,7 @@
                         <thead>
                             <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Rekening</th>
+                            <th class="text-center">No Sambungan</th>
                             <th class="text-center">Waktu Lapor</th>
                             <th class="text-center">Petugas</th>
                             <th class="text-center">Status</th>
