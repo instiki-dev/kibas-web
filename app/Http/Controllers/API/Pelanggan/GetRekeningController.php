@@ -16,7 +16,7 @@ class GetRekeningController extends Controller
      */
     public function __invoke(Request $request, Rekening $rekening)
     {
-        // Ini Comment
+        // Test Push 
         $user = auth('sanctum') -> user();
         $data = [
             "id" => $rekening -> id,
