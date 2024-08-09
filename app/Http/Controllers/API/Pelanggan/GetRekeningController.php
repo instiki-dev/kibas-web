@@ -26,6 +26,7 @@ class GetRekeningController extends Controller
             "pelanggan" => $user -> pelanggan,
             "lat" => $rekening -> lat,
             "lng" => $rekening -> lng,
+            "new" => "tambahan",
             "created_at" => $rekening -> created_at,
             "updated_at" => $rekening -> updated_at,
         ];
