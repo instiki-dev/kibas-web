@@ -20,7 +20,7 @@ class GetRekeningController extends Controller
         $user = auth('sanctum') -> user();
         $data = [
             "id" => $rekening -> id,
-            "no_rekening" => $rekening -> id,
+            "no_rekening" => $rekening -> no_rekening,
             "kecamatan" => $rekening -> kecamatan,
             "kelurahan" => $rekening -> kelurahan,
             "pelanggan" => $user -> pelanggan,
